@@ -1,70 +1,111 @@
 # Stremio setup status
 
-Last checked: 2026-07-12 (America/Los_Angeles)
+Last audited: 2026-07-12 (America/Los_Angeles)
 
-> This file records the previous architecture. The completed replacement stack,
-> removals, and verification evidence are documented in `FINAL_STACK.md`.
+This is an architecture-review checkpoint. No Stremio changes should be made
+from this point without reviewing `DECISIONS.md` and the evidence gaps in
+`TEST_PLAN.md`.
 
-## Completed
+## Runtime
 
-- Installed Stremio 5.1.25 for Apple Silicon at `/Applications/Stremio.app`.
-- Launched Stremio successfully.
-- Confirmed the local streaming server is running at `http://127.0.0.1:11470`.
-- Confirmed the remaining core add-ons include Cinemeta, OpenSubtitles v3,
-  OpenSubtitles, and Local Files.
-- Installed Torrentio RD 0.0.15 with Real-Debrid, quality-then-size sorting,
-  ten results per quality, and CAM/Screener/480p/unknown results excluded.
-- Installed Streaming Catalogs 1.1.1 for the United States with provider rows
-  including Netflix, Peacock, and Hulu.
-- Installed M3U/EPG TV Addon 1.2.0 using the Harleythetech/IPHTV Philippine
-  playlist. EPG is disabled because no XMLTV guide URL was supplied.
-- Installed the personalized MediaFusion ElfHosted Real-Debrid configuration
-  with only Live Sport Events enabled. Removed the Basketball and Fighting
-  archive catalogs after they exposed polluted/misclassified listings.
-- Removed the YouTube and Public Domain Movies add-ons as requested.
-- Confirmed the provider catalog rows populate on the Stremio home screen.
-- Aborted Comet and confirmed it is not installed.
+- Stremio shell 5.1.25 is installed in `/Applications/Stremio.app`.
+- Stremio UI reported app version 6.0.1-beta.06.
+- Local Stremio server 4.21.0 was reachable at `http://127.0.0.1:11470`.
+- The account is signed in and the desktop Installed view was audited.
 
-## Verification notes
+## Installed add-ons
 
-MediaFusion's configuration UI was retried successfully. Its first generated
-URL returned `Invalid user data`; a replacement configuration was generated
-through MediaFusion's own configuration endpoint and its manifest was checked
-before installation. Stremio now has exactly one personalized entry:
-`MediaFusion | ElfHosted RD` 5.5.2.
+1. Cinemeta 3.0.14 — built-in catalog/metadata compatibility fallback.
+2. OpenSubtitles v3 1.0.0 — subtitle provider.
+3. Local Files 1.10.0 — local-file compatibility.
+4. AIOStreams 2.30.6 — stream aggregation and management, configured with
+   Tamtaro Complete SEL Setup 2.6.1, Standard SEL, English first, and TorBox Pro.
+5. AIOMetadata | ElfHosted 2.8.0 — catalogs, metadata, Trakt/MDBList discovery,
+   and OpenPosterDB artwork.
 
-The final MediaFusion manifest contains only the `Live Sport Events` catalog.
-Its nudity filter blocks `Severe` and `Unknown`, and its certification filter
-blocks `Adults+` and `Unknown`. The old MediaFusion DEV entry and its
-Basketball/Fighting rows were removed. Live Sport Events may remain blank when
-MediaFusion has no current event available.
+The structured inventory is in
+`evidence/inventory/installed-addons.json`.
 
-CyberFlix is deprecated and its hosted instance has been retired, so Streaming
-Catalogs is installed as the catalog replacement.
+## Removed add-ons
 
-The initially exposed Real-Debrid private token was refreshed and revoked.
-Torrentio was reinstalled with the replacement token, and the obsolete add-on
-entry was removed. Exactly one Torrentio RD entry remains installed.
+- Torrentio RD 0.0.15
+- MediaFusion | ElfHosted RD 5.5.2
+- Streaming Catalogs 1.1.1
+- M3U/EPG TV Addon 1.2.0
+- OpenSubtitles 0.24.0
+- YouTube, version not recorded
+- Public Domain Movies, version not recorded
 
-Stremio's Default Audio Track is already set to English. Torrentio Lite 0.0.15
-does not currently expose the requested "Exclude all non-English audio" control,
-so Torrentio was not replaced with a less-capable Lite configuration.
+Comet had previously been aborted as a separate add-on. Comet is now an
+internal source in the official Tamtaro AIOStreams configuration.
 
-Only configure sources for content you are legally entitled to access.
+## Configuration state
 
-1. Install Stremio on the Onn 4K Pro and sign in with the same Stremio account;
-   the account add-ons should then synchronize.
-2. Review each third-party add-on's privacy policy and current configuration
-   page before giving it any credential.
-3. Install only the add-ons you actually need, then test with known licensed or
-   public-domain content.
+### AIOStreams
 
-## Verified links
+- Instance: Yeb nightly at `https://aiostreams-nightly.fortheweak.cloud/`.
+- Reported nightly build at setup: `2026.07.10.1236-nightly`.
+- Imported template: official Tamtaro Complete SEL Setup 2.6.1.
+- Partial template: not used.
+- SEL: Standard.
+- Preferred language: English first.
+- Debrid delivery: existing TorBox Pro account.
+- Formatter: current Tamtaro default from the Complete template.
+- Internal source set recorded at import: SeaDex, Library, Meteor, Comet,
+  STorz, Torrentio, MediaFusion, Knaben, AnimeTosho, Sootio, and TorBox Search
+  with NZB support for TorBox Pro.
 
-- Stremio downloads: <https://www.stremio.com/downloads>
-- Real-Debrid API documentation: <https://api.real-debrid.com/>
-- Real-Debrid support: <https://real-debrid.com/support>
+### AIOMetadata
 
-The third-party URLs in the supplied PDF were not treated as trusted merely
-because they appeared in the document. Their operators, privacy practices, and
-availability can change independently of Stremio and Real-Debrid.
+- Instance: `https://aiometadata.elfhosted.com/`.
+- Version: 2.8.0.
+- Imported configuration: Tamtaro anime-inclusive community JSON.
+- Validated services: TMDB, TVDB, MDBList, Fanart.tv.
+- English Art Only: enabled.
+- OpenPosterDB: enabled through the RPDB-compatible custom poster pattern.
+- AI search: disabled; no Gemini credential was requested.
+- Recorded catalog/search variants: 76.
+
+Personalized hosted configuration paths, passwords, UUIDs, API keys, and debrid
+tokens are stored outside the repository in the user's credential note. The
+redacted locations are in
+`evidence/inventory/manifest-locations.redacted.json`.
+
+## Verification evidence
+
+- AIOStreams manifest: HTTP 200, version 2.30.6, stream/catalog/meta/subtitles.
+- AIOMetadata manifest: HTTP 200, version 2.8.0,
+  catalog/meta/subtitles.
+- AIOMetadata UI: all four supplied keys reported valid.
+- OpenPosterDB: HTTP 200 JPEG after redirect, 580 × 870, four visible badges.
+- Public-domain stream test: 15 results, 15 unique keys, zero duplicate keys.
+- Cached/instant markers: 11 of 15 test results.
+- English markers and TorBox service markers were visible where media metadata
+  was available.
+- Final Installed view: five add-ons matching the list above.
+
+See `evidence/verification/verification-log.md` for the detailed record and
+`evidence/screenshots/` for visual evidence.
+
+## Unresolved decisions and evidence gaps
+
+- No canonical Brainrot Formatter source has been selected; Tamtaro default
+  remains active.
+- Stremio Settings still showed `Authenticate` for Trakt scrobbling. Trakt
+  discovery catalogs are present through AIOMetadata, but scrobbling is not
+  claimed complete.
+- Cinemeta remains installed; no successful Cinebye suppression/reordering is
+  claimed.
+- Only the leading catalog order was recorded; the complete exact 76-entry
+  live order was not preserved.
+- A representative television stream-results screenshot was not captured. A
+  paused television playback screenshot is retained and labeled as such.
+
+## Scope freeze for this checkpoint
+
+- Do not continue installation from this checkpoint.
+- Do not change or remove Real-Debrid state from this checkpoint.
+- Do not research IPTV providers.
+- Do not self-host components.
+- Do not purchase, renew, upgrade, subscribe, or use referral links without
+  explicit user consent at transaction time.

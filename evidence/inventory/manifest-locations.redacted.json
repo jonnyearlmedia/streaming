@@ -1,0 +1,30 @@
+{
+  "warning": "Personalized paths, UUIDs, passwords, and API keys are intentionally redacted.",
+  "manifests": [
+    {
+      "addon": "AIOStreams",
+      "location": "https://aiostreams-nightly.fortheweak.cloud/[REDACTED]/manifest.json",
+      "verified_status": 200,
+      "verified_version": "2.30.6"
+    },
+    {
+      "addon": "AIOMetadata | ElfHosted",
+      "location": "https://aiometadata.elfhosted.com/[REDACTED]/manifest.json",
+      "verified_status": 200,
+      "verified_version": "2.8.0"
+    },
+    {
+      "addon": "Cinemeta",
+      "location": "managed by Stremio; exact installed URL not exported in this session"
+    },
+    {
+      "addon": "OpenSubtitles v3",
+      "location": "managed by Stremio; exact installed URL not exported in this session"
+    },
+    {
+      "addon": "Local Files",
+      "location": "local Stremio server/add-on; exact transport URL not exported"
+    }
+  ]
+}
+
