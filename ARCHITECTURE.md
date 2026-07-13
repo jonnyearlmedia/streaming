@@ -1,6 +1,6 @@
 # Current architecture
 
-Last audited: 2026-07-12, America/Los_Angeles.
+Last audited: 2026-07-13, America/Los_Angeles.
 
 ## Runtime
 
@@ -16,6 +16,9 @@ Last audited: 2026-07-12, America/Los_Angeles.
 `AIOMetadata | ElfHosted 2.8.0` is the configured metadata and catalog layer.
 Its configuration imported Tamtaro's current anime-inclusive AIOMetadata JSON.
 It uses TMDB, TVDB, MDBList, and Fanart.tv credentials and OpenPosterDB artwork.
+Its Home visibility is intentionally limited to nine curated discovery rows;
+search catalogs and the full provider inventory remain available outside the
+home surface.
 
 Configuration location:
 
@@ -40,9 +43,11 @@ Configuration location:
 - official template repository:
   `https://github.com/Tam-Taro/SEL-Filtering-and-Sorting`.
 
-The Tamtaro debrid source set recorded at import time was SeaDex, Library,
-Meteor, Comet, STorz, Torrentio, MediaFusion, Knaben, AnimeTosho, Sootio, and
-TorBox Search/NZB support for TorBox Pro. These are internal AIOStreams sources,
+The current Tamtaro Complete 2.6.1 TorBox Pro source set is SeaDex, Library,
+nekoBT, STorz, Meteor, Knaben, Torrentio, Comet, Sootio, and SearchNZB.
+MediaFusion remains an internal definition but is disabled by the current
+template default. TorBox torrent/library search is handled by Meteor, and
+SearchNZB remains for the Pro tier. These are internal AIOStreams sources,
 not separately installed Stremio add-ons.
 
 ### Delivery
@@ -58,8 +63,10 @@ was removed.
 
 ### Compatibility
 
-Cinemeta 3.0.14 and Local Files 1.10.0 remain installed. No claim is made that
-Cinemeta resources have been suppressed or reordered through Cinebye.
+Cinemeta 3.0.14 and Local Files 1.10.0 remain installed. Cinemeta is the narrow
+compatibility/metadata fallback and supplies Popular/Featured movie and series
+rows. The duplicate AIOMetadata Popular rows are suppressed on Home. Cinebye
+was not needed and received no Stremio credential or auth key.
 
 ## Data and trust boundaries
 
@@ -71,4 +78,3 @@ Cinemeta resources have been suppressed or reordered through Cinebye.
   documentation.
 - Community hosted instances and templates can change independently; manifests
   and version claims must be revalidated before future changes.
-

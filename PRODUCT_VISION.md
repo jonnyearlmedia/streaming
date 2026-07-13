@@ -8,11 +8,13 @@ Maintain a premium 2026 Stremio power-user setup centered on:
   catalogs, and MDBList;
 - stream aggregation and management through AIOStreams using the official
   Tamtaro Complete SEL Setup;
-- Torrentio, Comet, and MediaFusion coverage inside AIOStreams, plus additional
-  sources supplied by the official Tamtaro template;
+- Torrentio and Comet coverage inside AIOStreams, plus the additional sources
+  supplied by the official Tamtaro template. MediaFusion remains defined but
+  disabled while that is the current upstream recommendation;
 - TorBox Pro delivery;
 - English-first filtering;
 - OpenSubtitles v3;
+- Stremio-wide Trakt scrobbling in addition to Trakt-derived discovery;
 - evidence-backed manifest, catalog, artwork, stream-deduplication, and language
   validation.
 
@@ -32,14 +34,14 @@ Maintain a premium 2026 Stremio power-user setup centered on:
 
 ## Explicitly unresolved
 
-The user has not confirmed:
+The following future choices remain unresolved:
 
 - a canonical source or exact JSON for a formatter called “Brainrot
   Formatter”;
-- whether Cinemeta should be removed, suppressed through Cinebye, or retained
-  permanently as a compatibility fallback;
-- whether Stremio-wide Trakt scrobbling should be authorized in addition to the
-  Trakt-derived discovery catalogs already provided by AIOMetadata;
 - whether AIOStreams Standard SEL defaults should later be customized;
 - the desired long-term GitHub workflow beyond this architecture checkpoint.
 
+For the finished setup, Cinemeta is retained as a narrow
+compatibility/metadata fallback and its Popular/Featured rows replace the
+duplicate AIOMetadata Popular rows. This records the implemented architecture,
+not a claim that the user can never revisit it.

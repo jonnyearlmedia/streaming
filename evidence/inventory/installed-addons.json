@@ -1,7 +1,7 @@
 {
-  "captured_at": "2026-07-12T08:58:00-07:00",
+  "captured_at": "2026-07-13T08:30:04-07:00",
   "installed": [
-    {"name": "Cinemeta", "version": "3.0.14", "role": "built-in compatibility fallback"},
+    {"name": "Cinemeta", "version": "3.0.14", "role": "built-in compatibility and metadata fallback; Popular/Featured rows"},
     {"name": "OpenSubtitles v3", "version": "1.0.0", "role": "subtitles"},
     {"name": "Local Files (without catalog support)", "version": "1.10.0", "role": "local-file compatibility"},
     {"name": "AIOStreams", "version": "2.30.6", "role": "stream aggregation and management", "embedded_template": "Tamtaro Complete SEL Setup 2.6.1"},
@@ -17,4 +17,3 @@
     {"name": "Public Domain Movies", "version": "not recorded"}
   ]
 }
-

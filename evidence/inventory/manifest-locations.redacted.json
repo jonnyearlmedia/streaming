@@ -15,16 +15,21 @@
     },
     {
       "addon": "Cinemeta",
-      "location": "managed by Stremio; exact installed URL not exported in this session"
+      "location": "https://v3-cinemeta.strem.io/manifest.json",
+      "verified_status": 200,
+      "verified_version": "3.0.14"
     },
     {
       "addon": "OpenSubtitles v3",
-      "location": "managed by Stremio; exact installed URL not exported in this session"
+      "location": "https://opensubtitles-v3.strem.io/manifest.json",
+      "verified_status": 200,
+      "verified_version": "1.0.0"
     },
     {
       "addon": "Local Files",
-      "location": "local Stremio server/add-on; exact transport URL not exported"
+      "location": "http://127.0.0.1:11470/local-addon/manifest.json",
+      "verified_status": 200,
+      "verified_version": "1.10.0"
     }
   ]
 }
-

@@ -94,3 +94,46 @@ No password was entered and no elevated access was granted.
 - No successful Trakt scrobbling OAuth confirmation was collected.
 - No complete exact 76-entry catalog-order export was preserved.
 
+These limitations describe the 2026-07-12 checkpoint only. The 2026-07-13
+completion below closes the Trakt, catalog-order, television-result, and final
+home-layout gaps.
+
+## 2026-07-13 follow-up verification
+
+- Trakt OAuth completed against the existing `brownjonnybravo` profile.
+- Stremio Settings showed `Trakt Scrobbling` with `Log out` after restart.
+- Installed-list audit again showed only Cinemeta, OpenSubtitles v3, Local
+  Files, AIOStreams, and AIOMetadata.
+- AIOMetadata manifest returned HTTP 200, version 2.8.0, resources catalog,
+  meta, and subtitles, with 76 entries. The complete order is now preserved in
+  `evidence/config/catalog-order-2026-07-13.md`.
+- The preserved pre-cleanup manifest had 67 home-eligible entries.
+- Three movie and three series poster requests returned HTTP 200 JPEG; the
+  proxied source host was `openposterdb.com` for all six.
+- OpenSubtitles v3 manifest returned HTTP 200. Big Buck Bunny returned two
+  subtitle records including English; The Lucy Show S01E01 returned seven
+  records including English and Spanish.
+- The saved AIOMetadata configuration was subsequently authenticated and
+  loaded. Repetitive Home rows were disabled while all 76 catalog/search
+  definitions remained available. The final manifest had ten home-flagged
+  definitions including Calendar, and nine visible AIOMetadata discovery rows.
+- AIOMetadata was uninstalled and reinstalled from the same personalized
+  manifest location to clear Stremio's stale manifest cache. Final Installed
+  view again showed exactly the expected five add-ons.
+- Final visible Home order was verified: Continue Watching; Cinemeta Popular
+  and Featured movie/series; Trakt Trending series/movie; Latest Airing;
+  Latest Digital Release; MAL Airing Now; AniList Trending; Must-See Mindfuck;
+  Top Documentaries movie/series.
+- Movie result-list check: 14 TorBox-backed results for *Night of the Living
+  Dead*, with cached/instant choices prioritized.
+- Television result-list check: *The Lucy Show* S01E01 retained both an
+  individual episode and a season pack as distinct choices.
+- Anime/foreign-language result-list check: six Japanese TorBox-backed results
+  for *Momotaro, Sacred Sailors*, including internal Comet, Knaben, and STorz
+  sources. Original-language content was not hidden.
+- No playback was started for any 2026-07-13 stream verification.
+- Installed-manifest audit completed: Cinemeta 3.0.14 (HTTP 200;
+  catalog/meta/addon_catalog), OpenSubtitles v3 1.0.0 (HTTP 200; subtitles),
+  Local Files 1.10.0 (HTTP 200; meta/stream), AIOStreams 2.30.6 (HTTP 200;
+  stream/catalog/meta/subtitles), and AIOMetadata 2.8.0 (HTTP 200;
+  catalog/meta/subtitles).

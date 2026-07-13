@@ -29,3 +29,16 @@ AIOStreams configuration remains the live source of truth.
 For `tt0063350`, 15 returned results produced 15 unique compound keys using
 `infoHash`, `fileIdx`, and `url`; zero duplicate keys remained.
 
+## Final visible-result evidence — 2026-07-13
+
+- Movie: 14 TorBox-backed AIOStreams choices were visible for *Night of the
+  Living Dead*. Cached/instant choices were placed before uncached choices.
+- Television: *The Lucy Show* S01E01 retained both a cached individual episode
+  and an uncached season pack. These were correctly treated as distinct.
+- Anime/foreign language: *Momotaro, Sacred Sailors* returned six Japanese
+  choices from internal Comet, Knaben, and STorz sources. English remained the
+  preference, but original-language content was not hidden when appropriate.
+- Formatter: result names and descriptions used the readable Tamtaro Complete
+  format with resolution, cache state, size/bitrate, TorBox service, source,
+  and language markers where available.
+- No playback was started for these verification checks.

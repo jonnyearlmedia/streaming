@@ -41,12 +41,14 @@ Status: implemented and tested.
 The anime-inclusive Tamtaro AIOMetadata JSON was imported. English-only artwork
 and the OpenPosterDB RPDB-compatible pattern were configured.
 
-### AD-006 — Retain built-in compatibility add-ons for the checkpoint
+### AD-006 — Retain built-in compatibility add-ons
 
-Status: current state, not a declared permanent preference.
+Status: implemented and verified.
 
-Cinemeta and Local Files remain installed. This checkpoint does not infer that
-the user wants them permanently.
+Cinemeta and Local Files remain installed. Cinemeta supplies Stremio's
+compatibility/metadata fallback and four compact Popular/Featured rows. The
+equivalent AIOMetadata Popular rows are disabled on Home to avoid duplicates.
+Local Files remains for local-media compatibility.
 
 ## Unresolved decisions
 
@@ -57,28 +59,54 @@ repositories. Community posts use the name for multiple snippets. Tamtaro's
 official default formatter remains active pending an exact source selected by
 the user.
 
-### UD-002 — Trakt scrobbling OAuth
+### AD-007 — Authenticate Stremio playback scrobbling to Trakt
 
-AIOMetadata exposes Trakt-derived discovery catalogs, but Stremio Settings still
-showed `Authenticate` for playback scrobbling. No successful OAuth grant was
-recorded.
+Status: implemented and verified 2026-07-13.
 
-### UD-003 — Cinemeta suppression or removal
+The existing Trakt profile resolved to `brownjonnybravo`. After OAuth and a
+Stremio restart, Settings showed `Trakt Scrobbling` with `Log out`; this is
+separate from the Trakt-derived discovery catalogs supplied by AIOMetadata.
 
-AIOMetadata is installed but the checkpoint does not prove a Cinebye resource
-override or add-on reordering. The desired permanent treatment of Cinemeta
-requires explicit confirmation.
+### AD-009 — Follow the current Tamtaro source defaults
 
-### UD-004 — Full live catalog order export
+Status: implemented by the imported Complete 2.6.1 template.
 
-The AIOMetadata manifest was previously verified with 76 catalog/search
-variants. Only the leading order was recorded in notes. A complete live export
-would require reopening the personalized hosted configuration or retrieving the
-personalized manifest URL; this checkpoint does not expose those secrets.
+The current TorBox Pro preset keeps Torrentio and Comet enabled inside
+AIOStreams. It uses SeaDex, Library, nekoBT, STorz, Meteor, Knaben, Sootio, and
+SearchNZB as additional internal sources. MediaFusion remains configured but
+disabled because Tamtaro 2.5.1 changed its default while its hosted service was
+unreliable. No standalone source add-ons were reinstalled.
 
-### UD-005 — Representative television stream-results screenshot
+### AD-008 — Preserve the pre-cleanup AIOMetadata inventory
 
-No verified screenshot of a television episode's stream-selection list was
-captured. The repository preserves a paused television playback-state image but
-labels it accurately as not being stream-results evidence.
+Status: implemented 2026-07-13.
 
+The personalized manifest returned 76 entries and the complete redacted
+pre-cleanup order is stored in
+`evidence/config/catalog-order-2026-07-13.md`. This historical inventory was
+preserved before changing Home visibility.
+
+### AD-010 — Keep Cinemeta as a narrow fallback without Cinebye
+
+Cinemeta remains installed. Cinebye was not used because the final duplicate
+cleanup could be completed inside authenticated AIOMetadata without sending
+Stremio credentials or an auth key to another service. Cinemeta Popular and
+Featured rows remain; AIOMetadata supplies the premium curated discovery rows.
+
+### AD-011 — Apply the reduced AIOMetadata home layout
+
+Status: implemented and verified 2026-07-13.
+
+The saved configuration was authenticated and reduced to nine visible
+AIOMetadata discovery rows: Trakt Trending (series/movie), Latest Airing,
+Latest Digital Release, MAL Airing Now, AniList Trending, Must-See Mindfuck,
+and Top Documentaries (movie/series). Search resources remain enabled. The
+final manifest was reinstalled after removing the stale cached copy.
+
+### AD-012 — Preserve episode files and season packs as distinct results
+
+Status: verified 2026-07-13.
+
+The Lucy Show S01E01 returned an individual episode and a season pack as two
+distinct AIOStreams choices. This confirms the active deduplication path does
+not collapse these different playback options.
