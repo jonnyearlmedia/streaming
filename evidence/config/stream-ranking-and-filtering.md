@@ -31,6 +31,11 @@ Preferred language order: English → Dual Audio → Multi → Dubbed → Origin
 Unknown. The required-language set contains those six groups; streams explicitly
 classified as only a different language are excluded.
 
+Maximum estimated bitrate: Movies 40 Mbps; Series 30 Mbps; Anime Series
+20 Mbps. The authenticated nightly UI stores those values in Global and every
+resolution-specific category, including Unknown. Resolution-specific limits
+take precedence, so matching values are required in all paths.
+
 The template can apply additional conditional paths and passthrough rules. This
 file intentionally does not reconstruct the full generated JSON. The hosted
 AIOStreams configuration remains the live source of truth.
@@ -70,3 +75,13 @@ For `tt0063350`, 15 returned results produced 15 unique compound keys using
   set, so the original-language fallback was preserved.
 - English subtitle markers were recorded separately and were not treated as
   proof of English audio. No playback was started.
+
+## Playback-stability correction — 2026-07-13
+
+- An already-playing 55.5 GB, estimated 68.5 Mbps UHD remux paused briefly on a
+  2.4 GHz, 20 MHz Wi-Fi link. Observed Stremio ingress varied roughly
+  47–81 Mbps while Mac CPU headroom remained ample.
+- AIOStreams was saved with 40/30/20 Mbps movie/series/anime ceilings across
+  all 33 maximum-bitrate fields.
+- This preserves efficient 4K encodes but excludes the diagnosed high-bitrate
+  remux class on future result requests.

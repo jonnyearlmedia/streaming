@@ -55,6 +55,11 @@ internal source in the official Tamtaro AIOStreams configuration.
 - Preferred order: English, Dual Audio, Multi, Dubbed, Original, Unknown.
 - Cached and uncached groups both sort by Language before SeaDex, resolution,
   quality, library, expression score, subtitle, codec, age, bitrate, or seeders.
+- Playback-safety bitrate ceilings are enforced globally and for every
+  resolution-specific path, including Unknown: movies 40 Mbps, series 30 Mbps,
+  and anime series 20 Mbps. This keeps efficient 4K choices available while
+  excluding unusually large remuxes that exceed the living-room network's
+  reliable throughput.
 - Cache remains the global primary split so a verified instant result is not
   displaced by a non-instant fallback. Within each split, confirmed English or
   English-inclusive audio wins.
@@ -115,6 +120,11 @@ redacted locations are in
 - The persisted AIOStreams UI was reloaded after saving and showed Language as
   the first rule for movie, series, and anime in both Global Cached and Global
   Uncached groups.
+- A user-initiated playback diagnosis found that a 55.5 GB, estimated
+  68.5 Mbps UHD remux was competing with a 2.4 GHz, 20 MHz Wi-Fi link whose
+  observed Stremio ingress varied from roughly 47 to 81 Mbps. Mac CPU headroom
+  remained ample. The saved bitrate ceilings remove that class of first-choice
+  result on future stream requests.
 - Final Installed view: five add-ons matching the list above.
 
 See `evidence/verification/verification-log.md` for the detailed record and

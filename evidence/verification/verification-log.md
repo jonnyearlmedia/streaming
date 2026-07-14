@@ -198,3 +198,23 @@ home-layout gaps.
   Original would remove valid English files and foreign originals.
 - No purchase, referral link, playback, TorBox change, discovery change,
   Trakt change, or subtitle change was performed.
+
+## 2026-07-13 playback-stability correction
+
+- Diagnosed the user's already-running *Obsession* (2025) session; no test
+  playback was started. The selected file was a 55.5 GB UHD Blu-ray remux with
+  an estimated average bitrate of 68.5 Mbps.
+- The Mac had ample compute headroom. Its active Wi-Fi link was 2.4 GHz,
+  channel 11, 20 MHz, and Stremio ingress sampled at roughly 47–81 Mbps. The
+  short pauses matched insufficient throughput margin, not an uncached-title
+  delay or CPU saturation.
+- Loaded the authenticated AIOStreams nightly configuration and set maximum
+  estimated bitrates to Movies 40 Mbps, Series 30 Mbps, and Anime Series
+  20 Mbps.
+- Applied the same ceilings to Global, every named resolution, and Unknown.
+  Verified all 33 maximum fields contained only 40,000,000, 30,000,000, or
+  20,000,000 bits per second according to content type, then saved the hosted
+  configuration.
+- Existing playback was not interrupted. The updated filter takes effect on
+  the next stream-list request. No TorBox, catalog, Trakt, subtitle, referral,
+  or purchase setting was changed.

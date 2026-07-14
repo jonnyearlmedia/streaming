@@ -119,6 +119,22 @@ Living-room language audit, 2026-07-13:
 - No playback was started. The Onn 4K Pro player-side audio auto-selection and
   default-English settings require confirmation on the device.
 
+User-initiated playback stability audit, 2026-07-13:
+
+- The already-playing movie was a 55.5 GB UHD Blu-ray remux estimated at
+  68.5 Mbps, with HEVC, Dolby Vision, and lossless Atmos audio.
+- The Mac was not compute-bound; system monitoring showed substantial idle CPU
+  time while the pause behavior occurred.
+- The active Wi-Fi link was 2.4 GHz, channel 11, 20 MHz. Five Stremio traffic
+  samples produced roughly 47–81 Mbps of incoming throughput, leaving too
+  little stable margin for a 68.5 Mbps average-bitrate file.
+- The authenticated AIOStreams UI was changed and saved with maximum estimated
+  bitrates of 40 Mbps for movies, 30 Mbps for series, and 20 Mbps for anime.
+  All 33 maximum fields (Global plus every resolution-specific and Unknown
+  movie/series/anime path) were checked and contained only those three values.
+- No additional playback was started for verification. The new rule applies on
+  the next stream-list request; it cannot replace a file already playing.
+
 ## Installed-add-on audit
 
 Compare the Stremio Installed view against
@@ -150,3 +166,6 @@ records including English and Spanish.
 - Audio-language detection is only as reliable as the torrent/media metadata.
   Unknown and Original cannot be safely excluded globally without removing
   valid English and foreign-original files.
+- Bitrate values are estimates derived from file size and duration and do not
+  represent momentary peaks. Wi-Fi congestion can still affect any stream;
+  Ethernet or a strong 5 GHz connection remains preferable on the Onn device.

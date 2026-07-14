@@ -201,6 +201,10 @@ Differences and caveats:
   files omit audio metadata, and foreign/anime originals must remain available.
 - Exact duplicate stream keys are removed, while episode files and season
   packs remain distinct.
+- Maximum estimated bitrate is 40 Mbps for movies, 30 Mbps for series, and
+  20 Mbps for anime. These ceilings are present in Global and every
+  resolution-specific/Unknown path, so a giant remux cannot bypass the limit
+  simply because it is labeled 2160p.
 - Tamtaro's formatter shows resolution, cache state, size/bitrate, debrid
   service, internal source, and language markers where available.
 
@@ -220,3 +224,6 @@ Differences and caveats:
 - The Onn 4K Pro still needs its local Stremio audio auto-selection enabled and
   English chosen as the default audio track; that device setting is not synced
   from this Mac.
+- A cached TorBox result is remotely available immediately, not pre-downloaded
+  to the playback device. Local Wi-Fi must still sustain the stream bitrate;
+  Ethernet or strong 5 GHz Wi-Fi gives the best living-room margin.

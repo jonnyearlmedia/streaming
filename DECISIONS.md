@@ -163,3 +163,23 @@ it would hide valid English releases with incomplete filenames and remove the
 original audio required for anime and intentionally foreign-language titles.
 Filename-only results may still lack reliable audio metadata, so the policy is
 the safest practical ordering rather than an absolute guarantee.
+
+### AD-016 — Cap bitrate for reliable living-room playback
+
+Status: implemented 2026-07-13.
+
+A user-initiated movie session selected a 55.5 GB UHD Blu-ray remux estimated
+at 68.5 Mbps. The Mac had ample CPU headroom, but its active 2.4 GHz, 20 MHz
+Wi-Fi connection delivered Stremio traffic in a variable range of roughly
+47–81 Mbps. The repeated short pauses were therefore a throughput-margin
+problem, not evidence that the Mac was too slow or that TorBox lacked the
+title.
+
+AIOStreams now applies maximum estimated bitrates of 40 Mbps for movies,
+30 Mbps for series, and 20 Mbps for anime series. The same limits were applied
+to Global and every resolution-specific category, including Unknown, because
+resolution-specific values take precedence in the current nightly UI. This
+preserves efficient high-quality 4K releases while removing giant remuxes from
+future result lists. "Cached" continues to mean available without torrent
+download waiting; it does not mean locally stored or immune to last-mile
+bandwidth limits.
