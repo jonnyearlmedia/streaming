@@ -26,6 +26,30 @@
 - `2026-07-13-tv-stream-results.png` — final episode and season-pack choices.
 - `2026-07-13-anime-foreign-stream-results.png` — final Japanese anime/foreign
   language choices.
+- `2026-07-13-final-installed-addons-provider-fix.jpeg` — final five-add-on
+  inventory after the compact AIOMetadata manifest was reinstalled.
+- `2026-07-13-home-provider-catalogs-top.jpeg` — Continue Watching and familiar
+  Cinemeta compatibility rows at the top of Home.
+- `2026-07-13-home-provider-catalogs-mid.jpeg` and
+  `2026-07-13-home-provider-catalogs-lower.jpeg` — provider-shelf traversal
+  captures with visible OpenPosterDB rating artwork.
+- `2026-07-13-home-provider-catalogs-apple-peacock-paramount-visible.jpeg` and
+  `2026-07-13-home-provider-catalogs-paramount.jpeg` — Apple TV+, Peacock, and
+  Paramount+ shelves on the actual Stremio Home screen.
+- `2026-07-13-home-provider-catalogs-peacock-paramount.jpeg` — lower specialty
+  shelf traversal capture.
+- `2026-07-13-home-provider-catalogs-apple-peacock-paramount.jpeg` — bottom
+  traversal capture showing the intentionally deprioritized anime position.
+- `2026-07-13-final-installed-addons-compact-manifest.jpeg` — authoritative
+  Installed view after the final compact-label manifest reinstall.
+- `2026-07-13-home-compact-labels-top.jpeg` — authoritative top-of-Home capture
+  after the final label pass.
+- `2026-07-13-home-compact-provider-labels.jpeg` — authoritative provider
+  capture showing short service names with Stremio's Movie/Series suffix and
+  OpenPosterDB rating artwork.
+- `2026-07-13-home-compact-anime-bottom.jpeg` — authoritative bottom-of-Home
+  capture confirming specialty shelves precede the two deprioritized anime
+  shelves.
 
 Earlier screenshots are preserved as historical evidence and keep their
 original labels. The dated 2026-07-13 files above are the authoritative final

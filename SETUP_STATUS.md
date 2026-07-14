@@ -65,12 +65,16 @@ internal source in the official Tamtaro AIOStreams configuration.
 - English Art Only: enabled.
 - OpenPosterDB: enabled through the RPDB-compatible custom poster pattern.
 - AI search: disabled; no Gemini credential was requested.
-- Recorded catalog/search variants: 76.
-- Visible AIOMetadata home rows: Trakt Trending (series and movie), Latest
-  Airing, Latest Digital Release, MAL Airing Now, AniList Trending, Must-See
-  Mindfuck, and Top Documentaries (movie and series).
-- AIOMetadata Popular rows were suppressed because Cinemeta already supplies
-  the equivalent movie and series rows. Search resources remain available.
+- Provider region: United States.
+- Provider sorting: Popularity, Descending.
+- Final manifest declarations: 33 (25 Home shelves, seven search catalogs,
+  and one Calendar special resource).
+- Visible AIOMetadata Home rows use plain-English labels and include trending,
+  releases, Netflix, Hulu, Max, Disney+, Prime Video, Apple TV+, Peacock,
+  Paramount+, three specialty shelves, and two anime shelves at the bottom.
+- AIOMetadata Popular rows remain absent because Cinemeta supplies the familiar
+  Popular/Featured fallback rows. Movie, show, anime, people, and TVDB
+  collection search remain enabled.
 
 Personalized hosted configuration paths, passwords, UUIDs, API keys, and debrid
 tokens are stored outside the repository in the user's credential note. The
@@ -111,18 +115,22 @@ See `evidence/verification/verification-log.md` for the detailed record and
 - The installed-add-on list was re-audited and still contains exactly the five
   entries recorded above.
 - The AIOMetadata configuration was authenticated, reduced, saved, and then
-  cleanly reinstalled in Stremio. The final manifest returned HTTP 200,
-  version 2.8.0, with 76 total entries. Ten entries retain a home flag,
-  including the non-row Calendar resource; nine AIOMetadata discovery rows are
-  visible on the home surface.
-- The finished Stremio home layout contains Continue Watching, four compact
+  cleanly reinstalled in Stremio. The provider-restoration pass subsequently
+  reduced 106 configured catalogs to 25 intended Home catalogs. The final
+  manifest returned HTTP 200, version 2.8.0, with 33 declarations.
+- The finished Stremio Home layout contains Continue Watching, four compact
   Cinemeta compatibility rows (Popular and Featured for movie and series),
-  followed by the nine AIOMetadata discovery rows listed above.
+  then 25 AIOMetadata rows optimized for familiar remote-first browsing.
 - OpenPosterDB was re-verified across three movie and three series posters;
   every request returned HTTP 200 JPEG through the AIOMetadata proxy, with the
   nested source host resolving to `openposterdb.com`.
 - OpenSubtitles v3 returned English subtitles for a public-domain movie and
   television episode.
+- All 16 Netflix/Hulu/Max/Disney+/Prime Video/Apple TV+/Peacock/Paramount+
+  movie/show endpoints returned HTTP 200 with 20 items each.
+- The clean reinstall initially exposed Stremio's `Max descriptor size
+  reached` warning. After deleting 81 unused catalog definitions, the next
+  reinstall completed without that warning.
 
 ## Remaining limitations
 
@@ -135,6 +143,10 @@ See `evidence/verification/verification-log.md` for the detailed record and
 - The anime/foreign-language verification used the public-domain feature
   *Momotaro, Sacred Sailors* rather than a current anime episode because the
   repository safety rules require legal or public-domain test media.
+- AIOMetadata does not expose official provider availability on standard title
+  detail pages. WatchHub 1.15.0 is the exact compatible official add-on, but it
+  was intentionally not installed because it adds a stream resource and this
+  pass was limited to discovery.
 
 ## Ongoing scope restrictions
 

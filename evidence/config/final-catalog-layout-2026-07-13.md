@@ -11,28 +11,50 @@ omitted.
 3. Popular — Series (Cinemeta compatibility)
 4. Featured — Movie (Cinemeta compatibility)
 5. Featured — Series (Cinemeta compatibility)
-6. Trakt Trending — Series
-7. Trakt Trending — Movie
-8. Latest Airing — Series
-9. Latest Digital Release — Movie
-10. MAL Airing Now — Anime
-11. AniList Trending — Anime
-12. Must-See Mindfuck — Movie
-13. Top Documentaries — Movie
-14. Top Documentaries — Series
+6. Trending — Movie
+7. Trending — Series
+8. New Releases — Movie
+9. New Episodes — Series
+10. Netflix — Movie
+11. Netflix — Series
+12. Hulu — Movie
+13. Hulu — Series
+14. Max — Movie
+15. Max — Series
+16. Disney+ — Movie
+17. Disney+ — Series
+18. Prime Video — Movie
+19. Prime Video — Series
+20. Apple TV+ — Movie
+21. Apple TV+ — Series
+22. Peacock — Movie
+23. Peacock — Series
+24. Paramount+ — Movie
+25. Paramount+ — Series
+26. Mind-Bending — Movie
+27. Documentaries — Movie
+28. Documentaries — Series
+29. Anime Picks — Anime
+30. New Anime Episodes — Anime
 
-AIOMetadata's TMDB Popular movie and series rows are disabled on Home because
-the Cinemeta Popular rows already serve that purpose. Search resources remain
-enabled for movies, series, anime movies, anime series, and people. The TVDB
-collection and Calendar special resources remain available without adding
-repetitive home rows.
+Rows 6-30 are AIOMetadata. United States is selected in Streaming Providers,
+and provider sorting remains Popularity, Descending. The saved labels are short
+because Stremio appends the type itself. They avoid backend/source names that
+are meaningless to a living-room user.
+
+Search remains enabled for movies, series, anime movies, anime series, people,
+and TVDB collections. Calendar remains a special required-extra catalog and
+does not add a normal Home shelf.
 
 ## Final manifest evidence
 
 - HTTP status: 200.
 - Version: 2.8.0.
 - Resources: catalog, meta, subtitles.
-- Total catalog/search definitions: 76.
-- Definitions retaining a home flag: 10, including the Calendar special
-  resource.
-- Visible AIOMetadata discovery rows: 9.
+- Total manifest catalog declarations: 33.
+- Visible AIOMetadata Home shelves: 25.
+- Search catalogs: 7.
+- Calendar special catalogs: 1.
+- Provider endpoint checks: 16 of 16 returned HTTP 200 with 20 items.
+- Stremio clean reinstall: completed without the earlier descriptor-size
+  warning after 81 unused definitions were deleted.

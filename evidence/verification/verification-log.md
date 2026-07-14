@@ -137,3 +137,42 @@ home-layout gaps.
   Local Files 1.10.0 (HTTP 200; meta/stream), AIOStreams 2.30.6 (HTTP 200;
   stream/catalog/meta/subtitles), and AIOMetadata 2.8.0 (HTTP 200;
   catalog/meta/subtitles).
+
+## 2026-07-13 provider-discovery correction
+
+- Loaded the authenticated AIOMetadata 2.8.0 configuration; existing TMDB,
+  TVDB, MDBList, Fanart.tv, OpenPosterDB, metadata, and search settings were
+  preserved.
+- Streaming Providers was filtered to United States. The selected services are
+  Netflix, HBO Max, Disney+, Prime Video, Apple TV+, Paramount+, Peacock
+  Premium, and Hulu. No obscure provider was enabled.
+- Provider catalog sorting was checked in the UI and remains Popularity,
+  Descending.
+- Family-facing labels were changed to plain English. Backend brands such as
+  Trakt, MDBList, MAL, and AniList do not appear in the final shelf names.
+- Final AIOMetadata Home order: Trending — Movie/Series; New Releases — Movie;
+  New Episodes — Series; movie/series pairs for Netflix, Hulu, Max, Disney+,
+  Prime Video, Apple TV+, Peacock, and Paramount+; Mind-Bending — Movie;
+  Documentaries — Movie/Series; Anime Picks; New Anime Episodes.
+- Anime was moved below the specialty rows at the very bottom.
+- First clean reinstall exposed Stremio's `Max descriptor size reached`
+  warning. The authenticated catalog builder contained 106 cards, including
+  unused hidden duplicates and legacy catalogs. Eighty-one unused cards were
+  deleted, leaving exactly the intended 25.
+- Final manifest returned HTTP 200, version 2.8.0, resources catalog/meta/
+  subtitles, with 33 declarations: 25 Home catalogs, seven search catalogs,
+  and Calendar.
+- All 16 provider movie/show endpoints returned HTTP 200 and 20 items.
+- Second clean uninstall/reinstall completed without the descriptor-size
+  warning. Installed view again showed the same five add-ons.
+- A final label-only clean reinstall also completed without the warning and
+  produced compact Stremio titles such as `Netflix - Movie` and
+  `Netflix - Series`.
+- Actual Stremio Home screenshots show non-empty provider rows and
+  OpenPosterDB-style rating artwork on movie and television posters.
+- AIOMetadata's source was inspected: standard TMDB movie/series metadata
+  builders do not emit watch-provider availability on detail pages. The exact
+  official compatible add-on is WatchHub 1.15.0 (`org.stremio.watchhub`),
+  manifest `https://watchhub.strem.io/manifest.json`. It was not installed
+  because it adds a `stream` resource and the authorized scope was discovery
+  only.

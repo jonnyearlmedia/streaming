@@ -18,6 +18,11 @@ Maintain a premium 2026 Stremio power-user setup centered on:
 - evidence-backed manifest, catalog, artwork, stream-deduplication, and language
   validation.
 
+The same account is used daily on a shared living-room television. Discovery
+must therefore feel like a familiar streaming service rather than an add-on
+dashboard: Continue Watching first, plain-English shelf names, major US
+services visibly represented, and anime/specialty shelves deprioritized.
+
 ## Confirmed operating constraints
 
 - Do not preserve an existing architecture merely because it exists.
@@ -31,6 +36,9 @@ Maintain a premium 2026 Stremio power-user setup centered on:
 - Do not research IPTV providers yet.
 - Do not self-host anything yet.
 - Keep secrets out of repository artifacts.
+- Keep user-facing catalog names free of implementation brands such as Trakt,
+  MDBList, MAL, and AniList when a plain-English label communicates the same
+  purpose.
 
 ## Explicitly unresolved
 

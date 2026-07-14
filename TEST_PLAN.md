@@ -23,8 +23,8 @@ Current evidence:
 - Local Files: HTTP 200, version 1.10.0; meta and stream.
 - AIOStreams: HTTP 200, version 2.30.6; stream, catalog, meta, subtitles;
   one library catalog declared.
-- AIOMetadata: HTTP 200, version 2.8.0; catalog, meta, subtitles; 76 recorded
-  catalog/search variants.
+- AIOMetadata: HTTP 200, version 2.8.0; catalog, meta, subtitles; 33 final
+  catalog declarations.
 
 ## Catalog validation
 
@@ -33,12 +33,25 @@ Current evidence:
 3. Require HTTP 200 and a non-empty `metas` array.
 4. Confirm visible home rows after Stremio refresh.
 
-The pre-cleanup 76-entry order is preserved in
-`evidence/config/catalog-order-2026-07-13.md`. After authentication and
-cleanup, the final manifest still exposes all 76 discovery/search definitions
-but only ten retain a home flag, including the non-row Calendar resource. Nine
-AIOMetadata discovery rows are visible on Home. The final Stremio row order is
-recorded in `evidence/config/final-catalog-layout-2026-07-13.md`.
+The pre-cleanup 76-entry order remains preserved in
+`evidence/config/catalog-order-2026-07-13.md` as historical evidence. The
+provider-restoration pass reduced 106 configured catalog cards to the 25
+intended Home catalogs. The final manifest has 33 declarations: 25 Home
+shelves, seven search catalogs, and Calendar. All 16 provider movie/show
+endpoints returned HTTP 200 and 20 items. The final Stremio order is recorded
+in `evidence/config/final-catalog-layout-2026-07-13.md`.
+
+Provider validation procedure:
+
+1. Require the authenticated provider manager to show United States.
+2. Require Netflix, Hulu, Max, Disney+, Prime Video, Apple TV+, Peacock, and
+   Paramount+ movie/show shelves in the manifest and Home UI.
+3. Request every provider catalog endpoint without starting playback.
+4. Require HTTP 200 and non-empty results.
+5. Confirm anime shelves occur after the specialty shelves.
+
+Current result: all 16 endpoints returned HTTP 200 with 20 items each. The
+final clean reinstall completed without the prior descriptor-size warning.
 
 ## Artwork validation
 
@@ -107,3 +120,7 @@ records including English and Spanish.
   to comply with the repository's legal/public-domain test rule.
 - Cinemeta was not suppressed through Cinebye. Its narrow fallback role and
   non-duplicative row treatment are documented and visually verified.
+- Official "where to watch" detail-page availability is not emitted by
+  AIOMetadata's standard movie/series metadata. WatchHub was identified as the
+  exact compatible official add-on but intentionally not installed in this
+  discovery-only change.

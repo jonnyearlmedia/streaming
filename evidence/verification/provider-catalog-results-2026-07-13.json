@@ -1,0 +1,30 @@
+{
+  "checked_at": "2026-07-13T20:13:46-07:00",
+  "manifest_location": "https://aiometadata.elfhosted.com/stremio/<redacted>/manifest.json",
+  "manifest_http_status": 200,
+  "manifest_version": "2.8.0",
+  "resources": ["catalog", "meta", "subtitles"],
+  "provider_region": "United States",
+  "provider_sort": "Popularity, Descending",
+  "manifest_catalog_declarations": 33,
+  "home_catalogs": 25,
+  "search_catalogs": 7,
+  "results": [
+    {"name": "Netflix - Movie", "status": 200, "items": 20},
+    {"name": "Netflix - Series", "status": 200, "items": 20},
+    {"name": "Hulu - Movie", "status": 200, "items": 20},
+    {"name": "Hulu - Series", "status": 200, "items": 20},
+    {"name": "Max - Movie", "status": 200, "items": 20},
+    {"name": "Max - Series", "status": 200, "items": 20},
+    {"name": "Disney+ - Movie", "status": 200, "items": 20},
+    {"name": "Disney+ - Series", "status": 200, "items": 20},
+    {"name": "Prime Video - Movie", "status": 200, "items": 20},
+    {"name": "Prime Video - Series", "status": 200, "items": 20},
+    {"name": "Apple TV+ - Movie", "status": 200, "items": 20},
+    {"name": "Apple TV+ - Series", "status": 200, "items": 20},
+    {"name": "Peacock - Movie", "status": 200, "items": 20},
+    {"name": "Peacock - Series", "status": 200, "items": 20},
+    {"name": "Paramount+ - Movie", "status": 200, "items": 20},
+    {"name": "Paramount+ - Series", "status": 200, "items": 20}
+  ]
+}

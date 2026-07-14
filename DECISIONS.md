@@ -95,7 +95,7 @@ Featured rows remain; AIOMetadata supplies the premium curated discovery rows.
 
 ### AD-011 — Apply the reduced AIOMetadata home layout
 
-Status: implemented and verified 2026-07-13.
+Status: superseded by AD-013 on 2026-07-13.
 
 The saved configuration was authenticated and reduced to nine visible
 AIOMetadata discovery rows: Trakt Trending (series/movie), Latest Airing,
@@ -110,3 +110,38 @@ Status: verified 2026-07-13.
 The Lucy Show S01E01 returned an individual episode and a season pack as two
 distinct AIOStreams choices. This confirms the active deduplication path does
 not collapse these different playback options.
+
+### AD-013 — Restore a living-room provider discovery layout
+
+Status: implemented and verified 2026-07-13.
+
+The nine-row layout removed a browsing feature the user valued. AIOMetadata's
+authenticated Streaming Providers manager was therefore set to United States
+and configured for Netflix, Hulu, HBO Max, Disney+, Prime Video, Apple TV+,
+Peacock Premium, and Paramount+. Each service has one movie shelf and one show
+shelf. Provider sorting remains the integration default of Popularity,
+Descending.
+
+Visible labels are family-facing rather than implementation-facing: Trending,
+New Releases, New Episodes, the service name, Mind-Bending, Documentaries,
+Anime Picks, and New Anime Episodes. Stremio appends `Movie`, `Series`, or
+`Anime`, so the saved labels avoid repeating the type. Anime is last. Continue
+Watching and Cinemeta's familiar Popular/Featured fallback rows remain ahead
+of AIOMetadata because add-on order is outside this AIOMetadata-only change.
+
+Eighty-one disabled, duplicate, obscure, or otherwise unused catalog
+definitions were removed after Stremio reported `Max descriptor size reached`
+on the first reinstall. The final personalized manifest contains 33 catalog
+declarations: 25 Home shelves, seven search catalogs, and the Calendar special.
+The second clean reinstall completed without the warning.
+
+### AD-014 — Do not add WatchHub during the discovery-only fix
+
+Status: decided 2026-07-13.
+
+AIOMetadata's watch-provider support powers discovery catalogs but does not add
+official availability to normal movie/series detail metadata. WatchHub 1.15.0
+is the exact official compatible Stremio add-on for legal "where to watch"
+offers. It was not installed because it declares the `stream` resource and
+would add another result provider alongside AIOStreams, which is beyond the
+authorized discovery-only scope.

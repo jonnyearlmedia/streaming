@@ -15,23 +15,33 @@ Last verified: 2026-07-13 (America/Los_Angeles)
 - Preferred language is English and English-only artwork is enabled.
 - OpenPosterDB is enabled through AIOMetadata's RPDB-compatible custom artwork
   pattern. Poster proxying and custom artwork are enabled.
-- The configuration retains 76 catalog/search definitions while limiting the
-  visible AIOMetadata home surface to nine useful rows. Search definitions and
-  provider catalogs remain available through search and Discover.
+- United States is the selected Streaming Providers region. Provider shelves
+  use Popularity, Descending sorting.
+- The configuration contains 25 Home catalogs and seven search catalogs. The
+  full manifest has 33 catalog declarations after including Calendar.
+- Eight familiar services are visible as separate movie and show shelves:
+  Netflix, Hulu, Max, Disney+, Prime Video, Apple TV+, Peacock, and Paramount+.
+- Eighty-one unused hidden/duplicate definitions were removed so the manifest
+  syncs without Stremio's `Max descriptor size reached` warning.
 
 Final visible home order:
 
 1. Continue Watching.
 2. Cinemeta compatibility rows: Popular Movie, Popular Series, Featured
    Movie, Featured Series.
-3. AIOMetadata discovery rows: Trakt Trending Series, Trakt Trending Movie,
-   Latest Airing Series, Latest Digital Release Movie, MAL Airing Now, AniList
-   Trending, Must-See Mindfuck Movie, Top Documentaries Movie, and Top
-   Documentaries Series.
+3. Trending — Movie/Series; New Releases — Movie; New Episodes — Series.
+4. Netflix, Hulu, Max, Disney+, Prime Video, Apple TV+, Peacock, and Paramount+
+   — each with one Movie row and one Series row.
+5. Mind-Bending — Movie; Documentaries — Movie/Series.
+6. Anime Picks — Anime; New Anime Episodes — Anime.
 
-AIOMetadata's TMDB Popular home rows are suppressed because Cinemeta already
-provides those rows. Movie, series, anime, and people search resources remain
-enabled.
+Implementation brands such as Trakt, MDBList, MAL, and AniList are not exposed
+in family-facing shelf labels. Names are intentionally short because Stremio
+appends the content type itself (for example, `Netflix - Movie`). The underlying
+sources remain unchanged.
+AIOMetadata's TMDB Popular home rows are absent because Cinemeta already
+provides familiar Popular/Featured rows. Movie, series, anime, people, and TVDB
+collection search resources remain enabled.
 
 ### Streams and management
 
@@ -100,7 +110,8 @@ No IPTV provider research or self-hosting was performed.
 | Local Files manifest | HTTP 200; version 1.10.0; meta and stream resources |
 | AIOStreams manifest | HTTP 200; version 2.30.6; stream, catalog, meta, and subtitles resources |
 | AIOMetadata manifest | HTTP 200; version 2.8.0; catalog, meta, and subtitles resources |
-| Catalog configuration | 76 definitions retained; nine AIOMetadata discovery rows visible on Home after clean reinstall |
+| Catalog configuration | 33 manifest declarations; 25 AIOMetadata Home shelves and seven search catalogs after clean reinstall |
+| Provider catalogs | All 16 US service movie/show endpoints returned HTTP 200 with 20 items each |
 | API credentials | All four AIOMetadata keys reported valid |
 | Artwork | Six movie/series requests returned HTTP 200 JPEG; final Home screenshots visibly show OpenPosterDB rating badges |
 | TorBox delivery | Public-domain test title returned 15 AIOStreams results |
@@ -148,12 +159,20 @@ Differences and caveats:
 - The legal/public-domain safety rule prevented using a current mainstream
   release or current anime episode. The feature-level behavior requested was
   still tested without playback using the titles listed above.
+- AIOMetadata's TMDB watch-provider data supports provider discovery but does
+  not surface official availability in normal movie/series detail metadata.
+  WatchHub 1.15.0 (`org.stremio.watchhub`) is the exact official compatible
+  add-on for legal availability offers. It was not installed because it adds a
+  stream resource and this pass was explicitly limited to discovery.
 
 ## Current authoritative references
 
 - AIOStreams documentation: <https://docs.aiostreams.viren070.me/>
 - AIOStreams source: <https://github.com/Viren070/AIOStreams>
 - Tamtaro templates and AIOMetadata JSON: <https://github.com/Tam-Taro/SEL-Filtering-and-Sorting>
+- AIOMetadata source: <https://github.com/cedya77/aiometadata>
+- Stremio official add-ons (including WatchHub):
+  <https://github.com/Stremio/stremio-official-addons>
 - OpenPosterDB: <https://openposterdb.com/>
 
 ## Security notes
@@ -184,4 +203,7 @@ Differences and caveats:
   official/community source could be established. Tamtaro's verified formatter
   remains active.
 - MediaFusion remains disabled by the current Tamtaro recommendation.
+- Official detail-page "where to watch" availability is not supplied by the
+  installed AIOMetadata configuration. WatchHub is identified but not
+  installed.
 - IPTV research and self-hosting remain outside scope.
