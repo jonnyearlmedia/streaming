@@ -49,8 +49,9 @@ collection search resources remain enabled.
   instance (`2026.07.10.1236-nightly` at setup time).
 - Imported the official **Tamtaro Complete SEL Setup 2.6.1** through the
   AIOStreams template wizard. The Partial template was not used.
-- **Standard SEL** is active, with English selected first and the template's
-  recommended defaults retained.
+- **Standard SEL** is active. Preferred audio order is English, Dual Audio,
+  Multi, Dubbed, Original, then Unknown. Language is first inside both cached
+  and uncached sort groups.
 - **TorBox Pro** is the only configured debrid delivery service.
 - AIOStreams contains the current Tamtaro TorBox Pro source set: SeaDex,
   Library, nekoBT, STorz, Meteor, Knaben, Torrentio, Comet, Sootio, and
@@ -116,7 +117,7 @@ No IPTV provider research or self-hosting was performed.
 | Artwork | Six movie/series requests returned HTTP 200 JPEG; final Home screenshots visibly show OpenPosterDB rating badges |
 | TorBox delivery | Public-domain test title returned 15 AIOStreams results |
 | Deduplication | 15 results produced 15 unique stream keys; zero duplicate keys remained |
-| English-first | English selected first; English results are prioritized, while Japanese original-language anime results remain available |
+| English-first | Language is first within cached and uncached groups; preferred order is English, Dual Audio, Multi, Dubbed, Original, Unknown; explicitly non-English-only streams are filtered |
 | Cached delivery | 11 of 15 test results were visibly marked cached/instant |
 | Installed-list audit | Desktop list contains only Cinemeta, OpenSubtitles v3, Local Files, AIOStreams, and AIOMetadata |
 | Trakt scrobbling | Existing `brownjonnybravo` profile authenticated; Stremio Settings shows `Log out` |
@@ -188,10 +189,16 @@ Differences and caveats:
 ## Final stream sorting and filtering behavior
 
 - Cached/instant TorBox choices sort ahead of uncached choices when available.
+- Inside both cached and uncached groups, Language is the first rule for movie,
+  series, and anime. The preferred sequence is English, Dual Audio, Multi,
+  Dubbed, Original, then Unknown.
+- Streams explicitly identified as only a different language are excluded from
+  the ordinary required-language set. English subtitle labels are not treated
+  as proof of English audio.
 - Standard SEL limits and ranks by the template's quality/resolution and
   expression rules rather than flooding the UI with every source hit.
-- English is the first preferred language; original-language content remains
-  visible when appropriate.
+- Original and Unknown remain as lower fallbacks because many valid English
+  files omit audio metadata, and foreign/anime originals must remain available.
 - Exact duplicate stream keys are removed, while episode files and season
   packs remain distinct.
 - Tamtaro's formatter shows resolution, cache state, size/bitrate, debrid
@@ -207,3 +214,9 @@ Differences and caveats:
   installed AIOMetadata configuration. WatchHub is identified but not
   installed.
 - IPTV research and self-hosting remain outside scope.
+- A source that omits audio-language metadata cannot be guaranteed by any
+  sorting rule. The final configuration is the safest practical first-result
+  policy without deleting valid English or original-language choices.
+- The Onn 4K Pro still needs its local Stremio audio auto-selection enabled and
+  English chosen as the default audio track; that device setting is not synced
+  from this Mac.

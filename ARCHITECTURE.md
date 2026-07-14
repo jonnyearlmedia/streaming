@@ -40,7 +40,12 @@ Configuration location:
 
 `AIOStreams 2.30.6` is installed from Yeb's nightly instance and was configured
 with the official Tamtaro Complete SEL Setup 2.6.1. Standard SEL and English as
-the first preferred language were selected.
+the first preferred language were selected. The living-room language policy
+keeps cache as the global instant/fallback split, then applies Language as the
+first sort rule inside both cached and uncached groups. The preferred sequence
+is English, Dual Audio, Multi, Dubbed, Original, then Unknown; streams
+explicitly identified as only another language are excluded from ordinary
+results.
 
 Configuration location:
 

@@ -176,3 +176,25 @@ home-layout gaps.
   manifest `https://watchhub.strem.io/manifest.json`. It was not installed
   because it adds a `stream` resource and the authorized scope was discovery
   only.
+
+## 2026-07-13 living-room English-audio correction
+
+- Authenticated AIOStreams nightly UI reported build
+  `2026.07.13.2314-nightly`, AIOStreams 2.30.6, and Tamtaro 2.6.1.
+- Required language groups remained English, Dual Audio, Dubbed, Multi,
+  Original, and Unknown. Preferred order was changed to English, Dual Audio,
+  Multi, Dubbed, Original, Unknown.
+- Language was moved to the first position in both Global Cached and Global
+  Uncached. The saved page was reloaded; the Active Sort Configuration showed
+  Language first for Movies, Series, and Anime in both groups.
+- The global Cached/Uncached split was retained to preserve instant playback.
+- No-playback result inspection used only public-domain titles. *Night of the
+  Living Dead* had one explicitly English-audio entry among the first three;
+  the other two had no visible audio marker. *The Lucy Show* S01E01 returned
+  two results without visible audio markers. *Momotaro, Sacred Sailors* kept
+  six original-language choices; the first two explicitly declared Japanese.
+- Subtitle labels were not counted as audio evidence. Source files without
+  declared audio language remain the unavoidable limit; excluding Unknown or
+  Original would remove valid English files and foreign originals.
+- No purchase, referral link, playback, TorBox change, discovery change,
+  Trakt change, or subtitle change was performed.

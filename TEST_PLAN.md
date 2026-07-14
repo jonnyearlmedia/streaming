@@ -96,6 +96,29 @@ Visible result-list checks, without starting playback:
   Japanese results from Comet, Knaben, and STorz; original-language results
   were not hidden. No cached result was available for this title.
 
+Living-room language audit, 2026-07-13:
+
+- Reloaded the saved AIOStreams configuration and confirmed preferred order
+  English, Dual Audio, Multi, Dubbed, Original, Unknown.
+- Confirmed Language is first in Global Cached and Global Uncached for movies,
+  series, and anime. Cache remains the outer instant/fallback split.
+- *Night of the Living Dead*: first three visible results were an
+  original/inferred-English release with no explicit marker, a confirmed
+  English-audio release with English subtitles, and another release with no
+  explicit audio marker. This proves the source-metadata limitation; subtitles
+  were not counted as audio.
+- *The Lucy Show* S01E01: only two results were available. The cached individual
+  episode remained above the uncached season pack. Neither filename declared an
+  audio track, so their language could not be independently confirmed from the
+  result list.
+- *Momotaro, Sacred Sailors*: first two results explicitly declared Japanese
+  audio; the remaining four did not expose a language marker. No English dub
+  was available in this legal/public-domain test set, so dub-before-original
+  could not be directly demonstrated. Original-language results correctly
+  remained available.
+- No playback was started. The Onn 4K Pro player-side audio auto-selection and
+  default-English settings require confirmation on the device.
+
 ## Installed-add-on audit
 
 Compare the Stremio Installed view against
@@ -124,3 +147,6 @@ records including English and Spanish.
   AIOMetadata's standard movie/series metadata. WatchHub was identified as the
   exact compatible official add-on but intentionally not installed in this
   discovery-only change.
+- Audio-language detection is only as reliable as the torrent/media metadata.
+  Unknown and Original cannot be safely excluded globally without removing
+  valid English and foreign-original files.

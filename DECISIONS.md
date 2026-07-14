@@ -145,3 +145,21 @@ is the exact official compatible Stremio add-on for legal "where to watch"
 offers. It was not installed because it declares the `stream` resource and
 would add another result provider alongside AIOStreams, which is beyond the
 authorized discovery-only scope.
+
+### AD-015 — Prioritize English audio without breaking instant playback
+
+Status: implemented and verified 2026-07-13.
+
+The shared living-room user normally selects the first result. AIOStreams now
+orders preferred language groups as English, Dual Audio, Multi, Dubbed,
+Original, then Unknown. Language is the first sort rule inside both Global
+Cached and Global Uncached for movie, series, and anime. Streams explicitly
+identified as only another language are not in the required-language set.
+
+Cache remains the global primary split. This preserves the system's central
+instant-play behavior while making confirmed English audio the strongest rule
+within each delivery group. Removing Original or Unknown globally was rejected:
+it would hide valid English releases with incomplete filenames and remove the
+original audio required for anime and intentionally foreign-language titles.
+Filename-only results may still lack reliable audio metadata, so the policy is
+the safest practical ordering rather than an absolute guarantee.

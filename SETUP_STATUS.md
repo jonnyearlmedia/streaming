@@ -43,11 +43,21 @@ internal source in the official Tamtaro AIOStreams configuration.
 ### AIOStreams
 
 - Instance: Yeb nightly at `https://aiostreams-nightly.fortheweak.cloud/`.
-- Reported nightly build at setup: `2026.07.10.1236-nightly`.
+- Reported nightly build at setup: `2026.07.10.1236-nightly`; the live
+  configuration UI reported `2026.07.13.2314-nightly` during the language
+  audit.
 - Imported template: official Tamtaro Complete SEL Setup 2.6.1.
 - Partial template: not used.
 - SEL: Standard.
-- Preferred language: English first.
+- Required language groups: English, Dual Audio, Dubbed, Multi, Original, and
+  Unknown. Streams explicitly identified as only another language are filtered
+  from ordinary results.
+- Preferred order: English, Dual Audio, Multi, Dubbed, Original, Unknown.
+- Cached and uncached groups both sort by Language before SeaDex, resolution,
+  quality, library, expression score, subtitle, codec, age, bitrate, or seeders.
+- Cache remains the global primary split so a verified instant result is not
+  displaced by a non-instant fallback. Within each split, confirmed English or
+  English-inclusive audio wins.
 - Debrid delivery: existing TorBox Pro account.
 - Formatter: current Tamtaro default from the Complete template.
 - Template-resolved TorBox Pro source set for Tamtaro Complete 2.6.1: SeaDex,
@@ -102,6 +112,9 @@ redacted locations are in
   original-language results were preserved.
 - English markers and TorBox service markers were visible where media metadata
   was available.
+- The persisted AIOStreams UI was reloaded after saving and showed Language as
+  the first rule for movie, series, and anime in both Global Cached and Global
+  Uncached groups.
 - Final Installed view: five add-ons matching the list above.
 
 See `evidence/verification/verification-log.md` for the detailed record and
@@ -143,6 +156,16 @@ See `evidence/verification/verification-log.md` for the detailed record and
 - The anime/foreign-language verification used the public-domain feature
   *Momotaro, Sacred Sailors* rather than a current anime episode because the
   repository safety rules require legal or public-domain test media.
+- Torrent filenames do not always declare audio tracks. For *Night of the
+  Living Dead*, one of the first three results explicitly declared English
+  audio while two were classified from title/original-language context without
+  a visible audio marker. *The Lucy Show* returned only two results and neither
+  exposed an audio marker. The configuration therefore provides the safest
+  practical ordering but cannot mathematically guarantee audio language when
+  the source supplies no media-language metadata.
+- The Onn 4K Pro player-side audio preference cannot be changed from this Mac.
+  Its Stremio settings should have audio auto-selection enabled and English as
+  the default audio track.
 - AIOMetadata does not expose official provider availability on standard title
   detail pages. WatchHub 1.15.0 is the exact compatible official add-on, but it
   was intentionally not installed because it adds a stream resource and this

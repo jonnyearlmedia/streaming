@@ -15,10 +15,21 @@ the official AIOStreams wizard.
   the template.
 - Vidhin release regex integration supplied by the template.
 
-## Recorded Tamtaro debrid sort order
+## Current debrid sort order
 
-SeaDex → Resolution → Quality → Library → Stream Expression → Stream
-Expression Score → Language → Encode → Bitrate → Seeders.
+Global primary split: Cached/instant, then Uncached/fallback.
+
+Inside Global Cached: Language → SeaDex → Resolution → Quality → Library →
+Stream Expression Matched → Stream Expression Score → Subtitle → Visual Tag →
+Audio Tag → Encode → Age → Bitrate → Seeders.
+
+Inside Global Uncached: Language → SeaDex → Resolution → Quality → Library →
+Stream Expression Matched → Stream Expression Score → Seeders → Subtitle →
+Visual Tag → Audio Tag → Encode → Age → Bitrate.
+
+Preferred language order: English → Dual Audio → Multi → Dubbed → Original →
+Unknown. The required-language set contains those six groups; streams explicitly
+classified as only a different language are excluded.
 
 The template can apply additional conditional paths and passthrough rules. This
 file intentionally does not reconstruct the full generated JSON. The hosted
@@ -42,3 +53,20 @@ For `tt0063350`, 15 returned results produced 15 unique compound keys using
   format with resolution, cache state, size/bitrate, TorBox service, source,
   and language markers where available.
 - No playback was started for these verification checks.
+
+## Living-room English-audio audit — 2026-07-13
+
+- Loaded the authenticated AIOStreams nightly configuration and saved the
+  language policy above. Reload verification showed the values persisted.
+- Active Sort Configuration showed Language first for Movies, Series, and
+  Anime in both Global Cached and Global Uncached.
+- *Night of the Living Dead* top three: Original/inferred English with no
+  explicit audio marker; confirmed English audio plus English subtitles;
+  no explicit audio marker.
+- *The Lucy Show* S01E01 returned only two choices: cached individual episode,
+  then uncached season pack. Neither exposed an audio marker.
+- *Momotaro, Sacred Sailors* top two explicitly declared Japanese audio; the
+  remaining four exposed no marker. No English dub was present in the safe test
+  set, so the original-language fallback was preserved.
+- English subtitle markers were recorded separately and were not treated as
+  proof of English audio. No playback was started.
