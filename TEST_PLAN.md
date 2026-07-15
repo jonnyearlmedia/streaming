@@ -25,6 +25,8 @@ Current evidence:
   one library catalog declared.
 - AIOMetadata: HTTP 200, version 2.8.0; catalog, meta, subtitles; 33 final
   catalog declarations.
+- YouTube: HTTP 200, version 1.30.7; catalog and meta resources; `channel` type;
+  two catalog declarations.
 
 ## Catalog validation
 
@@ -58,6 +60,19 @@ Descending. All 16 endpoints returned HTTP 200 with non-empty first pages of
 the clean reinstall state remains free of the prior descriptor-size warning.
 This validates title-release ordering; it does not claim access to a provider's
 private date-added or editorial ranking.
+
+Official YouTube validation, 2026-07-15:
+
+1. Required `https://v3-channels.strem.io/manifest.json` to return HTTP 200.
+2. Confirmed ID `com.linvo.stremiochannels`, version 1.30.7, catalog/meta only,
+   and type `channel`.
+3. Requested the public top-channel catalog without starting playback; it
+   returned HTTP 200 with 96 items.
+4. Confirmed Stremio exposes Channel in Discover and loaded non-empty channel
+   results.
+5. Confirmed YouTube is listed for Jonny, Nene, Moncada, and Armada. Because
+   the resource type is isolated to `channel`, this validation does not require
+   re-testing movie/series stream ranking.
 
 ## Artwork validation
 

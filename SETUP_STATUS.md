@@ -51,6 +51,10 @@ profile list will sync to other devices signed into the same Stremio account.
    catalogs and direct live streams. It uses Premium US-1, Pacific Time, all
    sports, scheduled events, and family-readable stream labels. The former
    free manifest was removed from all four profiles.
+7. YouTube 1.30.7 — official Stremio channel catalog and metadata add-on. Its
+   official description identifies playback as ad-free. It is installed on
+   Jonny, Nene, Moncada, and Armada and is isolated to the `channel` type, so
+   it does not participate in movie/series stream selection.
 
 The structured inventory is in
 `evidence/inventory/installed-addons.json`.
@@ -62,7 +66,8 @@ The structured inventory is in
 - Streaming Catalogs 1.1.1
 - M3U/EPG TV Addon 1.2.0
 - OpenSubtitles 0.24.0
-- YouTube, version not recorded
+- YouTube, version not recorded — historical removal only; the current
+  official YouTube 1.30.7 add-on was reinstalled on 2026-07-15.
 - Public Domain Movies, version not recorded
 
 Comet had previously been aborted as a separate add-on. Comet is now an
@@ -171,6 +176,13 @@ redacted locations are in
 - Sports Streams Premium manifest: HTTP 200, version 1.2.0, custom `sport` type
   with catalog/meta/stream resources and 18 catalog definitions. All 18
   catalog endpoints returned HTTP 200; 15 were non-empty at sampling time.
+- Official YouTube manifest: HTTP 200, version 1.30.7, `channel` type, and only
+  catalog/meta resources. Its public top-channel catalog returned HTTP 200
+  with 96 items, and Stremio visibly loaded the Channel discovery view.
+- Jonny's Installed view showed YouTube 1.30.7. The Admin profile manager
+  visibly listed YouTube for Nene, Moncada, and Armada after the same official
+  public manifest was added to each profile; no add-on-management permission
+  was enabled on the secondary profiles.
 - AIOMetadata UI: all four supplied keys reported valid.
 - OpenPosterDB: HTTP 200 JPEG after redirect, 580 × 870, four visible badges.
 - Public-domain endpoint test: 15 results, 15 unique keys, zero duplicate keys.

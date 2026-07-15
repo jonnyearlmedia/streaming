@@ -1,0 +1,30 @@
+{
+  "captured_at": "2026-07-15T16:18:15-07:00",
+  "addon": {
+    "id": "com.linvo.stremiochannels",
+    "name": "YouTube",
+    "version": "1.30.7",
+    "official": true,
+    "manifest_url": "https://v3-channels.strem.io/manifest.json",
+    "manifest_http_status": 200,
+    "resources": ["catalog", "meta"],
+    "types": ["channel"],
+    "catalog_count": 2
+  },
+  "catalog_test": {
+    "endpoint": "https://v3-channels.strem.io/catalog/channel/top.json",
+    "http_status": 200,
+    "result_count": 96,
+    "non_empty": true
+  },
+  "stremio_ui": {
+    "channel_type_visible": true,
+    "channel_results_visible": true,
+    "profiles_with_addon": ["Jonny", "Nene", "Moncada", "Armada"]
+  },
+  "scope": {
+    "playback_started": false,
+    "movie_series_stream_resources_added": false,
+    "secondary_addon_management_enabled": false
+  }
+}

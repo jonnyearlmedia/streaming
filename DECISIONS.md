@@ -272,3 +272,19 @@ editorial ranking. AIOMetadata also offers separate daily Top 10 catalogs, but
 those express popularity rather than new arrivals and would add more rows. The
 chosen compromise gives the living-room user fresh provider shelves while
 keeping the Home screen manageable.
+
+### AD-022 — Add the official YouTube channel add-on to every profile
+
+Status: implemented and verified 2026-07-15.
+
+The official Stremio YouTube 1.30.7 add-on was selected because the official
+listing explicitly describes its viewing experience as ad-free. Its manifest
+declares catalog and meta resources only for the separate `channel` type, so it
+cannot insert choices into AIOStreams-managed movie or television result lists.
+
+The add-on was installed on Jonny and then added through the Admin profile
+manager to Nene, Moncada, and Armada. Secondary add-on-management permission
+remains disabled. The public manifest and top-channel catalog returned HTTP
+200, and Stremio visibly loaded the Channel discovery view with non-empty
+results. No playback test, purchase, YouTube-account authorization, or change
+to discovery shelves, streams, TorBox, Trakt, subtitles, or history occurred.

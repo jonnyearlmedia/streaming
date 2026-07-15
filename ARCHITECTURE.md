@@ -41,7 +41,7 @@ Its Home surface contains 25 plain-English shelves: four core trending/new
 rows, movie and show shelves for eight familiar US services, three specialty
 rows, and two deprioritized anime rows. The provider shelves use AIOMetadata's
 built-in Streaming Providers integration with United States selected and
-Popularity/Descending sorting. Seven search catalogs remain enabled.
+Release Date/Descending sorting. Seven search catalogs remain enabled.
 
 The configuration was pruned from 106 catalog definitions to the 25 intended
 Home catalogs. This removed disabled legacy/duplicate definitions and reduced
@@ -118,6 +118,19 @@ Sports Streams remains outside the AIOStreams/TorBox boundary; AIOStreams
 filters and bitrate ceilings do not transform its direct live-stream results.
 The former `sportsfree-us2.highfly.dev` manifest was removed from all four
 profiles, leaving one Premium Sports Streams entry per profile.
+
+### YouTube channels
+
+The official Stremio YouTube add-on 1.30.7 is installed on Jonny, Nene,
+Moncada, and Armada. It declares only catalog and meta resources for the
+separate `channel` type. This adds an ad-free YouTube channel/search surface in
+Discover without adding movie or series stream results and without crossing
+the AIOStreams/TorBox boundary.
+
+The master official-add-on screen did not expose `Apply to all profiles` for
+this installation. The Admin profile manager was therefore used to add the
+same public official manifest directly to each secondary profile. Their
+permission to manage add-ons remains disabled.
 
 ### Compatibility
 

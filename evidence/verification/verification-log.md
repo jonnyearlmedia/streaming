@@ -329,3 +329,22 @@ home-layout gaps.
   they cannot exactly mirror the official service Home pages. Its separate
   daily Top 10 feature reflects popularity rather than newest arrivals and was
   not added as another set of Home rows.
+
+## 2026-07-15 official YouTube add-on rollout
+
+- Installed the official Stremio YouTube add-on 1.30.7 on Jonny. The official
+  listing states that it provides ad-free YouTube channel viewing.
+- The official manifest returned HTTP 200 with ID
+  `com.linvo.stremiochannels`, version 1.30.7, catalog/meta resources, the
+  separate `channel` type, and two catalog declarations.
+- The public top-channel endpoint returned HTTP 200 with 96 items. Stremio's
+  Discover type menu visibly added Channel, and the Channel view loaded
+  non-empty results including T-Series, MrBeast, and Cocomelon.
+- The official installer did not expose an `Apply to all profiles` control.
+  The Admin profile manager was used to add the same public official manifest
+  to Nene, Moncada, and Armada. Each profile panel visibly listed YouTube after
+  saving.
+- Secondary profiles remain unable to manage add-ons. No playback was started,
+  no YouTube login was authorized, and no movie/series catalog, AIOStreams,
+  TorBox, Sports Streams, Trakt, subtitle, profile-history, or stream-ranking
+  setting was changed.
