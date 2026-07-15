@@ -111,7 +111,8 @@ internal source in the official Tamtaro AIOStreams configuration.
 - OpenPosterDB: enabled through the RPDB-compatible custom poster pattern.
 - AI search: disabled; no Gemini credential was requested.
 - Provider region: United States.
-- Provider sorting: Popularity, Descending.
+- Provider sorting: Release Date, Descending (newest titles first) for all 16
+  provider movie/show shelves.
 - Final manifest declarations: 33 (25 Home shelves, seven search catalogs,
   and one Calendar special resource).
 - Visible AIOMetadata Home rows use plain-English labels and include trending,
@@ -120,6 +121,9 @@ internal source in the official Tamtaro AIOStreams configuration.
 - AIOMetadata Popular rows remain absent because Cinemeta supplies the familiar
   Popular/Featured fallback rows. Movie, show, anime, people, and TVDB
   collection search remain enabled.
+- The provider-sort update is server-side on the same personalized manifest
+  already cloned to all four profiles; no profile, history, or add-on reinstall
+  was changed.
 
 Personalized hosted configuration paths, passwords, UUIDs, API keys, and debrid
 tokens are stored outside the repository in the user's credential note. The
@@ -161,6 +165,9 @@ redacted locations are in
 - AIOStreams manifest: HTTP 200, version 2.30.6, stream/catalog/meta/subtitles.
 - AIOMetadata manifest: HTTP 200, version 2.8.0,
   catalog/meta/subtitles.
+- AIOMetadata provider-sort audit: all 16 authenticated provider settings read
+  Release Date, Descending after save; all 16 catalog endpoints returned HTTP
+  200 with non-empty first pages (16-20 items at sampling time).
 - Sports Streams Premium manifest: HTTP 200, version 1.2.0, custom `sport` type
   with catalog/meta/stream resources and 18 catalog definitions. All 18
   catalog endpoints returned HTTP 200; 15 were non-empty at sampling time.
@@ -230,6 +237,24 @@ See `evidence/verification/verification-log.md` for the detailed record and
 - The clean reinstall initially exposed Stremio's `Max descriptor size
   reached` warning. After deleting 81 unused catalog definitions, the next
   reinstall completed without that warning.
+
+## 2026-07-15 newest-provider update
+
+- The existing global Trending, Popular/Featured, New Releases, New Episodes,
+  specialty, anime, search, artwork, and metadata behavior was preserved.
+- All 16 US provider movie/show shelves were changed from Popularity,
+  Descending to Release Date, Descending. No extra Home rows were added.
+- The authenticated configuration was saved without generating a replacement
+  manifest URL. A post-save UI audit checked each of the 16 provider settings.
+- The live personalized manifest returned HTTP 200, version 2.8.0, with the
+  same 33 declarations: 25 Home shelves, seven search catalogs, and Calendar.
+- Every provider endpoint returned HTTP 200 and a non-empty first page. Result
+  counts ranged from 16 to 20, and the leading titles were recent releases.
+- This sorts by each title's release date. AIOMetadata does not provide a true
+  provider-specific “date added” value in these shelves, so it cannot exactly
+  mirror the private Home page of Netflix, Disney+, or another service. A
+  separate daily Top 10 catalog feature exists, but it reflects popularity,
+  not newest arrivals, and was not added as another set of Home rows.
 
 ## Remaining limitations
 

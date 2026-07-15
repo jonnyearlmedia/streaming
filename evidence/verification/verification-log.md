@@ -304,3 +304,28 @@ home-layout gaps.
 - The Premium configurator exposes no verified control for suppressing the
   duplicate-looking internal source group, so no unsafe source removal was
   attempted.
+
+## 2026-07-15 AIOMetadata newest-provider ordering
+
+- Loaded the exact authenticated AIOMetadata configuration already installed
+  on the Stremio account. No replacement configuration or manifest URL was
+  generated.
+- Preserved the existing 25 Home shelves, seven search catalogs, Calendar,
+  United States provider region, metadata credentials, OpenPosterDB pattern,
+  English artwork setting, and family-facing labels.
+- Changed each of the 16 provider movie/show shelves from Popularity,
+  Descending to Release Date, Descending and saved the configuration.
+- Reopened every provider settings dialog after save. All 16 displayed Release
+  Date and Descending; watched-item handling remained Use Global Setting.
+- The personalized manifest returned HTTP 200, version 2.8.0, resources
+  catalog/meta/subtitles, and the unchanged 33 catalog declarations.
+- All 16 Netflix, Hulu, Max, Disney+, Prime Video, Apple TV+, Peacock, and
+  Paramount+ movie/show endpoints returned HTTP 200 and non-empty first pages.
+  Counts ranged from 16 to 20 and leading items were recent releases.
+- No playback was started. No AIOStreams, TorBox, Sports Streams, Trakt,
+  subtitle, profile, history, or stream-ranking setting was changed.
+- Limitation: AIOMetadata sorts these shelves by title release date. It does not
+  expose each provider's private date-added chronology in these shelves, so
+  they cannot exactly mirror the official service Home pages. Its separate
+  daily Top 10 feature reflects popularity rather than newest arrivals and was
+  not added as another set of Home rows.

@@ -38,9 +38,14 @@ omitted.
 30. New Anime Episodes — Anime
 
 Rows 6-30 are AIOMetadata. United States is selected in Streaming Providers,
-and provider sorting remains Popularity, Descending. The saved labels are short
-because Stremio appends the type itself. They avoid backend/source names that
-are meaningless to a living-room user.
+and provider sorting is Release Date, Descending as of 2026-07-15. The saved
+labels are short because Stremio appends the type itself. They avoid
+backend/source names that are meaningless to a living-room user.
+
+The sort uses each title's release date, not provider-specific date-added data.
+The global Trending, Popular/Featured, New Releases, and New Episodes shelves
+remain the complementary popularity and freshness views. No extra provider
+rows were added.
 
 Search remains enabled for movies, series, anime movies, anime series, people,
 and TVDB collections. Calendar remains a special required-extra catalog and
@@ -55,6 +60,7 @@ does not add a normal Home shelf.
 - Visible AIOMetadata Home shelves: 25.
 - Search catalogs: 7.
 - Calendar special catalogs: 1.
-- Provider endpoint checks: 16 of 16 returned HTTP 200 with 20 items.
+- Provider endpoint checks: 16 of 16 returned HTTP 200 with non-empty first
+  pages (16-20 items in the 2026-07-15 audit).
 - Stremio clean reinstall: completed without the earlier descriptor-size
   warning after 81 unused definitions were deleted.

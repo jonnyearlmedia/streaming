@@ -119,8 +119,9 @@ The nine-row layout removed a browsing feature the user valued. AIOMetadata's
 authenticated Streaming Providers manager was therefore set to United States
 and configured for Netflix, Hulu, HBO Max, Disney+, Prime Video, Apple TV+,
 Peacock Premium, and Paramount+. Each service has one movie shelf and one show
-shelf. Provider sorting remains the integration default of Popularity,
-Descending.
+shelf. On 2026-07-15, provider sorting was changed from Popularity, Descending
+to Release Date, Descending so newly released titles surface without adding a
+second set of provider rows.
 
 Visible labels are family-facing rather than implementation-facing: Trending,
 New Releases, New Episodes, the service name, Mind-Bending, Documentaries,
@@ -248,3 +249,26 @@ want to limit available events. The live Premium configurator advertised
 language and quality preferences but exposed neither control after token
 verification. The saved configuration therefore improves labels and Premium
 delivery without claiming a nonexistent quality or language filter.
+
+### AD-021 — Use one newest-first shelf per provider
+
+Status: implemented and verified 2026-07-15.
+
+The family relies on Home to discover both familiar and newly released titles,
+but duplicating every provider into Popular and Latest variants would add 16
+more remote-navigation rows. The global Trending, Popular/Featured, New
+Releases, and New Episodes shelves already cover broad popularity. Therefore,
+the existing 16 Netflix, Hulu, Max, Disney+, Prime Video, Apple TV+, Peacock,
+and Paramount+ movie/show shelves now use Release Date, Descending.
+
+The authenticated UI was saved and then every provider settings dialog was
+rechecked. All 16 showed Release Date and Descending. All 16 live catalog
+endpoints returned HTTP 200 with non-empty first pages. No catalog, profile,
+playback, history, sports, subtitle, TorBox, AIOStreams, or artwork setting was
+otherwise changed.
+
+This is title-release ordering, not a provider's private date-added or
+editorial ranking. AIOMetadata also offers separate daily Top 10 catalogs, but
+those express popularity rather than new arrivals and would add more rows. The
+chosen compromise gives the living-room user fresh provider shelves while
+keeping the Home screen manageable.

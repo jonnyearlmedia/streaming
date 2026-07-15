@@ -38,8 +38,8 @@ The pre-cleanup 76-entry order remains preserved in
 provider-restoration pass reduced 106 configured catalog cards to the 25
 intended Home catalogs. The final manifest has 33 declarations: 25 Home
 shelves, seven search catalogs, and Calendar. All 16 provider movie/show
-endpoints returned HTTP 200 and 20 items. The final Stremio order is recorded
-in `evidence/config/final-catalog-layout-2026-07-13.md`.
+endpoints returned HTTP 200 and non-empty first pages. The final Stremio order
+is recorded in `evidence/config/final-catalog-layout-2026-07-13.md`.
 
 Provider validation procedure:
 
@@ -49,9 +49,15 @@ Provider validation procedure:
 3. Request every provider catalog endpoint without starting playback.
 4. Require HTTP 200 and non-empty results.
 5. Confirm anime shelves occur after the specialty shelves.
+6. Open all 16 authenticated provider settings and require Release Date,
+   Descending.
 
-Current result: all 16 endpoints returned HTTP 200 with 20 items each. The
-final clean reinstall completed without the prior descriptor-size warning.
+Current result, 2026-07-15: all 16 saved provider settings read Release Date,
+Descending. All 16 endpoints returned HTTP 200 with non-empty first pages of
+16-20 items, led by recent releases. The manifest remains 33 declarations and
+the clean reinstall state remains free of the prior descriptor-size warning.
+This validates title-release ordering; it does not claim access to a provider's
+private date-added or editorial ranking.
 
 ## Artwork validation
 

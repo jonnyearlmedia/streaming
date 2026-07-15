@@ -43,7 +43,7 @@ profile; no TorBox key or add-on URL needs to be entered on the device.
 - OpenPosterDB is enabled through AIOMetadata's RPDB-compatible custom artwork
   pattern. Poster proxying and custom artwork are enabled.
 - United States is the selected Streaming Providers region. Provider shelves
-  use Popularity, Descending sorting.
+  use Release Date, Descending sorting so the newest titles appear first.
 - The configuration contains 25 Home catalogs and seven search catalogs. The
   full manifest has 33 catalog declarations after including Calendar.
 - Eight familiar services are visible as separate movie and show shelves:
@@ -69,6 +69,14 @@ sources remain unchanged.
 AIOMetadata's TMDB Popular home rows are absent because Cinemeta already
 provides familiar Popular/Featured rows. Movie, series, anime, people, and TVDB
 collection search resources remain enabled.
+
+The provider shelves are ordered by each title's release date, not by the date
+it was added to a particular service. These rows therefore will not be exact
+copies of the Netflix, Disney+, or other official apps. AIOMetadata's separate
+daily Top 10 catalog feature reflects popularity rather than newest arrivals
+and was not added as another set of rows. Global Trending, Popular/Featured,
+New Releases, and New Episodes remain present to provide the complementary
+popularity and recency views without doubling Home rows.
 
 ### Streams and management
 
@@ -157,7 +165,7 @@ No IPTV provider research or self-hosting was performed.
 | AIOStreams manifest | HTTP 200; version 2.30.6; stream, catalog, meta, and subtitles resources |
 | AIOMetadata manifest | HTTP 200; version 2.8.0; catalog, meta, and subtitles resources |
 | Catalog configuration | 33 manifest declarations; 25 AIOMetadata Home shelves and seven search catalogs after clean reinstall |
-| Provider catalogs | All 16 US service movie/show endpoints returned HTTP 200 with 20 items each |
+| Provider catalogs | All 16 US service movie/show settings verified as Release Date, Descending; endpoints returned HTTP 200 with non-empty first pages of 16-20 items |
 | API credentials | All four AIOMetadata keys reported valid |
 | Artwork | Six movie/series requests returned HTTP 200 JPEG; final Home screenshots visibly show OpenPosterDB rating badges |
 | TorBox delivery | Public-domain test title returned 15 AIOStreams results |

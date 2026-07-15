@@ -1,0 +1,45 @@
+{
+  "date": "2026-07-15",
+  "component": "AIOMetadata 2.8.0",
+  "provider_region": "United States",
+  "sort_by": "Release Date",
+  "sort_direction": "Descending",
+  "authenticated_ui_settings_checked": 16,
+  "all_ui_settings_matched": true,
+  "manifest": {
+    "http_status": 200,
+    "catalog_declarations": 33,
+    "home_shelves": 25,
+    "search_catalogs": 7,
+    "calendar_catalogs": 1
+  },
+  "endpoint_audit": {
+    "checked": 16,
+    "all_http_200": true,
+    "all_non_empty": true,
+    "first_page_item_count_range": [16, 20],
+    "providers": [
+      {"name": "Netflix", "movie_count": 20, "series_count": 20},
+      {"name": "Hulu", "movie_count": 18, "series_count": 20},
+      {"name": "Max", "movie_count": 20, "series_count": 20},
+      {"name": "Disney+", "movie_count": 18, "series_count": 20},
+      {"name": "Prime Video", "movie_count": 16, "series_count": 20},
+      {"name": "Apple TV+", "movie_count": 20, "series_count": 20},
+      {"name": "Peacock", "movie_count": 19, "series_count": 20},
+      {"name": "Paramount+", "movie_count": 16, "series_count": 20}
+    ]
+  },
+  "preserved": [
+    "existing Home order",
+    "global Trending and New rows",
+    "specialty and anime rows",
+    "search resources",
+    "OpenPosterDB artwork configuration",
+    "metadata credentials",
+    "all four household profiles",
+    "watch history and Continue Watching"
+  ],
+  "limitation": "Release Date is the title release date, not the provider-specific date-added timestamp. AIOMetadata's separate daily Top 10 feature reflects popularity and was not added as another set of Home rows.",
+  "secrets_recorded": false,
+  "playback_started": false
+}
