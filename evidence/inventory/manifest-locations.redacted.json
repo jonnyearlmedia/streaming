@@ -33,7 +33,7 @@
     },
     {
       "addon": "Sports Streams",
-      "location": "https://sportsfree-us2.highfly.dev/manifest.json",
+      "location": "https://premium-us1.highfly.dev/[REDACTED]/[REDACTED]/manifest.json",
       "verified_status": 200,
       "verified_version": "1.2.0"
     }

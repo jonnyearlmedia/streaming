@@ -1,6 +1,6 @@
 # Current architecture
 
-Last audited: 2026-07-14, America/Los_Angeles.
+Last audited: 2026-07-15, America/Los_Angeles.
 
 ## Runtime
 
@@ -98,17 +98,26 @@ was removed.
 ### Live sports
 
 `Sports Streams 1.2.0` (`community.sports.fly`) is a separately installed
-community add-on at `https://sportsfree-us2.highfly.dev/`. It declares the
-custom `sport` type with catalog, meta, and stream resources. Its 17 catalogs
-cover Live Now, Today, and sport categories; every catalog declares
-`notForHome: true`, keeping sports out of the family Home layout.
+Premium community add-on. Its personalized manifest uses the
+`premium-us1.highfly.dev` host; the token and configuration path are secret and
+redacted. It declares the custom `sport` type with catalog, meta, and stream
+resources. Its 18 catalogs cover Live Now, Today, sport categories, and Premium
+recaps; every catalog declares `notForHome: true`, keeping sports out of the
+family Home layout.
 
-The current base manifest uses the free unfiltered state: all sports and
-scheduled events are included. Free configuration supports choosing sports and
-Live Only. The provider advertises timezone, language, and quality preferences
-only on a paid tier; none were purchased or enabled. Sports Streams is outside
-the AIOStreams/TorBox boundary, so AIOStreams filters and bitrate ceilings do
-not transform its direct live stream results.
+The current configuration keeps all sports and scheduled events, uses US
+Pacific match times, and formats choices with a plain `Live Sports` heading
+plus resolution height, audio label, approximate required Mbps, Premium-feed
+status, and delay. US-1 was selected after three HTTP manifest samples per
+region returned the lowest observed average from this Mac. This is a control-
+plane latency check, not a guarantee of live-stream throughput.
+
+The live Premium configurator did not expose the advertised language or
+quality-preference controls, so the configuration does not claim either.
+Sports Streams remains outside the AIOStreams/TorBox boundary; AIOStreams
+filters and bitrate ceilings do not transform its direct live-stream results.
+The former `sportsfree-us2.highfly.dev` manifest was removed from all four
+profiles, leaving one Premium Sports Streams entry per profile.
 
 ### Compatibility
 

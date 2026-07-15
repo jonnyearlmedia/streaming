@@ -64,10 +64,17 @@
 - `2026-07-14-nene-aiostreams-torbox-results.jpeg` — Nene's public-domain
   result-list verification showing cached/instant, TorBox-backed AIOStreams
   choices and visible English markers; no playback was started.
+- `2026-07-15-premium-sports-installed.jpeg` — final Jonny Installed view
+  showing one Sports Streams entry after the free manifest was removed.
+- `2026-07-15-nene-addon-management-locked.jpeg`,
+  `2026-07-15-moncada-addon-management-locked.jpeg`, and
+  `2026-07-15-armada-addon-management-locked.jpeg` — the three family profiles
+  with add-on management disabled again after Premium cleanup.
 
 Earlier screenshots are preserved as historical evidence and keep their
-original labels. The dated 2026-07-13 stack captures and 2026-07-14 profile
-captures are the authoritative final visual evidence. Trakt authentication is
+original labels. The dated 2026-07-13 stack captures, 2026-07-14 profile
+captures, and 2026-07-15 Premium sports captures are the authoritative final
+visual evidence. Trakt authentication is
 recorded as redacted text evidence in
 `../verification/trakt-authenticated-2026-07-13.txt` so the public repository
 does not expose the account email.

@@ -261,3 +261,46 @@ home-layout gaps.
 - Secondary profile settings showed English interface, default subtitles, and
   default audio, with Auto-Play Next Episode enabled.
 - The desktop app was left at the four-profile `Who's watching?` chooser.
+
+## 2026-07-15 Sports Streams Premium rollout
+
+- The user purchased monthly Sports Streams Premium directly; the agent did
+  not initiate or confirm the financial transaction.
+- The access token verified as active through 2026-08-18. Token and encoded
+  manifest configuration are excluded from the repository.
+- Three Premium manifest samples per region returned HTTP 200. Observed averages
+  from this Mac were US-1 388 ms, US-2 414 ms, and Main 429 ms. US-1 was saved.
+- Saved timezone is US Pacific. All sports remain included and Live Only remains
+  disabled, preserving scheduled events.
+- Stream labels were simplified to a `Live Sports` heading plus channel name;
+  descriptions expose height, audio, approximate required Mbps, Premium-feed
+  status, and delay.
+- The live Premium form did not expose the advertised language or quality-
+  preference controls. No such filter is claimed.
+- Personalized manifest returned HTTP 200, version 1.2.0, custom `sport` type,
+  catalog/meta/stream resources, and 18 catalogs including Recaps.
+- Every Premium catalog endpoint returned HTTP 200; 15 were non-empty and three
+  were empty when sampled. No playback was started for verification.
+- Premium was installed with `Apply this change to all profiles` enabled.
+- The former `sportsfree-us2.highfly.dev` entry was removed from Jonny, Nene,
+  Moncada, and Armada. Each retained entry was individually checked through
+  Stremio's Share view and resolved to the Premium US-1 host.
+- Nene, Moncada, and Armada were temporarily allowed to manage add-ons solely
+  for removal of the free duplicate, then all three permissions were disabled
+  again and visually verified.
+
+## 2026-07-15 User-requested live sports playback
+
+- At the user's explicit request, opened the live *England vs Argentina*
+  listing from the personalized Premium US-1 Sports Streams catalog.
+- The result list was supplied by the single installed Premium Sports Streams
+  add-on. It exposed multiple broadcaster/source feeds rather than a separate
+  free-versus-Premium choice.
+- Selected the UK ITV 1 feed because it declared 1920x1080, stereo audio, an
+  estimated 5.6 Mbps requirement, and a small delay. This was a safer
+  English-broadcast choice than the substantially heavier 4K feeds.
+- The Stremio player opened successfully and its elapsed-time display advanced
+  from 00:00:03 to 00:00:19. The working feed was left open for the user.
+- The Premium configurator exposes no verified control for suppressing the
+  duplicate-looking internal source group, so no unsafe source removal was
+  attempted.

@@ -186,7 +186,7 @@ bandwidth limits.
 
 ### AD-017 — Inventory Sports Streams without inventing filters
 
-Status: installed by the user and audited 2026-07-14; filtering unresolved.
+Status: historical free-tier audit from 2026-07-14; superseded by AD-020.
 
 Sports Streams 1.2.0 is retained as a separate live-sports add-on. It does not
 participate in AIOStreams, TorBox, movie/series ranking, or the AIOMetadata Home
@@ -197,8 +197,8 @@ The current free configuration is the base manifest: all sports are selected
 implicitly and scheduled events remain visible. Free controls can restrict
 the returned sports and enable Live Only, but the user has not yet confirmed
 which sports or whether scheduled events should be hidden. The configuration
-therefore remains unchanged. Paid timezone, language, quality, CDN, and recap
-features were not selected, purchased, or tested.
+therefore remained unchanged. Paid timezone, language, quality, CDN, and recap
+features had not yet been selected, purchased, or tested at that audit point.
 
 ### AD-018 — Use four Supporters profiles with Jonny as Admin
 
@@ -226,3 +226,25 @@ showed `Authenticate`. Secondary profiles therefore use Stremio's independent
 profile history without writing their playback to Jonny's Trakt account.
 Trakt-derived AIOMetadata discovery catalogs remain available to every profile
 because discovery catalogs are not playback scrobbling.
+
+### AD-020 — Replace free Sports Streams with Premium on every profile
+
+Status: implemented and verified 2026-07-15.
+
+The user purchased monthly Sports Streams Premium access. The personalized
+Premium manifest uses US-1, US Pacific time, all sports, scheduled events, and
+family-readable stream labels. US-1 had the lowest observed manifest response
+average among the three tested Premium regions from this Mac. This measurement
+selected the control-plane endpoint; it does not guarantee an upstream live
+feed or eliminate congestion.
+
+The free `sportsfree-us2.highfly.dev` entry was removed from Jonny, Nene,
+Moncada, and Armada. Each profile was verified to retain exactly one Sports
+Streams entry on the Premium US-1 host. Secondary add-on management was
+temporarily enabled only for cleanup and disabled again afterward.
+
+No sport filter or Live Only restriction was added because the user does not
+want to limit available events. The live Premium configurator advertised
+language and quality preferences but exposed neither control after token
+verification. The saved configuration therefore improves labels and Premium
+delivery without claiming a nonexistent quality or language filter.

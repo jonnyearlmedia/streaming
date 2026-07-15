@@ -1,12 +1,12 @@
 {
-  "captured_at": "2026-07-14T17:43:26-07:00",
+  "captured_at": "2026-07-15T13:00:00-07:00",
   "installed": [
     {"name": "Cinemeta", "version": "3.0.14", "role": "built-in compatibility and metadata fallback; Popular/Featured rows"},
     {"name": "OpenSubtitles v3", "version": "1.0.0", "role": "subtitles"},
     {"name": "Local Files (without catalog support)", "version": "1.10.0", "role": "local-file compatibility"},
     {"name": "AIOStreams", "version": "2.30.6", "role": "stream aggregation and management", "embedded_template": "Tamtaro Complete SEL Setup 2.6.1"},
     {"name": "AIOMetadata | ElfHosted", "version": "2.8.0", "role": "catalogs, metadata, and artwork"},
-    {"name": "Sports Streams", "version": "1.2.0", "role": "live and scheduled sports catalogs and direct live streams", "configuration": "free default: all sports, scheduled events included"}
+    {"name": "Sports Streams", "version": "1.2.0", "role": "live and scheduled sports catalogs and direct live streams", "configuration": "Premium US-1; Pacific Time; all sports; scheduled events included; family-friendly stream labels"}
   ],
   "removed": [
     {"name": "Torrentio RD", "version": "0.0.15"},
@@ -15,6 +15,7 @@
     {"name": "M3U/EPG TV Addon", "version": "1.2.0"},
     {"name": "OpenSubtitles", "version": "0.24.0"},
     {"name": "YouTube", "version": "not recorded"},
-    {"name": "Public Domain Movies", "version": "not recorded"}
+    {"name": "Public Domain Movies", "version": "not recorded"},
+    {"name": "Sports Streams free manifest", "version": "1.2.0"}
   ]
 }

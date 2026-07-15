@@ -169,20 +169,29 @@ Current result, 2026-07-14:
 
 ## Sports Streams validation
 
-1. Request the public manifest without starting playback.
+1. Request the installed redacted manifest without starting playback.
 2. Require HTTP 200 and record its ID, version, custom type, resources, and
    catalogs.
 3. Request every declared catalog endpoint and record HTTP status and result
    count without selecting an event.
-4. Confirm configuration capability separately from paid-only features; do not
-   purchase, subscribe, start a trial, or follow upgrade/referral links.
+4. Confirm configuration capability separately from advertised features; do
+   not claim controls that the live configurator does not expose.
 
-Current result, 2026-07-14: manifest HTTP 200, version 1.2.0, ID
-`community.sports.fly`, custom `sport` type, catalog/meta/stream resources, and
-17 `notForHome` catalogs. All 17 catalog endpoints returned HTTP 200; 14 were
-non-empty and three were empty at the moment sampled. The user's already-running
-basketball session proved the installed manifest could return a live stream;
-no playback was started or stopped for this audit.
+Current result, 2026-07-15: the user-purchased Premium US-1 manifest returned
+HTTP 200, version 1.2.0, ID `community.sports.fly`, custom `sport` type,
+catalog/meta/stream resources, and 18 `notForHome` catalogs including Recaps.
+All 18 catalog endpoints returned HTTP 200; 15 were non-empty and three were
+empty at the moment sampled. No playback was started for this verification.
+All four profiles retained exactly one Sports Streams entry on the Premium
+US-1 host; the free host was removed and secondary add-on controls were locked
+again.
+
+Later on 2026-07-15, the user explicitly requested playback of *England vs
+Argentina*. The Premium listing returned multiple broadcaster/source feeds.
+The UK ITV 1 1920x1080 stereo feed (estimated 5.6 Mbps, small delay) opened in
+Stremio and the elapsed-time display advanced from 00:00:03 to 00:00:19. This
+confirms that one moderate-bitrate English broadcast played on this Mac at the
+time tested; it does not guarantee every feed or future network conditions.
 
 ## OpenSubtitles v3 validation
 
@@ -215,4 +224,5 @@ records including English and Spanish.
   Ethernet or a strong 5 GHz connection remains preferable on the Onn device.
 - Sports Streams is independent of AIOStreams. Its source ordering, language,
   quality, and reliability are not governed by the TorBox movie/series rules.
-  The free configurator only exposes sport selection and Live Only.
+  The verified Premium configurator exposed region, timezone, sport selection,
+  Live Only, and stream-label templates, but no language or quality filter.

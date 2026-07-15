@@ -1,6 +1,6 @@
 # Stremio setup status
 
-Last audited: 2026-07-14 (America/Los_Angeles)
+Last audited: 2026-07-15 (America/Los_Angeles)
 
 The premium setup is complete and has been re-audited after a clean
 AIOMetadata manifest refresh.
@@ -47,9 +47,10 @@ profile list will sync to other devices signed into the same Stremio account.
    Tamtaro Complete SEL Setup 2.6.1, Standard SEL, English first, and TorBox Pro.
 5. AIOMetadata | ElfHosted 2.8.0 — catalogs, metadata, Trakt/MDBList discovery,
    and OpenPosterDB artwork.
-6. Sports Streams 1.2.0 — separately installed live/scheduled sports catalogs
-   and direct live streams. The current free manifest is unfiltered: all sports
-   are enabled and scheduled events are included.
+6. Sports Streams 1.2.0 — separately installed Premium live/scheduled sports
+   catalogs and direct live streams. It uses Premium US-1, Pacific Time, all
+   sports, scheduled events, and family-readable stream labels. The former
+   free manifest was removed from all four profiles.
 
 The structured inventory is in
 `evidence/inventory/installed-addons.json`.
@@ -127,16 +128,27 @@ redacted locations are in
 
 ### Sports Streams
 
-- Instance: `https://sportsfree-us2.highfly.dev/`.
+- Instance host: `https://premium-us1.highfly.dev/`; token and personalized
+  manifest path are redacted.
 - Add-on ID/version: `community.sports.fly` 1.2.0.
 - Resources: catalog, meta, and stream for the custom `sport` type.
-- Current free configuration: no sport selections and Live Only disabled,
-  which means all supported sports plus scheduled events are returned.
-- Its 17 catalog definitions declare `notForHome: true`; they remain in the
+- Subscription: user-purchased monthly Premium access, active through
+  2026-08-18 at the time of configuration.
+- Region: US-1. Three manifest requests per Premium region averaged 388 ms for
+  US-1, 414 ms for US-2, and 429 ms for Main from this Mac; all returned 200.
+- Timezone: US Pacific.
+- No sport restriction and Live Only disabled, so all supported sports plus
+  scheduled events remain available.
+- Its 18 catalog definitions declare `notForHome: true`; they remain in the
   Sports/Discover surface and do not add shelves to the family Home screen.
-- Free configuration can select sports and enable Live Only. Timezone,
-  language, and quality preferences are advertised as paid-only. No purchase,
-  trial, referral, or upgrade action was taken.
+- Stream names use `Live Sports · {channel}`. Descriptions show height, audio,
+  approximate required Mbps, Premium-feed status, and delay.
+- Although the Premium comparison advertises language and quality preferences,
+  the verified live configurator exposed no language or quality-filter control.
+  No unsupported filter is claimed.
+- Jonny, Nene, Moncada, and Armada each retain exactly one Sports Streams
+  entry, confirmed to use the Premium US-1 host. Add-on management is disabled
+  again for all three secondary profiles.
 - This add-on bypasses AIOStreams and TorBox. AIOStreams movie/series bitrate,
   language, ranking, and deduplication rules do not filter its live streams.
 
@@ -149,8 +161,9 @@ redacted locations are in
 - AIOStreams manifest: HTTP 200, version 2.30.6, stream/catalog/meta/subtitles.
 - AIOMetadata manifest: HTTP 200, version 2.8.0,
   catalog/meta/subtitles.
-- Sports Streams manifest: HTTP 200, version 1.2.0, custom `sport` type with
-  catalog/meta/stream resources and 17 catalog definitions.
+- Sports Streams Premium manifest: HTTP 200, version 1.2.0, custom `sport` type
+  with catalog/meta/stream resources and 18 catalog definitions. All 18
+  catalog endpoints returned HTTP 200; 15 were non-empty at sampling time.
 - AIOMetadata UI: all four supplied keys reported valid.
 - OpenPosterDB: HTTP 200 JPEG after redirect, 580 × 870, four visible badges.
 - Public-domain endpoint test: 15 results, 15 unique keys, zero duplicate keys.

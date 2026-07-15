@@ -1,6 +1,6 @@
 # Final Stremio stack
 
-Last verified: 2026-07-14 (America/Los_Angeles)
+Last verified: 2026-07-15 (America/Los_Angeles)
 
 ## Finished architecture
 
@@ -97,15 +97,19 @@ collection search resources remain enabled.
 
 ### Live sports
 
-- **Sports Streams 1.2.0** is installed separately from AIOStreams.
-- It supplies 17 `sport` catalogs and direct live streams. Its catalogs are
+- **Sports Streams Premium 1.2.0** is installed separately from AIOStreams.
+- It supplies 18 `sport` catalogs and direct live streams. Its catalogs are
   marked `notForHome`, so the family Home screen remains unchanged.
-- Current configuration is the free default: all sports, including scheduled
-  events. Free filters support selecting sports and Live Only.
+- Current configuration uses Premium US-1, US Pacific time, all sports, and
+  scheduled events. The free manifest was removed from all four profiles.
+- Stream headings use `Live Sports · {channel}`. Descriptions show resolution
+  height, audio label, approximate required Mbps, Premium-feed status, and
+  delay.
 - It does not use TorBox and is not affected by AIOStreams language, quality,
   bitrate, sorting, or deduplication rules.
-- Paid timezone, language, quality, CDN, and recap options were not purchased
-  or enabled.
+- Premium supplies the dedicated server, CDN backups, priority prewarming, and
+  Recaps. The live configurator exposed no language or quality filter despite
+  those items appearing in the comparison copy.
 
 ### Retained system add-ons
 
@@ -148,7 +152,7 @@ No IPTV provider research or self-hosting was performed.
 |---|---|
 | Cinemeta manifest | HTTP 200; version 3.0.14; catalog, meta, and addon_catalog resources |
 | OpenSubtitles v3 manifest | HTTP 200; version 1.0.0; subtitles resource |
-| Sports Streams manifest | HTTP 200; version 1.2.0; sport catalog, meta, and stream resources; 17 catalogs |
+| Sports Streams Premium manifest | HTTP 200; version 1.2.0; sport catalog, meta, and stream resources; 18 catalogs |
 | Local Files manifest | HTTP 200; version 1.10.0; meta and stream resources |
 | AIOStreams manifest | HTTP 200; version 2.30.6; stream, catalog, meta, and subtitles resources |
 | AIOMetadata manifest | HTTP 200; version 2.8.0; catalog, meta, and subtitles resources |
@@ -160,7 +164,7 @@ No IPTV provider research or self-hosting was performed.
 | Deduplication | 15 results produced 15 unique stream keys; zero duplicate keys remained |
 | English-first | Language is first within cached and uncached groups; preferred order is English, Dual Audio, Multi, Dubbed, Original, Unknown; explicitly non-English-only streams are filtered |
 | Cached delivery | 11 of 15 test results were visibly marked cached/instant |
-| Installed-list audit | Jonny Admin Installed view contains Cinemeta, OpenSubtitles v3, Local Files, AIOStreams, AIOMetadata, and Sports Streams |
+| Installed-list audit | All four profiles contain one Premium US-1 Sports Streams entry; the free entry is absent |
 | Trakt scrobbling | Existing `brownjonnybravo` profile authenticated; Stremio Settings shows `Log out` |
 | OpenSubtitles v3 | Public-domain movie and television endpoints returned HTTP 200 with English subtitles |
 | Television stream handling | Individual episode and season pack both retained as distinct results |
@@ -272,7 +276,8 @@ Differences and caveats:
 - A cached TorBox result is remotely available immediately, not pre-downloaded
   to the playback device. Local Wi-Fi must still sustain the stream bitrate;
   Ethernet or strong 5 GHz Wi-Fi gives the best living-room margin.
-- Sports Streams is a separate live-source system. Its free configuration can
-  reduce catalog clutter by sport or Live Only, but cannot enforce language or
-  quality. Desired sports have not yet been confirmed, so no filter was
-  invented.
+- Sports Streams is a separate live-source system. Premium improves its server,
+  CDN backup, prewarming, timezone, recaps, and labels, but cannot guarantee a
+  healthy upstream feed. The verified configurator exposed no language or
+  quality-filter control, so readable quality/bandwidth labels are the safest
+  available aid rather than an enforced quality ceiling.
