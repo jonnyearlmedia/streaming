@@ -199,3 +199,30 @@ the returned sports and enable Live Only, but the user has not yet confirmed
 which sports or whether scheduled events should be hidden. The configuration
 therefore remains unchanged. Paid timezone, language, quality, CDN, and recap
 features were not selected, purchased, or tested.
+
+### AD-018 — Use four Supporters profiles with Jonny as Admin
+
+Status: implemented and verified 2026-07-14.
+
+The active Supporters account now contains Jonny, Nene, Moncada, and Armada.
+The existing master profile was renamed Jonny so the account owner retains the
+Admin role. The user explicitly accepted moving the small pre-profile shared
+history with the master profile. The clean secondary that had initially been
+named Jonny was renamed Nene. Moncada and Armada were unchanged.
+
+All secondary profiles were created through the official `Clone addons` flow.
+Add-on management is disabled for Nene, Moncada, and Armada, reducing the risk
+of accidental household configuration changes. Future add-on changes are not
+assumed to sync automatically and should use Stremio's `Apply to all profiles`
+control.
+
+### AD-019 — Keep Trakt scrobbling owner-specific
+
+Status: implemented and verified 2026-07-14.
+
+The existing `brownjonnybravo` Trakt authorization remains on Jonny; Settings
+shows `Log out`. The secondary profile now named Nene and the Armada profile
+showed `Authenticate`. Secondary profiles therefore use Stremio's independent
+profile history without writing their playback to Jonny's Trakt account.
+Trakt-derived AIOMetadata discovery catalogs remain available to every profile
+because discovery catalogs are not playback scrobbling.

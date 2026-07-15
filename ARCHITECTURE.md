@@ -9,6 +9,27 @@ Last audited: 2026-07-14, America/Los_Angeles.
 - Local streaming server: 4.21.0 at `http://127.0.0.1:11470`.
 - Stremio is signed into the user's existing account.
 
+## Household profile model
+
+Stremio Supporters supplies the household identity layer. The existing master
+profile is named Jonny and retains Admin rights. Nene, Moncada, and Armada are
+secondary profiles with independent Stremio history, libraries, Continue
+Watching, and recommendations. All three were created with the official
+`Clone addons` flow, so they received the same personalized AIOStreams,
+AIOMetadata, subtitles, compatibility, and Sports Streams stack without
+manually rebuilding hosted configurations.
+
+Only Jonny can manage profiles and add-ons. Add-on management is disabled on
+the three secondary profiles. The clone is a point-in-time copy rather than a
+permanent synchronization relationship; future add-on changes must use
+Stremio's `Apply to all profiles` option when available.
+
+The existing Trakt scrobbling authorization remains on Jonny. Secondary
+profiles intentionally use Stremio's native profile history and are not linked
+to Jonny's Trakt account, preventing household playback from contaminating the
+owner's Trakt history. AIOMetadata discovery shelves derived from Trakt remain
+available because those catalogs are separate from playback scrobbling.
+
 ## Layer model
 
 ### Discovery and metadata
@@ -107,6 +128,8 @@ stream-resource provider.
 ## Data and trust boundaries
 
 - Stremio account state contains the installed manifest URLs.
+- Each Supporters profile has its own Stremio history and add-on collection;
+  the secondary collections were cloned from Jonny during creation.
 - Hosted AIOStreams and AIOMetadata configurations contain personalized secret
   values.
 - TorBox holds the user's paid Pro account and delivery API credential.

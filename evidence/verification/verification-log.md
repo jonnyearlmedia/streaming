@@ -236,3 +236,28 @@ home-layout gaps.
   opened, or enabled.
 - Sports Streams is independent of AIOStreams and TorBox; existing movie and
   series bitrate/language/deduplication rules do not apply to it.
+
+## 2026-07-14 Supporters household profile setup
+
+- Confirmed Stremio Supporters was active after restarting the desktop app.
+- Created Jonny, Nene, Moncada, and Armada through the native profile manager.
+- Final ownership is Jonny (Admin), Nene, Moncada, and Armada. The user
+  explicitly accepted keeping the small pre-profile shared history on the
+  Jonny master profile.
+- All three secondary profiles were created with `Clone addons` enabled and
+  `Allow profile to manage addons` disabled.
+- Jonny's Installed view showed Cinemeta 3.0.14, OpenSubtitles v3 1.0.0, Local
+  Files 1.10.0, AIOStreams 2.30.6, AIOMetadata 2.8.0, and Sports Streams 1.2.0.
+- Nene, Moncada, and Armada each loaded a non-empty Netflix movie shelf with
+  OpenPosterDB rating badges, proving the personalized discovery/artwork layer
+  was cloned into each profile.
+- Nene's *Night of the Living Dead* result list returned non-empty
+  AIOStreams/TorBox choices. Cached/instant markers were visible and English
+  markers appeared where source metadata declared them. No playback was
+  started.
+- Jonny Settings showed `Log out` for Trakt Scrobbling. The clean secondary
+  now named Nene and the Armada profile showed `Authenticate`; household
+  playback therefore does not share Jonny's Trakt history.
+- Secondary profile settings showed English interface, default subtitles, and
+  default audio, with Auto-Play Next Episode enabled.
+- The desktop app was left at the four-profile `Who's watching?` chooser.

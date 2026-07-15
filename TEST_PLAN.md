@@ -140,6 +140,33 @@ User-initiated playback stability audit, 2026-07-13:
 Compare the Stremio Installed view against
 `evidence/inventory/installed-addons.json` and capture dated screenshots.
 
+## Supporters profile validation
+
+1. Require the profile chooser to show exactly Jonny, Nene, Moncada, and
+   Armada.
+2. Require Jonny to carry the Admin label.
+3. Confirm each secondary profile loads a personalized AIOMetadata provider
+   shelf with OpenPosterDB rating artwork.
+4. On one secondary profile, inspect a legal/public-domain title and require a
+   non-empty AIOStreams/TorBox result list without starting playback.
+5. Confirm Jonny Settings shows `Log out` for Trakt Scrobbling and secondary
+   profiles show `Authenticate`.
+6. Confirm secondary-profile defaults are English for interface, subtitles,
+   and audio, with Auto-Play Next Episode enabled.
+
+Current result, 2026-07-14:
+
+- The chooser showed Jonny (Admin), Nene, Moncada, and Armada.
+- Nene, Moncada, and Armada each displayed a non-empty Netflix movie shelf
+  with OpenPosterDB rating badges.
+- Nene returned cached/instant TorBox-backed AIOStreams choices for *Night of
+  the Living Dead*. Several visible choices declared English. Playback was not
+  started.
+- Jonny retained the existing Trakt authorization. Nene and Armada showed
+  `Authenticate`, so the owner connection was not cloned into those profiles.
+- English interface/subtitle/audio defaults and Auto-Play Next Episode were
+  observed on secondary-profile settings.
+
 ## Sports Streams validation
 
 1. Request the public manifest without starting playback.

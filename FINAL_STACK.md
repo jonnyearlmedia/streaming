@@ -4,6 +4,33 @@ Last verified: 2026-07-14 (America/Los_Angeles)
 
 ## Finished architecture
 
+### Household profiles
+
+- **Jonny** — master/Admin profile. It retains the existing Stremio history,
+  full add-on/profile management, and the authenticated `brownjonnybravo`
+  Trakt scrobbling connection.
+- **Nene** — separate family profile with clean Stremio history.
+- **Moncada** — separate family profile with clean Stremio history.
+- **Armada** — separate family profile with clean Stremio history.
+
+Nene, Moncada, and Armada were created with Stremio Supporters' official
+`Clone addons` flow. Each received the complete installed stack listed below,
+including the personalized AIOStreams/TorBox and AIOMetadata configurations.
+Add-on management is disabled on the secondary profiles. They retain separate
+Continue Watching, libraries, history, and recommendations and do not share
+Jonny's Trakt scrobbling authorization. English interface, subtitle, and audio
+defaults and Auto-Play Next Episode are enabled.
+
+Nene, Moncada, and Armada do not need Trakt accounts or any additional login.
+Their profile-native Stremio history supplies the normal living-room
+Continue Watching experience. Sharing Jonny's Trakt authorization would merge
+their viewing into his external Trakt history, so it is intentionally not
+cloned.
+
+The four-profile chooser is the normal entry point on shared devices. Other
+devices only need to sign into the same Stremio account and select the intended
+profile; no TorBox key or add-on URL needs to be entered on the device.
+
 ### Discovery and metadata
 
 - **AIOMetadata | ElfHosted 2.8.0** is installed as the discovery, catalog,
@@ -133,11 +160,15 @@ No IPTV provider research or self-hosting was performed.
 | Deduplication | 15 results produced 15 unique stream keys; zero duplicate keys remained |
 | English-first | Language is first within cached and uncached groups; preferred order is English, Dual Audio, Multi, Dubbed, Original, Unknown; explicitly non-English-only streams are filtered |
 | Cached delivery | 11 of 15 test results were visibly marked cached/instant |
-| Installed-list audit | Desktop list contains only Cinemeta, OpenSubtitles v3, Local Files, AIOStreams, and AIOMetadata |
+| Installed-list audit | Jonny Admin Installed view contains Cinemeta, OpenSubtitles v3, Local Files, AIOStreams, AIOMetadata, and Sports Streams |
 | Trakt scrobbling | Existing `brownjonnybravo` profile authenticated; Stremio Settings shows `Log out` |
 | OpenSubtitles v3 | Public-domain movie and television endpoints returned HTTP 200 with English subtitles |
 | Television stream handling | Individual episode and season pack both retained as distinct results |
 | Anime/foreign-language | Six Japanese TorBox results returned; original-language content was not hidden |
+| Supporters profiles | Jonny (Admin), Nene, Moncada, and Armada visible in the profile chooser |
+| Secondary add-on clone | Nene, Moncada, and Armada loaded the personalized Netflix provider shelf with OpenPosterDB artwork |
+| Secondary TorBox delivery | Nene returned cached/instant AIOStreams/TorBox results for a public-domain movie without starting playback |
+| Profile history isolation | Jonny retained Trakt `Log out`; secondary profiles showed `Authenticate` and use separate Stremio history |
 
 The checks used *Night of the Living Dead* (movie), *The Lucy Show* S01E01
 (television), and *Momotaro, Sacred Sailors* (anime/foreign-language). These

@@ -5,6 +5,32 @@ Last audited: 2026-07-14 (America/Los_Angeles)
 The premium setup is complete and has been re-audited after a clean
 AIOMetadata manifest refresh.
 
+## Supporters household profiles
+
+Stremio Supporters is active on the existing account. Four profiles are
+configured and visible in the desktop profile chooser:
+
+1. Jonny — master/Admin profile and the only profile authenticated to the
+   existing `brownjonnybravo` Trakt account.
+2. Nene — separate family profile.
+3. Moncada — separate family profile.
+4. Armada — separate family profile.
+
+The three secondary profiles were created with Stremio's `Clone addons`
+option enabled. Add-on management is disabled for the secondary profiles so a
+nontechnical user cannot accidentally alter the shared stack. Jonny retains
+the master account's existing history and add-on management controls. Nene,
+Moncada, and Armada start with separate Stremio history, library, Continue
+Watching, and recommendations; their Settings pages show `Authenticate` for
+Trakt rather than sharing Jonny's scrobbling connection.
+
+No secondary user needs to create or authenticate a Trakt account. Selecting
+their Stremio profile is the complete user flow; Stremio maintains their
+separate Continue Watching and history natively.
+
+The desktop app is intentionally left at the `Who's watching?` chooser. The
+profile list will sync to other devices signed into the same Stremio account.
+
 ## Runtime
 
 - Stremio shell 5.1.25 is installed in `/Applications/Stremio.app`.
@@ -148,8 +174,21 @@ redacted locations are in
 - Prior final Installed-view evidence shows the original five add-ons. The
   sixth Sports Streams installation is proven by its active manifest URL in
   the user-initiated player session and the manifest verification above; a new
-  Installed-view screenshot was not captured because doing so would interrupt
-  the live game.
+  Installed-view screenshot was subsequently captured from the Jonny Admin
+  profile on 2026-07-14.
+- The Supporters chooser visibly shows Jonny (Admin), Nene, Moncada, and
+  Armada.
+- Nene, Moncada, and Armada each loaded the cloned Netflix provider shelf with
+  OpenPosterDB rating artwork. This verifies that the personalized
+  AIOMetadata manifest was cloned to all three secondary profiles.
+- Nene returned a non-empty AIOStreams result list for the public-domain
+  *Night of the Living Dead* test. Visible results were TorBox-backed,
+  cached/instant, and showed English markers where declared.
+- Jonny Settings showed `Log out` for Trakt Scrobbling after the profile-name
+  swap. The secondary profile now named Nene and the Armada profile showed
+  `Authenticate`, confirming they did not inherit Jonny's Trakt connection.
+- Secondary-profile playback defaults showed English for interface,
+  subtitles, and audio; Auto-Play Next Episode remained enabled.
 
 See `evidence/verification/verification-log.md` for the detailed record and
 `evidence/screenshots/` for visual evidence.

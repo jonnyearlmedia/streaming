@@ -50,9 +50,24 @@
 - `2026-07-13-home-compact-anime-bottom.jpeg` — authoritative bottom-of-Home
   capture confirming specialty shelves precede the two deprioritized anime
   shelves.
+- `2026-07-14-supporters-four-profile-chooser.jpeg` — authoritative Supporters
+  chooser showing Jonny (Admin), Nene, Moncada, and Armada.
+- `2026-07-14-jonny-admin-installed-addons.jpeg` — Jonny Admin Installed view
+  showing the upper portion of the retained stack through AIOStreams.
+- `2026-07-14-jonny-admin-installed-addons-lower.jpeg` — lower Installed view
+  showing AIOStreams, AIOMetadata, and Sports Streams.
+- `2026-07-14-nene-provider-artwork.jpeg`,
+  `2026-07-14-moncada-provider-artwork.jpeg`, and
+  `2026-07-14-armada-provider-artwork.jpeg` — independent secondary-profile
+  Home captures showing the cloned Netflix provider shelf and OpenPosterDB
+  rating artwork.
+- `2026-07-14-nene-aiostreams-torbox-results.jpeg` — Nene's public-domain
+  result-list verification showing cached/instant, TorBox-backed AIOStreams
+  choices and visible English markers; no playback was started.
 
 Earlier screenshots are preserved as historical evidence and keep their
-original labels. The dated 2026-07-13 files above are the authoritative final
-visual evidence. Trakt authentication is recorded as redacted text evidence in
+original labels. The dated 2026-07-13 stack captures and 2026-07-14 profile
+captures are the authoritative final visual evidence. Trakt authentication is
+recorded as redacted text evidence in
 `../verification/trakt-authenticated-2026-07-13.txt` so the public repository
 does not expose the account email.
