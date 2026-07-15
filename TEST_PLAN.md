@@ -140,6 +140,23 @@ User-initiated playback stability audit, 2026-07-13:
 Compare the Stremio Installed view against
 `evidence/inventory/installed-addons.json` and capture dated screenshots.
 
+## Sports Streams validation
+
+1. Request the public manifest without starting playback.
+2. Require HTTP 200 and record its ID, version, custom type, resources, and
+   catalogs.
+3. Request every declared catalog endpoint and record HTTP status and result
+   count without selecting an event.
+4. Confirm configuration capability separately from paid-only features; do not
+   purchase, subscribe, start a trial, or follow upgrade/referral links.
+
+Current result, 2026-07-14: manifest HTTP 200, version 1.2.0, ID
+`community.sports.fly`, custom `sport` type, catalog/meta/stream resources, and
+17 `notForHome` catalogs. All 17 catalog endpoints returned HTTP 200; 14 were
+non-empty and three were empty at the moment sampled. The user's already-running
+basketball session proved the installed manifest could return a live stream;
+no playback was started or stopped for this audit.
+
 ## OpenSubtitles v3 validation
 
 1. Request the public OpenSubtitles v3 manifest and require HTTP 200.
@@ -169,3 +186,6 @@ records including English and Spanish.
 - Bitrate values are estimates derived from file size and duration and do not
   represent momentary peaks. Wi-Fi congestion can still affect any stream;
   Ethernet or a strong 5 GHz connection remains preferable on the Onn device.
+- Sports Streams is independent of AIOStreams. Its source ordering, language,
+  quality, and reliability are not governed by the TorBox movie/series rules.
+  The free configurator only exposes sport selection and Live Only.

@@ -1,6 +1,6 @@
 # Final Stremio stack
 
-Last verified: 2026-07-13 (America/Los_Angeles)
+Last verified: 2026-07-14 (America/Los_Angeles)
 
 ## Finished architecture
 
@@ -68,6 +68,18 @@ collection search resources remain enabled.
 - Real-Debrid stream add-ons and the legacy OpenSubtitles add-on were removed
   only after TorBox/AIOStreams passed verification.
 
+### Live sports
+
+- **Sports Streams 1.2.0** is installed separately from AIOStreams.
+- It supplies 17 `sport` catalogs and direct live streams. Its catalogs are
+  marked `notForHome`, so the family Home screen remains unchanged.
+- Current configuration is the free default: all sports, including scheduled
+  events. Free filters support selecting sports and Live Only.
+- It does not use TorBox and is not affected by AIOStreams language, quality,
+  bitrate, sorting, or deduplication rules.
+- Paid timezone, language, quality, CDN, and recap options were not purchased
+  or enabled.
+
 ### Retained system add-ons
 
 - **Cinemeta 3.0.14** remains as Stremio's built-in compatibility/metadata
@@ -81,6 +93,7 @@ collection search resources remain enabled.
 3. Local Files (without catalog support) 1.10.0.
 4. AIOStreams 2.30.6 / Tamtaro Complete SEL Setup 2.6.1.
 5. AIOMetadata | ElfHosted 2.8.0.
+6. Sports Streams 1.2.0.
 
 There are no standalone Torrentio, Comet, or MediaFusion add-ons. Torrentio
 and Comet operate only as internal AIOStreams sources.
@@ -108,6 +121,7 @@ No IPTV provider research or self-hosting was performed.
 |---|---|
 | Cinemeta manifest | HTTP 200; version 3.0.14; catalog, meta, and addon_catalog resources |
 | OpenSubtitles v3 manifest | HTTP 200; version 1.0.0; subtitles resource |
+| Sports Streams manifest | HTTP 200; version 1.2.0; sport catalog, meta, and stream resources; 17 catalogs |
 | Local Files manifest | HTTP 200; version 1.10.0; meta and stream resources |
 | AIOStreams manifest | HTTP 200; version 2.30.6; stream, catalog, meta, and subtitles resources |
 | AIOMetadata manifest | HTTP 200; version 2.8.0; catalog, meta, and subtitles resources |
@@ -227,3 +241,7 @@ Differences and caveats:
 - A cached TorBox result is remotely available immediately, not pre-downloaded
   to the playback device. Local Wi-Fi must still sustain the stream bitrate;
   Ethernet or strong 5 GHz Wi-Fi gives the best living-room margin.
+- Sports Streams is a separate live-source system. Its free configuration can
+  reduce catalog clutter by sport or Live Only, but cannot enforce language or
+  quality. Desired sports have not yet been confirmed, so no filter was
+  invented.

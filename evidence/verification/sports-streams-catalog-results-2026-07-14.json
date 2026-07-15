@@ -1,0 +1,26 @@
+{
+  "captured_at": "2026-07-14T17:43:26-07:00",
+  "manifest_http_status": 200,
+  "addon_id": "community.sports.fly",
+  "version": "1.2.0",
+  "catalogs": [
+    { "id": "sports_live", "http_status": 200, "metas": 24 },
+    { "id": "sports_today", "http_status": 200, "metas": 29 },
+    { "id": "sports_basketball", "http_status": 200, "metas": 20 },
+    { "id": "sports_football", "http_status": 200, "metas": 13 },
+    { "id": "sports_american_football", "http_status": 200, "metas": 8 },
+    { "id": "sports_hockey", "http_status": 200, "metas": 0 },
+    { "id": "sports_baseball", "http_status": 200, "metas": 3 },
+    { "id": "sports_motor_sports", "http_status": 200, "metas": 12 },
+    { "id": "sports_fight", "http_status": 200, "metas": 12 },
+    { "id": "sports_tennis", "http_status": 200, "metas": 2 },
+    { "id": "sports_rugby", "http_status": 200, "metas": 10 },
+    { "id": "sports_golf", "http_status": 200, "metas": 1 },
+    { "id": "sports_billiards", "http_status": 200, "metas": 0 },
+    { "id": "sports_afl", "http_status": 200, "metas": 9 },
+    { "id": "sports_darts", "http_status": 200, "metas": 0 },
+    { "id": "sports_cricket", "http_status": 200, "metas": 3 },
+    { "id": "sports_other", "http_status": 200, "metas": 10 }
+  ],
+  "playback_started_for_test": false
+}

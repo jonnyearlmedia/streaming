@@ -218,3 +218,21 @@ home-layout gaps.
 - Existing playback was not interrupted. The updated filter takes effect on
   the next stream-list request. No TorBox, catalog, Trakt, subtitle, referral,
   or purchase setting was changed.
+
+## 2026-07-14 Sports Streams audit
+
+- The user installed Sports Streams and had already started a basketball
+  session before the audit. Playback was not started, stopped, or changed.
+- The active player identified the installed public manifest host as
+  `sportsfree-us2.highfly.dev`.
+- Public manifest returned HTTP 200: ID `community.sports.fly`, name Sports
+  Streams, version 1.2.0, custom type `sport`, and catalog/meta/stream
+  resources.
+- All 17 declared catalogs use `notForHome: true`. Endpoint checks returned
+  HTTP 200 for all 17; 14 were non-empty and three were empty at sampling time.
+- The base manifest is the unfiltered free state: all sports and scheduled
+  events. Free configuration offers sport selection and Live Only. Advertised
+  paid timezone, language, quality, CDN, and recap options were not purchased,
+  opened, or enabled.
+- Sports Streams is independent of AIOStreams and TorBox; existing movie and
+  series bitrate/language/deduplication rules do not apply to it.

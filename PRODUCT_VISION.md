@@ -15,6 +15,8 @@ Maintain a premium 2026 Stremio power-user setup centered on:
 - English-first filtering;
 - OpenSubtitles v3;
 - Stremio-wide Trakt scrobbling in addition to Trakt-derived discovery;
+- optional live sports through the user-installed Sports Streams add-on,
+  isolated from the AIOStreams/TorBox movie and television path;
 - evidence-backed manifest, catalog, artwork, stream-deduplication, and language
   validation.
 
@@ -34,6 +36,8 @@ services visibly represented, and anime/specialty shelves deprioritized.
 - Do not buy, renew, upgrade, subscribe, or use referral links without explicit
   consent.
 - Do not research IPTV providers yet.
+- Auditing and filtering the already-installed Sports Streams add-on is in
+  scope; broader IPTV-provider research remains out of scope.
 - Do not self-host anything yet.
 - Keep secrets out of repository artifacts.
 - Keep user-facing catalog names free of implementation brands such as Trakt,
@@ -47,6 +51,8 @@ The following future choices remain unresolved:
 - a canonical source or exact JSON for a formatter called “Brainrot
   Formatter”;
 - whether AIOStreams Standard SEL defaults should later be customized;
+- which sports should remain visible in Sports Streams and whether scheduled
+  events should be hidden with Live Only;
 - the desired long-term GitHub workflow beyond this architecture checkpoint.
 
 For the finished setup, Cinemeta is retained as a narrow

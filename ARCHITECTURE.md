@@ -1,6 +1,6 @@
 # Current architecture
 
-Last audited: 2026-07-13, America/Los_Angeles.
+Last audited: 2026-07-14, America/Los_Angeles.
 
 ## Runtime
 
@@ -74,6 +74,21 @@ configuration and the user's credential store. It is not committed here.
 OpenSubtitles v3 1.0.0 remains installed. The legacy OpenSubtitles 0.24.0 entry
 was removed.
 
+### Live sports
+
+`Sports Streams 1.2.0` (`community.sports.fly`) is a separately installed
+community add-on at `https://sportsfree-us2.highfly.dev/`. It declares the
+custom `sport` type with catalog, meta, and stream resources. Its 17 catalogs
+cover Live Now, Today, and sport categories; every catalog declares
+`notForHome: true`, keeping sports out of the family Home layout.
+
+The current base manifest uses the free unfiltered state: all sports and
+scheduled events are included. Free configuration supports choosing sports and
+Live Only. The provider advertises timezone, language, and quality preferences
+only on a paid tier; none were purchased or enabled. Sports Streams is outside
+the AIOStreams/TorBox boundary, so AIOStreams filters and bitrate ceilings do
+not transform its direct live stream results.
+
 ### Compatibility
 
 Cinemeta 3.0.14 and Local Files 1.10.0 remain installed. Cinemeta is the narrow
@@ -99,3 +114,5 @@ stream-resource provider.
   documentation.
 - Community hosted instances and templates can change independently; manifests
   and version claims must be revalidated before future changes.
+- Sports Streams is an additional community trust boundary. Its live source
+  availability and quality can change independently of TorBox/AIOStreams.

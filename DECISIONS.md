@@ -183,3 +183,19 @@ preserves efficient high-quality 4K releases while removing giant remuxes from
 future result lists. "Cached" continues to mean available without torrent
 download waiting; it does not mean locally stored or immune to last-mile
 bandwidth limits.
+
+### AD-017 — Inventory Sports Streams without inventing filters
+
+Status: installed by the user and audited 2026-07-14; filtering unresolved.
+
+Sports Streams 1.2.0 is retained as a separate live-sports add-on. It does not
+participate in AIOStreams, TorBox, movie/series ranking, or the AIOMetadata Home
+layout. Its catalogs are already marked `notForHome`, which preserves the
+simple living-room Home screen.
+
+The current free configuration is the base manifest: all sports are selected
+implicitly and scheduled events remain visible. Free controls can restrict
+the returned sports and enable Live Only, but the user has not yet confirmed
+which sports or whether scheduled events should be hidden. The configuration
+therefore remains unchanged. Paid timezone, language, quality, CDN, and recap
+features were not selected, purchased, or tested.

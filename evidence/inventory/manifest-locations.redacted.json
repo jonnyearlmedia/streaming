@@ -30,6 +30,12 @@
       "location": "http://127.0.0.1:11470/local-addon/manifest.json",
       "verified_status": 200,
       "verified_version": "1.10.0"
+    },
+    {
+      "addon": "Sports Streams",
+      "location": "https://sportsfree-us2.highfly.dev/manifest.json",
+      "verified_status": 200,
+      "verified_version": "1.2.0"
     }
   ]
 }

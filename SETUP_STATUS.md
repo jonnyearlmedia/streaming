@@ -1,6 +1,6 @@
 # Stremio setup status
 
-Last audited: 2026-07-13 (America/Los_Angeles)
+Last audited: 2026-07-14 (America/Los_Angeles)
 
 The premium setup is complete and has been re-audited after a clean
 AIOMetadata manifest refresh.
@@ -21,6 +21,9 @@ AIOMetadata manifest refresh.
    Tamtaro Complete SEL Setup 2.6.1, Standard SEL, English first, and TorBox Pro.
 5. AIOMetadata | ElfHosted 2.8.0 — catalogs, metadata, Trakt/MDBList discovery,
    and OpenPosterDB artwork.
+6. Sports Streams 1.2.0 — separately installed live/scheduled sports catalogs
+   and direct live streams. The current free manifest is unfiltered: all sports
+   are enabled and scheduled events are included.
 
 The structured inventory is in
 `evidence/inventory/installed-addons.json`.
@@ -96,6 +99,21 @@ tokens are stored outside the repository in the user's credential note. The
 redacted locations are in
 `evidence/inventory/manifest-locations.redacted.json`.
 
+### Sports Streams
+
+- Instance: `https://sportsfree-us2.highfly.dev/`.
+- Add-on ID/version: `community.sports.fly` 1.2.0.
+- Resources: catalog, meta, and stream for the custom `sport` type.
+- Current free configuration: no sport selections and Live Only disabled,
+  which means all supported sports plus scheduled events are returned.
+- Its 17 catalog definitions declare `notForHome: true`; they remain in the
+  Sports/Discover surface and do not add shelves to the family Home screen.
+- Free configuration can select sports and enable Live Only. Timezone,
+  language, and quality preferences are advertised as paid-only. No purchase,
+  trial, referral, or upgrade action was taken.
+- This add-on bypasses AIOStreams and TorBox. AIOStreams movie/series bitrate,
+  language, ranking, and deduplication rules do not filter its live streams.
+
 ## Verification evidence
 
 - Cinemeta manifest: HTTP 200, version 3.0.14,
@@ -105,6 +123,8 @@ redacted locations are in
 - AIOStreams manifest: HTTP 200, version 2.30.6, stream/catalog/meta/subtitles.
 - AIOMetadata manifest: HTTP 200, version 2.8.0,
   catalog/meta/subtitles.
+- Sports Streams manifest: HTTP 200, version 1.2.0, custom `sport` type with
+  catalog/meta/stream resources and 17 catalog definitions.
 - AIOMetadata UI: all four supplied keys reported valid.
 - OpenPosterDB: HTTP 200 JPEG after redirect, 580 × 870, four visible badges.
 - Public-domain endpoint test: 15 results, 15 unique keys, zero duplicate keys.
@@ -125,7 +145,11 @@ redacted locations are in
   observed Stremio ingress varied from roughly 47 to 81 Mbps. Mac CPU headroom
   remained ample. The saved bitrate ceilings remove that class of first-choice
   result on future stream requests.
-- Final Installed view: five add-ons matching the list above.
+- Prior final Installed-view evidence shows the original five add-ons. The
+  sixth Sports Streams installation is proven by its active manifest URL in
+  the user-initiated player session and the manifest verification above; a new
+  Installed-view screenshot was not captured because doing so would interrupt
+  the live game.
 
 See `evidence/verification/verification-log.md` for the detailed record and
 `evidence/screenshots/` for visual evidence.
