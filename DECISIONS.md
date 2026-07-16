@@ -275,7 +275,7 @@ keeping the Home screen manageable.
 
 ### AD-022 — Add the official YouTube channel add-on to every profile
 
-Status: implemented and verified 2026-07-15.
+Status: reversed and removed 2026-07-15.
 
 The official Stremio YouTube 1.30.7 add-on was selected because the official
 listing explicitly describes its viewing experience as ad-free. Its manifest
@@ -288,3 +288,7 @@ remains disabled. The public manifest and top-channel catalog returned HTTP
 200, and Stremio visibly loaded the Channel discovery view with non-empty
 results. No playback test, purchase, YouTube-account authorization, or change
 to discovery shelves, streams, TorBox, Trakt, subtitles, or history occurred.
+
+After reviewing the actual experience, the user rejected the non-personalized
+global Top channel catalog. YouTube 1.30.7 was removed from Jonny and from all
+three secondary profiles. The rest of the Stremio stack was left unchanged.

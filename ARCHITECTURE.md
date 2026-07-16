@@ -119,19 +119,6 @@ filters and bitrate ceilings do not transform its direct live-stream results.
 The former `sportsfree-us2.highfly.dev` manifest was removed from all four
 profiles, leaving one Premium Sports Streams entry per profile.
 
-### YouTube channels
-
-The official Stremio YouTube add-on 1.30.7 is installed on Jonny, Nene,
-Moncada, and Armada. It declares only catalog and meta resources for the
-separate `channel` type. This adds an ad-free YouTube channel/search surface in
-Discover without adding movie or series stream results and without crossing
-the AIOStreams/TorBox boundary.
-
-The master official-add-on screen did not expose `Apply to all profiles` for
-this installation. The Admin profile manager was therefore used to add the
-same public official manifest directly to each secondary profile. Their
-permission to manage add-ons remains disabled.
-
 ### Compatibility
 
 Cinemeta 3.0.14 and Local Files 1.10.0 remain installed. Cinemeta is the narrow

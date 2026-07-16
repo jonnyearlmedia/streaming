@@ -348,3 +348,16 @@ home-layout gaps.
   no YouTube login was authorized, and no movie/series catalog, AIOStreams,
   TorBox, Sports Streams, Trakt, subtitle, profile-history, or stream-ranking
   setting was changed.
+
+## 2026-07-15 official YouTube add-on removal
+
+- The user rejected the official add-on's non-personalized global Top channel
+  catalog after reviewing it in Stremio.
+- Removed YouTube 1.30.7 from Jonny through the Installed add-ons view.
+- Removed the same official manifest from Nene, Moncada, and Armada through
+  the Admin profile manager. Each post-removal profile list omitted YouTube and
+  retained Cinemeta, OpenSubtitles v3, Local Files, AIOStreams, AIOMetadata,
+  and Sports Streams.
+- Secondary add-on-management permission remained disabled. No playback,
+  history, library, discovery, stream, TorBox, Sports Streams, Trakt, subtitle,
+  or ranking setting was changed.

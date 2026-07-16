@@ -125,16 +125,6 @@ popularity and recency views without doubling Home rows.
   fallback and supplies the four compact Popular/Featured rows above.
 - **Local Files 1.10.0** remains as the local-file compatibility add-on.
 
-### YouTube channels
-
-- **YouTube 1.30.7** is Stremio's official YouTube channel catalog/metadata
-  add-on. The official listing describes it as ad-free. It appears as a
-  separate Channel type in Discover and has no movie/series stream resource,
-  so it does not alter AIOStreams choices.
-- The same public official manifest is installed on Jonny, Nene, Moncada, and
-  Armada. It does not provide the full signed-in YouTube app experience for
-  personal subscriptions, comments, or account history.
-
 ## Installed add-ons — final inventory
 
 1. Cinemeta 3.0.14.
@@ -143,7 +133,6 @@ popularity and recency views without doubling Home rows.
 4. AIOStreams 2.30.6 / Tamtaro Complete SEL Setup 2.6.1.
 5. AIOMetadata | ElfHosted 2.8.0.
 6. Sports Streams 1.2.0.
-7. YouTube 1.30.7.
 
 There are no standalone Torrentio, Comet, or MediaFusion add-ons. Torrentio
 and Comet operate only as internal AIOStreams sources.
@@ -155,8 +144,9 @@ and Comet operate only as internal AIOStreams sources.
 - Streaming Catalogs 1.1.1
 - M3U/EPG TV Addon 1.2.0
 - OpenSubtitles 0.24.0
-- YouTube, version not recorded — historical removal; official YouTube 1.30.7
-  is now installed again.
+- YouTube, version not recorded
+- YouTube 1.30.7 — evaluated and removed from all four profiles because its
+  global Top channel catalog was not useful for the household.
 - Public Domain Movies, version not recorded
 
 Comet installation as a standalone add-on was previously aborted and is not a
@@ -176,7 +166,6 @@ No IPTV provider research or self-hosting was performed.
 | Local Files manifest | HTTP 200; version 1.10.0; meta and stream resources |
 | AIOStreams manifest | HTTP 200; version 2.30.6; stream, catalog, meta, and subtitles resources |
 | AIOMetadata manifest | HTTP 200; version 2.8.0; catalog, meta, and subtitles resources |
-| YouTube manifest | HTTP 200; version 1.30.7; channel catalog/meta only; public top catalog returned 96 items |
 | Catalog configuration | 33 manifest declarations; 25 AIOMetadata Home shelves and seven search catalogs after clean reinstall |
 | Provider catalogs | All 16 US service movie/show settings verified as Release Date, Descending; endpoints returned HTTP 200 with non-empty first pages of 16-20 items |
 | API credentials | All four AIOMetadata keys reported valid |
@@ -194,7 +183,6 @@ No IPTV provider research or self-hosting was performed.
 | Secondary add-on clone | Nene, Moncada, and Armada loaded the personalized Netflix provider shelf with OpenPosterDB artwork |
 | Secondary TorBox delivery | Nene returned cached/instant AIOStreams/TorBox results for a public-domain movie without starting playback |
 | Profile history isolation | Jonny retained Trakt `Log out`; secondary profiles showed `Authenticate` and use separate Stremio history |
-| YouTube profile rollout | Jonny, Nene, Moncada, and Armada each list the official YouTube add-on; Channel discovery loaded non-empty results |
 
 The checks used *Night of the Living Dead* (movie), *The Lucy Show* S01E01
 (television), and *Momotaro, Sacred Sailors* (anime/foreign-language). These

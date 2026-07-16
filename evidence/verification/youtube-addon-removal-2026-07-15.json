@@ -1,0 +1,18 @@
+{
+  "captured_at": "2026-07-15T17:03:00-07:00",
+  "addon": {
+    "id": "com.linvo.stremiochannels",
+    "name": "YouTube",
+    "version": "1.30.7"
+  },
+  "removed_from_profiles": ["Jonny", "Nene", "Moncada", "Armada"],
+  "verification": {
+    "jonny_installed_view_omits_addon": true,
+    "nene_profile_addons_omit_addon": true,
+    "moncada_profile_addons_omit_addon": true,
+    "armada_profile_addons_omit_addon": true,
+    "remaining_addon_count_per_profile": 6,
+    "secondary_addon_management_enabled": false
+  },
+  "other_configuration_changed": false
+}
