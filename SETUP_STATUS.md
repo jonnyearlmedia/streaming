@@ -1,6 +1,6 @@
 # Stremio setup status
 
-Last audited: 2026-07-15 (America/Los_Angeles)
+Last audited: 2026-07-29 (America/Los_Angeles)
 
 The premium setup is complete and has been re-audited after a clean
 AIOMetadata manifest refresh.
@@ -28,8 +28,23 @@ No secondary user needs to create or authenticate a Trakt account. Selecting
 their Stremio profile is the complete user flow; Stremio maintains their
 separate Continue Watching and history natively.
 
-The desktop app is intentionally left at the `Who's watching?` chooser. The
-profile list will sync to other devices signed into the same Stremio account.
+The profile chooser remains available from the desktop app. The profile list
+syncs to other devices signed into the same Stremio account.
+
+## Custom add-on development artifact
+
+A local `brownjonnybravo` YouTube-channel add-on has been built at
+`addons/brownjonnybravo`. Version 0.1.0 declares only the `channel` type and
+provides Latest Videos and Playlists catalogs backed by the public
+`youtube.com/@brownjonnybravo` channel. Its loopback manifest, catalogs,
+metadata, and stream responses have been verified, and its manifest passes the
+official Stremio add-on linter.
+
+This artifact is **not installed** on Jonny or any secondary profile, is not
+publicly hosted, and was not used to start playback. It does not change the six
+installed add-ons listed below. Its complete feature boundary and local run
+instructions are in `addons/brownjonnybravo/FEATURES.md` and
+`addons/brownjonnybravo/README.md`.
 
 ## Runtime
 
@@ -114,19 +129,21 @@ internal source in the official Tamtaro AIOStreams configuration.
 - OpenPosterDB: enabled through the RPDB-compatible custom poster pattern.
 - AI search: disabled; no Gemini credential was requested.
 - Provider region: United States.
-- Provider sorting: Release Date, Descending (newest titles first) for all 16
-  provider movie/show shelves.
-- Final manifest declarations: 33 (25 Home shelves, seven search catalogs,
+- Provider sorting: Release Date, Descending (newest titles first) for the
+  existing 16 provider movie/show shelves and the AMC+ series shelf.
+- Final manifest declarations: 35 (27 Home shelves, seven search catalogs,
   and one Calendar special resource).
-- Visible AIOMetadata Home rows use plain-English labels and include trending,
-  releases, Netflix, Hulu, Max, Disney+, Prime Video, Apple TV+, Peacock,
-  Paramount+, three specialty shelves, and two anime shelves at the bottom.
+- The AIOMetadata Home section starts with `The Walking Dead Universe`, an
+  exact seven-show main-universe collection, followed by `AMC+`, a newest-first
+  United States series shelf. The remaining rows include trending, releases,
+  Netflix, Hulu, Max, Disney+, Prime Video, Apple TV+, Peacock, Paramount+,
+  three specialty shelves, and two anime shelves at the bottom.
 - AIOMetadata Popular rows remain absent because Cinemeta supplies the familiar
   Popular/Featured fallback rows. Movie, show, anime, people, and TVDB
   collection search remain enabled.
-- The provider-sort update is server-side on the same personalized manifest
-  already cloned to all four profiles; no profile, history, or add-on reinstall
-  was changed.
+- The same personalized manifest was saved and reapplied to all four profiles.
+  AIOMetadata remains ahead of Sports Streams in the installed add-on order.
+  No profile history, playback, stream ranking, or subscription setting changed.
 
 Personalized hosted configuration paths, passwords, UUIDs, API keys, and debrid
 tokens are stored outside the repository in the user's credential note. The
@@ -168,6 +185,10 @@ redacted locations are in
 - AIOStreams manifest: HTTP 200, version 2.30.6, stream/catalog/meta/subtitles.
 - AIOMetadata manifest: HTTP 200, version 2.8.0,
   catalog/meta/subtitles.
+- AIOMetadata custom-row audit: 35 manifest declarations; the Walking Dead
+  collection endpoint returned the seven intended main-universe shows, and the
+  AMC+ endpoint returned a non-empty 20-item first page. Jonny and Nene both
+  visibly rendered the two rows in Stremio Home.
 - AIOMetadata provider-sort audit: all 16 authenticated provider settings read
   Release Date, Descending after save; all 16 catalog endpoints returned HTTP
   200 with non-empty first pages (16-20 items at sampling time).

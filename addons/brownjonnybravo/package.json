@@ -1,0 +1,16 @@
+{
+  "name": "brownjonnybravo-stremio-addon",
+  "version": "0.1.0",
+  "private": true,
+  "description": "A private-first Stremio channel add-on for youtube.com/@brownjonnybravo.",
+  "type": "module",
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "start": "node src/server.js",
+    "dev": "BJB_CACHE_TTL_SECONDS=60 node --watch src/server.js",
+    "check": "node --check src/config.js && node --check src/xml.js && node --check src/youtube.js && node --check src/addon.js && node --check src/server.js && node --test",
+    "test": "node --test"
+  }
+}

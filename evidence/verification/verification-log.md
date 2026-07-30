@@ -2,6 +2,31 @@
 
 All times are on 2026-07-12 in America/Los_Angeles unless stated otherwise.
 
+## 2026-07-15 brownjonnybravo custom add-on build
+
+- Built `addons/brownjonnybravo` version 0.1.0 for the public
+  `youtube.com/@brownjonnybravo` channel, using the exact lowercase spelling.
+- The project has zero npm dependencies. It uses Node's built-in HTTP server,
+  public YouTube feeds, and the Mac's pre-existing `yt-dlp` binary. No API key,
+  OAuth token, password, debrid credential, purchase, or subscription was used.
+- The manifest returned HTTP 200 at the loopback-only development URL. It
+  declared ID `com.brownjonnybravo.channel`, type `channel`, resources catalog/
+  meta/stream, and the Latest Videos and Playlists catalogs.
+- Live public-data refresh returned four normal uploads, two separately held
+  Shorts, three public playlists, and seven playable playlist entries. Two
+  unavailable/private ID-only tombstones in the vlogs playlist were excluded.
+- Latest-video cards exposed landscape artwork, runtime, release information,
+  description/statistics, channel art, and a YouTube preview stream. Playlist
+  metadata exposed playable child videos through Stremio's built-in `ytId`
+  player. The external YouTube playback choice was disabled at the user's
+  request, while the Stremio Trailer action remains enabled.
+- `npm run check` passed seven tests with zero failures. `git diff --check`
+  passed. Stremio's official `stremio-addon-linter` 1.7.0 reported valid true,
+  zero errors, and zero warnings.
+- No Stremio installation, profile change, add-on reorder, public deployment,
+  or playback was performed. The complete structured result is preserved in
+  `evidence/verification/brownjonnybravo-addon-2026-07-15.json`.
+
 ## Initial installed-add-on audit
 
 Observed before migration cleanup:
@@ -361,3 +386,32 @@ home-layout gaps.
 - Secondary add-on-management permission remained disabled. No playback,
   history, library, discovery, stream, TorBox, Sports Streams, Trakt, subtitle,
   or ranking setting was changed.
+
+## 2026-07-29 Walking Dead universe and AMC+ discovery rows
+
+- Loaded and edited the exact authenticated AIOMetadata configuration already
+  installed on the Stremio account. The personalized manifest identifier,
+  password, URL, and API credentials remain outside this repository.
+- Added `The Walking Dead Universe` from public TMDB list 8650238. Its live
+  catalog endpoint returned HTTP 200 with exactly seven titles: *The Walking
+  Dead*, *Fear the Walking Dead*, *The Walking Dead: World Beyond*, *Tales of
+  the Walking Dead*, *The Walking Dead: Dead City*, *The Walking Dead: Daryl
+  Dixon*, and *The Walking Dead: The Ones Who Live*.
+- Added an `AMC+` series catalog using the United States direct AMC+ watch
+  provider and first-air-date descending order. Its live endpoint returned
+  HTTP 200 with 20 items on the sampled first page.
+- Placed the Walking Dead collection first and AMC+ second within the
+  AIOMetadata Home section, ahead of the existing Trending rows.
+- Saved the same hosted configuration and reapplied it to all four Supporters
+  profiles. The final installed order was restored to Cinemeta, OpenSubtitles
+  v3, Local Files, AIOStreams, AIOMetadata, and Sports Streams.
+- The refreshed AIOMetadata 2.8.0 manifest returned HTTP 200 with 35 catalog
+  declarations: 27 Home catalogs, seven search catalogs, and Calendar.
+- Jonny visibly rendered both new rows. Nene was used as a representative
+  secondary-profile check and also visibly rendered both rows. The reinstall
+  used Stremio's `Apply this change to all profiles` control.
+- No playback was started. No purchase, subscription, AIOStreams, TorBox,
+  Sports Streams, Trakt, subtitle, profile-history, or stream-ranking setting
+  changed.
+- A redacted focused record is stored in
+  `evidence/verification/walking-dead-amc-discovery-2026-07-29.md`.

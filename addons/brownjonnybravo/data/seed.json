@@ -1,0 +1,190 @@
+{
+  "source": "bundled-public-snapshot",
+  "refreshedAt": "2026-07-15T00:00:00.000Z",
+  "latest": [
+    {
+      "id": "irqwAp0tmPA",
+      "title": "the ONLY chicken adobo recipe you need (kinda)",
+      "url": "https://www.youtube.com/watch?v=irqwAp0tmPA",
+      "published": "2026-02-27T03:37:22+00:00",
+      "description": "the chicken wing adobo recipe you didn't know you needed. just don't burn it like i did. this one's for the titas",
+      "thumbnail": "https://i.ytimg.com/vi/irqwAp0tmPA/maxresdefault.jpg",
+      "duration": 250,
+      "views": 198,
+      "likes": 9,
+      "isShort": false
+    },
+    {
+      "id": "wks_FE60kLw",
+      "title": "SF LIGHTSCAPE 2025 at THE BOTANICAL GARDEN",
+      "url": "https://www.youtube.com/watch?v=wks_FE60kLw",
+      "published": "2026-01-24T20:02:58+00:00",
+      "description": "PERFECT NIGHT OTHER THAN ME DROPPING AND CRACKING MY OSMO",
+      "thumbnail": "https://i.ytimg.com/vi/wks_FE60kLw/maxresdefault.jpg",
+      "duration": 41,
+      "views": 50,
+      "likes": 3,
+      "isShort": false
+    },
+    {
+      "id": "OZn-WH621p8",
+      "title": "i tried the viral ilocos empanada",
+      "url": "https://www.youtube.com/watch?v=OZn-WH621p8",
+      "published": "2025-12-29T13:21:33+00:00",
+      "description": "ilocos empanada mukbang in the sequoia. i thought i was cool off these but they finally showed up in my city so you know i had to...",
+      "thumbnail": "https://i.ytimg.com/vi/OZn-WH621p8/maxresdefault.jpg",
+      "duration": 322,
+      "views": 375,
+      "likes": 22,
+      "isShort": false
+    },
+    {
+      "id": "9ssr3RAYwR8",
+      "title": "what really happened on our big bear trip",
+      "url": "https://www.youtube.com/watch?v=9ssr3RAYwR8",
+      "published": "2025-12-19T02:32:16+00:00",
+      "description": "JD's 30th birthday weekend in big bear, ca. singing. snow. shots. at least from what i remember.",
+      "thumbnail": "https://i.ytimg.com/vi/9ssr3RAYwR8/maxresdefault.jpg",
+      "duration": 781,
+      "views": 188,
+      "likes": 8,
+      "isShort": false
+    }
+  ],
+  "shorts": [
+    {
+      "id": "8wGEyzBpO2E",
+      "title": "EAT ILOCOS EMPANADA WITH ME 😋",
+      "url": "https://www.youtube.com/shorts/8wGEyzBpO2E",
+      "published": "2026-01-23T19:44:48+00:00",
+      "description": "HELLA GOOD. HELLA CRUNCHY. HELLA WORTH IT.",
+      "thumbnail": "https://i.ytimg.com/vi/8wGEyzBpO2E/maxresdefault.jpg",
+      "duration": 86,
+      "views": 1117,
+      "likes": 19,
+      "isShort": true
+    },
+    {
+      "id": "467I9ys-O30",
+      "title": "From a daily walk to a generational run! Thank you 2025🤞🏽",
+      "url": "https://www.youtube.com/shorts/467I9ys-O30",
+      "published": "2026-01-03T19:44:07+00:00",
+      "description": "",
+      "thumbnail": "https://i.ytimg.com/vi/467I9ys-O30/maxresdefault.jpg",
+      "duration": null,
+      "views": 1563,
+      "likes": 3,
+      "isShort": true
+    }
+  ],
+  "playlists": [
+    {
+      "id": "PLlvcdeFENruWLfWBscSbyb9LJpsNXMcba",
+      "title": "cooking videos",
+      "url": "https://www.youtube.com/playlist?list=PLlvcdeFENruWLfWBscSbyb9LJpsNXMcba",
+      "thumbnail": "https://i.ytimg.com/vi/fEkjjFX4f6Q/maxresdefault.jpg",
+      "videos": [
+        {
+          "id": "fEkjjFX4f6Q",
+          "title": "O'Block learns that God is still ALIVE 🤯",
+          "url": "https://www.youtube.com/watch?v=fEkjjFX4f6Q",
+          "published": null,
+          "description": "",
+          "thumbnail": "https://i.ytimg.com/vi/fEkjjFX4f6Q/maxresdefault.jpg",
+          "duration": 61,
+          "views": 242000,
+          "likes": null,
+          "isShort": true
+        },
+        {
+          "id": "irqwAp0tmPA",
+          "title": "the ONLY chicken adobo recipe you need (kinda)",
+          "url": "https://www.youtube.com/watch?v=irqwAp0tmPA",
+          "published": "2026-02-27T03:37:22+00:00",
+          "description": "the chicken wing adobo recipe you didn't know you needed.",
+          "thumbnail": "https://i.ytimg.com/vi/irqwAp0tmPA/maxresdefault.jpg",
+          "duration": 250,
+          "views": 198,
+          "likes": 9,
+          "isShort": false
+        }
+      ]
+    },
+    {
+      "id": "PLlvcdeFENruV_-o7nHE9wdNo0BLKJAD-S",
+      "title": "vlogs",
+      "url": "https://www.youtube.com/playlist?list=PLlvcdeFENruV_-o7nHE9wdNo0BLKJAD-S",
+      "thumbnail": "https://i.ytimg.com/vi/wks_FE60kLw/maxresdefault.jpg",
+      "videos": [
+        {
+          "id": "wks_FE60kLw",
+          "title": "SF LIGHTSCAPE 2025 at THE BOTANICAL GARDEN",
+          "url": "https://www.youtube.com/watch?v=wks_FE60kLw",
+          "published": "2026-01-24T20:02:58+00:00",
+          "description": "PERFECT NIGHT OTHER THAN ME DROPPING AND CRACKING MY OSMO",
+          "thumbnail": "https://i.ytimg.com/vi/wks_FE60kLw/maxresdefault.jpg",
+          "duration": 41,
+          "views": 50,
+          "likes": 3,
+          "isShort": false
+        },
+        {
+          "id": "9ssr3RAYwR8",
+          "title": "what really happened on our big bear trip",
+          "url": "https://www.youtube.com/watch?v=9ssr3RAYwR8",
+          "published": "2025-12-19T02:32:16+00:00",
+          "description": "JD's 30th birthday weekend in big bear, ca.",
+          "thumbnail": "https://i.ytimg.com/vi/9ssr3RAYwR8/maxresdefault.jpg",
+          "duration": 781,
+          "views": 188,
+          "likes": 8,
+          "isShort": false
+        }
+      ]
+    },
+    {
+      "id": "PLlvcdeFENruWOwJwlgqhvEVlyvNaDK-XY",
+      "title": "MUKBANGS",
+      "url": "https://www.youtube.com/playlist?list=PLlvcdeFENruWOwJwlgqhvEVlyvNaDK-XY",
+      "thumbnail": "https://i.ytimg.com/vi/8wGEyzBpO2E/maxresdefault.jpg",
+      "videos": [
+        {
+          "id": "8wGEyzBpO2E",
+          "title": "EAT ILOCOS EMPANADA WITH ME 😋",
+          "url": "https://www.youtube.com/shorts/8wGEyzBpO2E",
+          "published": "2026-01-23T19:44:48+00:00",
+          "description": "HELLA GOOD. HELLA CRUNCHY. HELLA WORTH IT.",
+          "thumbnail": "https://i.ytimg.com/vi/8wGEyzBpO2E/maxresdefault.jpg",
+          "duration": 86,
+          "views": 1117,
+          "likes": 19,
+          "isShort": true
+        },
+        {
+          "id": "OZn-WH621p8",
+          "title": "i tried the viral ilocos empanada",
+          "url": "https://www.youtube.com/watch?v=OZn-WH621p8",
+          "published": "2025-12-29T13:21:33+00:00",
+          "description": "ilocos empanada mukbang in the sequoia.",
+          "thumbnail": "https://i.ytimg.com/vi/OZn-WH621p8/maxresdefault.jpg",
+          "duration": 322,
+          "views": 375,
+          "likes": 22,
+          "isShort": false
+        },
+        {
+          "id": "B7oHq0j1tX8",
+          "title": "fried chicken ice cream... WITH GRAVY? (MUKBANG)",
+          "url": "https://www.youtube.com/watch?v=B7oHq0j1tX8",
+          "published": null,
+          "description": "",
+          "thumbnail": "https://i.ytimg.com/vi/B7oHq0j1tX8/maxresdefault.jpg",
+          "duration": 310,
+          "views": 58,
+          "likes": null,
+          "isShort": false
+        }
+      ]
+    }
+  ]
+}

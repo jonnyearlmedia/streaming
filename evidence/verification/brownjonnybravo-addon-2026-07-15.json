@@ -1,0 +1,53 @@
+{
+  "captured_at": "2026-07-15T20:19:08-07:00",
+  "artifact": {
+    "path": "addons/brownjonnybravo",
+    "id": "com.brownjonnybravo.channel",
+    "name": "brownjonnybravo",
+    "version": "0.1.0",
+    "installed_in_stremio": false,
+    "published": false
+  },
+  "runtime": {
+    "manifest_url": "http://127.0.0.1:7000/manifest.json",
+    "bind_scope": "loopback-only",
+    "node": "v26.4.0",
+    "npm": "11.17.0",
+    "system_dependencies_added": false,
+    "npm_dependencies": 0
+  },
+  "public_source": {
+    "channel_url": "https://www.youtube.com/@brownjonnybravo",
+    "channel_id": "UC9DsqNzC41_Iy2FCIBncjSw",
+    "source": "youtube-public-live",
+    "latest_videos": 4,
+    "shorts_separated": 2,
+    "playlists": 3,
+    "playable_playlist_entries": 7,
+    "deleted_or_private_playlist_tombstones_exposed": 0
+  },
+  "manifest": {
+    "http_status": 200,
+    "types": ["channel"],
+    "resources": ["catalog", "meta", "stream"],
+    "catalogs": ["latest", "playlists"],
+    "official_linter_valid": true,
+    "official_linter_errors": 0,
+    "official_linter_warnings": 0
+  },
+  "verification": {
+    "npm_run_check": "pass",
+    "tests": 7,
+    "test_failures": 0,
+    "git_diff_check": "pass",
+    "latest_catalog_http_status": 200,
+    "playlists_catalog_http_status": 200,
+    "playlist_meta_http_status": 200,
+    "stream_response_http_status": 200,
+    "playback_choices": ["in-app Stremio YouTube player"],
+    "external_youtube_playback_choice": false,
+    "trailer_action": true,
+    "cors": "*",
+    "playback_started": false
+  }
+}

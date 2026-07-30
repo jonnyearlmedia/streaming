@@ -1,6 +1,6 @@
 # Current architecture
 
-Last audited: 2026-07-15, America/Los_Angeles.
+Last audited: 2026-07-29, America/Los_Angeles.
 
 ## Runtime
 
@@ -37,16 +37,18 @@ available because those catalogs are separate from playback scrobbling.
 `AIOMetadata | ElfHosted 2.8.0` is the configured metadata and catalog layer.
 Its configuration imported Tamtaro's current anime-inclusive AIOMetadata JSON.
 It uses TMDB, TVDB, MDBList, and Fanart.tv credentials and OpenPosterDB artwork.
-Its Home surface contains 25 plain-English shelves: four core trending/new
-rows, movie and show shelves for eight familiar US services, three specialty
-rows, and two deprioritized anime rows. The provider shelves use AIOMetadata's
-built-in Streaming Providers integration with United States selected and
-Release Date/Descending sorting. Seven search catalogs remain enabled.
+Its Home surface contains 27 plain-English shelves. The AIOMetadata section
+starts with a seven-show `The Walking Dead Universe` collection and an
+AMC+ series shelf, followed by four core trending/new rows, movie and show
+shelves for eight familiar US services, three specialty rows, and two
+deprioritized anime rows. Provider shelves use AIOMetadata's built-in Streaming
+Providers integration with United States selected and Release Date/Descending
+sorting. Seven search catalogs remain enabled.
 
-The configuration was pruned from 106 catalog definitions to the 25 intended
-Home catalogs. This removed disabled legacy/duplicate definitions and reduced
-the final manifest to 33 catalog declarations: 25 Home shelves, seven search
-catalogs, and one Calendar special resource. The smaller descriptor installs
+The configuration was pruned from 106 catalog definitions to the original 25
+intended Home catalogs, then expanded with the two requested discovery rows.
+The final manifest now has 35 catalog declarations: 27 Home shelves, seven
+search catalogs, and one Calendar special resource. The descriptor installs
 and syncs without Stremio's prior `Max descriptor size reached` warning.
 
 Configuration location:

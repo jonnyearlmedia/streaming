@@ -292,3 +292,27 @@ to discovery shelves, streams, TorBox, Trakt, subtitles, or history occurred.
 After reviewing the actual experience, the user rejected the non-personalized
 global Top channel catalog. YouTube 1.30.7 was removed from Jonny and from all
 three secondary profiles. The rest of the Stremio stack was left unchanged.
+
+### AD-023: Put the Walking Dead universe and AMC+ at the front of discovery
+
+Status: implemented and verified 2026-07-29.
+
+The household wanted a simple way to browse every main Walking Dead series
+without relying on a live AMC channel. AIOMetadata now starts with a
+`The Walking Dead Universe` row built from TMDB list 8650238. It contains the
+seven main narrative series: *The Walking Dead*, *Fear the Walking Dead*,
+*The Walking Dead: World Beyond*, *Tales of the Walking Dead*, *The Walking
+Dead: Dead City*, *The Walking Dead: Daryl Dixon*, and *The Walking Dead: The
+Ones Who Live*. Recap programs, webisodes, and unrelated extras are excluded.
+
+The next row is `AMC+`, a United States series catalog filtered to the direct
+AMC+ provider and sorted by first air date, newest first. It is a discovery
+row, not a live-channel or subscription integration. Existing AIOStreams
+results remain responsible for playback choices.
+
+The saved manifest now has 35 declarations: 27 Home catalogs, seven search
+catalogs, and Calendar. The same personalized manifest was reapplied to all
+four profiles. AIOMetadata was restored ahead of Sports Streams in the
+installed order. Jonny and Nene both visibly rendered the new rows, and no
+playback, subscription, profile history, stream ranking, or sports setting
+changed.

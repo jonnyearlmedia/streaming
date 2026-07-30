@@ -1,0 +1,68 @@
+{
+  "addon": {
+    "id": "com.brownjonnybravo.channel",
+    "name": "brownjonnybravo",
+    "version": "0.1.0",
+    "description": "the official brownjonnybravo Stremio channel — latest videos and hand-picked playlists from youtube.com/@brownjonnybravo"
+  },
+  "youtube": {
+    "channelId": "UC9DsqNzC41_Iy2FCIBncjSw",
+    "handle": "@brownjonnybravo",
+    "channelUrl": "https://www.youtube.com/@brownjonnybravo",
+    "videosUrl": "https://www.youtube.com/@brownjonnybravo/videos",
+    "shortsUrl": "https://www.youtube.com/@brownjonnybravo/shorts",
+    "playlistsUrl": "https://www.youtube.com/@brownjonnybravo/playlists"
+  },
+  "branding": {
+    "displayName": "brownjonnybravo",
+    "tagline": "i'm just posting my life bro come along for the journey",
+    "location": "bay area, ca",
+    "avatar": "https://yt3.googleusercontent.com/j-4mpVY9m-V7TQ0NFtC6KYHLg-k2XpAlAWnBPt4owqQ3T1NpqgPBxNWqpX53GkyOFC2uAZuN=s900-c-k-c0x00ffffff-no-rj",
+    "banner": "https://yt3.googleusercontent.com/5NifDRoKiCgVzshhKBO9ZGutltlNJ49lzFcrjucjDfPkmu6anUNI_uOWfpvntB635MWhKZhQ=w2560-fcrop64=1,00005a57ffffa5a8-k-c0xffffffff-no-nd-rj"
+  },
+  "catalogs": {
+    "latest": {
+      "enabled": true,
+      "name": "brownjonnybravo — latest videos",
+      "limit": 30,
+      "includeShorts": false,
+      "posterShape": "landscape",
+      "enableFullVideoPreviewAction": true
+    },
+    "playlists": {
+      "enabled": true,
+      "name": "brownjonnybravo — playlists",
+      "posterShape": "landscape"
+    },
+    "shorts": {
+      "enabled": false,
+      "name": "brownjonnybravo — shorts",
+      "limit": 30,
+      "posterShape": "landscape"
+    }
+  },
+  "playback": {
+    "playInStremio": true,
+    "openOnYouTube": false
+  },
+  "metadata": {
+    "showViews": true,
+    "showLikes": true,
+    "showRuntime": true,
+    "showPublishedDate": true
+  },
+  "knownPlaylists": [
+    {
+      "id": "PLlvcdeFENruWLfWBscSbyb9LJpsNXMcba",
+      "title": "cooking videos"
+    },
+    {
+      "id": "PLlvcdeFENruV_-o7nHE9wdNo0BLKJAD-S",
+      "title": "vlogs"
+    },
+    {
+      "id": "PLlvcdeFENruWOwJwlgqhvEVlyvNaDK-XY",
+      "title": "MUKBANGS"
+    }
+  ]
+}
