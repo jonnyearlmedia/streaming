@@ -13,11 +13,20 @@ push to `main`, so the site root is `tools/`:
 
 One https link that lands on the actual game page, not a search result.
 
-On open it calls the installed Sports Streams add-on's search endpoint, takes
-the first match, and redirects to `stremio:///detail/sport/{event id}`, which is
-the game's page with its feed list. It tries `sports_american_football`, then
-`sports_today`, then `sports_live`, and falls back to a plain Stremio search
-when nothing is listed yet.
+On open it reads the add-on's manifest, collects every `sport` catalog that
+declares the `search` extra, and queries them in turn until one returns a
+match. `sports_today` and `sports_live` go first because a game in progress
+lands there whatever the sport. It then redirects to
+`stremio:///detail/sport/{event id}`, the game's page with its feed list, and
+falls back to a plain Stremio search when nothing is listed yet.
+
+Because the catalog list comes from the add-on, any sport works without a
+code change. One page, one link per team:
+
+```
+open.html?q=49ers
+open.html?q=golden%20state
+```
 
 - macOS, Windows, Android: hands off to the installed Stremio app.
 - iOS and iPadOS: redirects to `web.stremio.com`, because the full Stremio app
@@ -33,6 +42,7 @@ Query parameters:
 | Param | Effect |
 | --- | --- |
 | `?q=49ers` | What to look for. Defaults to `49ers`. |
+| `?cat=sports_basketball` | Checks that catalog first. Optional, only saves a request or two. |
 | `?app=1` | Forces the app scheme, including on iOS. |
 | `?web=1` | Forces Stremio Web everywhere. |
 
