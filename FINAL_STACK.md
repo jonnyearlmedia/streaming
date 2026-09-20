@@ -105,6 +105,11 @@ popularity and recency views without doubling Home rows.
 
 ### Live sports
 
+> Superseded for Sports Streams on 2026-09-20: the host, add-on ID, sport
+> selection, and catalog count below are the July record and are no longer
+> current. See `SETUP_STATUS.md` and
+> `evidence/verification/sports-streams-host-migration-2026-09-20.md`.
+
 - **Sports Streams Premium 1.2.0** is installed separately from AIOStreams.
 - It supplies 18 `sport` catalogs and direct live streams. Its catalogs are
   marked `notForHome`, so the family Home screen remains unchanged.

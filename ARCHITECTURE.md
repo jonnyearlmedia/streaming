@@ -99,20 +99,27 @@ was removed.
 
 ### Live sports
 
-`Sports Streams 1.2.0` (`community.sports.fly`) is a separately installed
-Premium community add-on. Its personalized manifest uses the
-`premium-us1.highfly.dev` host; the token and configuration path are secret and
-redacted. It declares the custom `sport` type with catalog, meta, and stream
-resources. Its 18 catalogs cover Live Now, Today, sport categories, and Premium
-recaps; every catalog declares `notForHome: true`, keeping sports out of the
-family Home layout.
+`Sports Streams 1.2.0` is a separately installed Premium community add-on. Its
+personalized manifest uses the `premium.highfly.to` host; the token and
+configuration path are secret and redacted. The provider moved off the `.dev`
+TLD, and the old `premium-us1.highfly.dev` hostname now fails TLS certificate
+validation, which surfaces in Stremio as `Env: Failed to fetch: Load failed`
+(corrected 2026-09-20). The live manifest reports its ID as
+`community.sports.streamed.premium`; `community.sports.fly` was the July
+record. It declares the custom `sport` type with catalog, meta, and stream
+resources. Its nine catalogs cover Live Now, Today, sport categories, and
+Premium recaps; every catalog declares `notForHome: true`, keeping sports out
+of the family Home layout, and every one declares the `search` extra.
 
-The current configuration keeps all sports and scheduled events, uses US
-Pacific match times, and formats choices with a plain `Live Sports` heading
+The current configuration restricts sports to basketball, football,
+american-football, fight, baseball, and golf, uses US Pacific match times, and formats choices with a plain `Live Sports` heading
 plus resolution height, audio label, approximate required Mbps, Premium-feed
-status, and delay. US-1 was selected after three HTTP manifest samples per
-region returned the lowest observed average from this Mac. This is a control-
-plane latency check, not a guarantee of live-stream throughput.
+status, and delay. The July region comparison that selected US-1 is superseded by the host move.
+
+Live event items carry an upstream event number assigned when the event is
+listed, so a per-game `detail` deep link cannot be written ahead of time. The
+`search` extra is the stable entry point, and `tools/open.html` uses it to
+resolve the current event before handing off to Stremio.
 
 The live Premium configurator did not expose the advertised language or
 quality-preference controls, so the configuration does not claim either.

@@ -33,9 +33,11 @@
     },
     {
       "addon": "Sports Streams",
-      "location": "https://premium-us1.highfly.dev/[REDACTED]/[REDACTED]/manifest.json",
+      "location": "https://premium.highfly.to/[REDACTED]/[REDACTED]/manifest.json",
       "verified_status": 200,
-      "verified_version": "1.2.0"
+      "verified_version": "1.2.0",
+      "verified_on": "2026-09-20",
+      "note": "Moved off the .dev TLD. premium-us1.highfly.dev now serves a certificate for another name and fails TLS validation."
     }
   ]
 }

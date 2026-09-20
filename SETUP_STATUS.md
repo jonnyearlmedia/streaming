@@ -152,29 +152,64 @@ redacted locations are in
 
 ### Sports Streams
 
-- Instance host: `https://premium-us1.highfly.dev/`; token and personalized
-  manifest path are redacted.
-- Add-on ID/version: `community.sports.fly` 1.2.0.
+Corrected 2026-09-20. Evidence:
+`evidence/verification/sports-streams-host-migration-2026-09-20.md` and
+`evidence/config/sports-streams-2026-09-20.md`.
+
+- Instance host: `https://premium.highfly.to/`; token and personalized
+  manifest path are redacted. The provider moved from the `.dev` TLD.
+- The former `premium-us1.highfly.dev` host now serves a certificate issued
+  for a different name, so Stremio fails it at the TLS handshake and reports
+  `Env: Failed to fetch: Load failed`. Do not reinstate that hostname.
+- Add-on ID as reported by the live manifest:
+  `community.sports.streamed.premium` 1.2.0. The July inventory recorded
+  `community.sports.fly`; unresolved, see UD-002.
 - Resources: catalog, meta, and stream for the custom `sport` type.
-- Subscription: user-purchased monthly Premium access, active through
-  2026-08-18 at the time of configuration.
-- Region: US-1. Three manifest requests per Premium region averaged 388 ms for
-  US-1, 414 ms for US-2, and 429 ms for Main from this Mac; all returned 200.
-- Timezone: US Pacific.
-- No sport restriction and Live Only disabled, so all supported sports plus
-  scheduled events remain available.
-- Its 18 catalog definitions declare `notForHome: true`; they remain in the
-  Sports/Discover surface and do not add shelves to the family Home screen.
+- Subscription: user-purchased monthly Premium access. July recorded it active
+  through 2026-08-18. The user reported live playback on 2026-09-20; no
+  billing surface was inspected.
+- Timezone: PT. Clock format: 12h.
+- The configuration now restricts sports to basketball, football,
+  american-football, fight, baseball, and golf, with leagues listing nfl and
+  premier-league. July recorded no restriction.
+- Nine catalog definitions, down from eighteen. All nine declare the `search`
+  extra, which is what lets `stremio:///search?search={query}` reach the
+  add-on. Catalogs remain out of the family Home layout.
+- Live event ids carry an upstream event number that does not exist before the
+  event is listed, so a per-game deep link cannot be written in advance.
+  Catalog lookahead was about one week when sampled.
+- The add-on returns `access-control-allow-origin: *`, so browser-side callers
+  may query it directly.
 - Stream names use `Live Sports · {channel}`. Descriptions show height, audio,
   approximate required Mbps, Premium-feed status, and delay.
 - Although the Premium comparison advertises language and quality preferences,
   the verified live configurator exposed no language or quality-filter control.
   No unsupported filter is claimed.
-- Jonny, Nene, Moncada, and Armada each retain exactly one Sports Streams
-  entry, confirmed to use the Premium US-1 host. Add-on management is disabled
-  again for all three secondary profiles.
+- The user removed the stale `.dev` entry and installed the `.to` one on
+  2026-09-20. Whether Nene, Moncada, and Armada were updated in the same pass
+  is not confirmed; add-on management is disabled on those three, so they must
+  be updated from the Admin profile.
 - This add-on bypasses AIOStreams and TorBox. AIOStreams movie/series bitrate,
   language, ranking, and deduplication rules do not filter its live streams.
+
+### Launcher pages
+
+`tools/` is published to GitHub Pages by `.github/workflows/pages.yml` on push
+to `main`. Pages source must remain `GitHub Actions`; the workflow cannot
+enable it, because `actions/configure-pages` fails with
+`Resource not accessible by integration` when the workflow token lacks admin.
+
+- `https://jonnyearlmedia.github.io/streaming/open.html` resolves a live event
+  through the add-on's search catalogs and redirects into Stremio. `?q=`
+  selects the team, so one page serves every team.
+- `https://jonnyearlmedia.github.io/streaming/niners-quick-links.html` is the
+  2026 49ers schedule in Pacific time.
+- The add-on URL is entered once per device and held in `localStorage`. It is
+  never in the link and never in this repository.
+- iOS cannot route an https link to a home screen web app, so the phone always
+  lands in Safari. This is an Apple limitation, not a configuration gap.
+
+See `tools/README.md` for the parameters and the deep link formats.
 
 ## Verification evidence
 
