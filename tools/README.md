@@ -1,15 +1,38 @@
 # Tools
 
 Small, self-contained helpers for the documented Stremio stack. Nothing here
-stores a personalized manifest URL, token, or key. Anything personalized is
-entered by the user at runtime and kept in that browser's local storage only.
+stores a personalized manifest URL, token, or key.
+
+`.github/workflows/pages.yml` publishes this directory to GitHub Pages on every
+push to `main`, so the site root is `tools/`:
+
+- `https://jonnyearlmedia.github.io/streaming/open.html`
+- `https://jonnyearlmedia.github.io/streaming/niners-quick-links.html`
+
+## `open.html`
+
+One https link that lands in the right place on either device, so it can be
+pasted into a text message where a custom scheme would arrive as dead text.
+
+- macOS, Windows, Android: fires `stremio:///search?search=49ers`, which the
+  installed Stremio app handles. A visible fallback appears if nothing answers.
+- iOS and iPadOS: redirects to `https://web.stremio.com/#/search?search=49ers`,
+  because the full Stremio app is not distributed through the US App Store.
+
+Query parameters:
+
+| Param | Effect |
+| --- | --- |
+| `?q=49ers` | Search term. Defaults to `49ers`. |
+| `?id=streamed:...` | Opens that event's detail page instead of a search. |
+| `?app=1` | Forces the app scheme, including on iOS. |
+| `?web=1` | Forces Stremio Web everywhere. |
 
 ## `niners-quick-links.html`
 
-An offline single-file page holding the San Francisco 49ers 2026 schedule with
-Pacific kickoff times, plus one Stremio deep link per game.
+The 2026 49ers schedule with Pacific kickoff times and a link per game.
 
-### Why the links point at a catalog, not a game
+## Why the links are searches, not per-game links
 
 Stremio deep links are documented in the add-on SDK as:
 
@@ -21,35 +44,21 @@ stremio:///search?search={query}
 
 The web equivalent is the same path after `https://web.stremio.com/#`.
 
-Movies and series carry stable IMDb ids, so a `detail` link keeps working
-forever. Sports Streams (`community.sports.fly`, custom `sport` type) generates
-an event item only while that event is listed in its catalogs, so a per-game
-`detail` id is not stable and cannot be built ahead of a game. The page
-therefore links to the `sports_american_football` catalog, and switches to
-`sports_recaps` for the day after a game. Catalog ids are recorded in
-`evidence/verification/sports-streams-premium-catalog-results-2026-07-15.json`.
+Movies and series carry stable IMDb ids, so a `detail` link works forever.
+Sports Streams generates an event item only while that event is listed, and the
+id carries an upstream event number that does not exist ahead of time. Verified
+2026-09-20 against the installed add-on:
 
-`?autoPlay=true` is only meaningful on a `detail` link with a real id, so no
-link here can open a stream directly. Stream choice and any external-player
-handoff remain client-side Stremio behavior.
+```
+meta/sport/streamed:san-francisco-49ers-vs-miami-dolphins         → 404
+meta/sport/streamed:san-francisco-49ers-vs-miami-dolphins-2475403 → 200
+```
 
-### Add-on URL
+Every Sports Streams catalog declares the `search` extra, so
+`stremio:///search?search=49ers` reaches the add-on and returns the current
+Niners event. That form needs nothing personalized in the URL, which is why the
+tools use it.
 
-The page needs the installed Sports Streams transport URL to build a
-`discover` link. It accepts either the `…/manifest.json` URL or a pasted
-`https://web.stremio.com/#/discover/…` URL and extracts the transport from it.
-It is saved with `localStorage` on that device only. Without it, the buttons
-fall back to `stremio:///search?search=49ers`.
-
-### Link target
-
-`Auto` sends desktop and Android to `stremio://` and iOS to
-`https://web.stremio.com/#`, because there is no full-featured Stremio app in
-the iOS App Store. `App` and `Web` force either form.
-
-### Schedule source
-
-Week, date, opponent, kickoff, and network come from the NFL's published 2026
-schedule, cross-checked against the 49ers' schedule-release coverage. Times are
-converted to America/Los_Angeles. Week 18 is scheduled after Week 17, and late
-season Sunday kickoffs can still move under flexible scheduling.
+`?autoPlay=true` only applies to a `detail` link with a real id, so no link here
+can open a stream directly. Stream choice and external-player handoff remain
+client-side Stremio behavior.

@@ -135,23 +135,6 @@
   .btn.small{padding:6px 10px;font-size:12px;}
   .btn[aria-disabled="true"]{opacity:.45;pointer-events:none;}
 
-  /* setup */
-  .setup{
-    margin-top:14px;background:var(--surface);border:1px solid var(--line);border-radius:3px;padding:18px;
-  }
-  .setup h3{font-size:14px;margin:0 0 6px;letter-spacing:.01em;}
-  .setup p{margin:0 0 12px;color:var(--muted);font-size:13px;max-width:62ch;}
-  .setup ol{margin:0 0 14px;padding-left:18px;color:var(--muted);font-size:13px;}
-  .setup li{margin-bottom:4px;}
-  .field{display:flex;gap:8px;flex-wrap:wrap;}
-  input[type=text]{
-    flex:1 1 320px;min-width:0;background:var(--ground);color:var(--ink);
-    border:1px solid var(--line);border-radius:2px;padding:9px 11px;
-    font-family:"IBM Plex Mono",monospace;font-size:12.5px;
-  }
-  .saved{font-size:12.5px;color:var(--live);margin-top:10px;font-family:"IBM Plex Mono",monospace;}
-  .saved.warn{color:var(--muted);}
-
   /* schedule */
   .sec-head{
     display:flex;align-items:baseline;justify-content:space-between;gap:12px;margin:38px 0 10px;
@@ -218,7 +201,7 @@
 <div class="wrap">
   <p class="eyebrow">Stremio · Sports Streams Premium US-1</p>
   <h1>Niners <span class="red">Launch Board</span></h1>
-  <p class="lede">Every 2026 game, Pacific kickoffs, and a one-tap jump straight into the American Football catalog in Stremio. Desktop opens the app, iPhone opens Stremio Web.</p>
+  <p class="lede">Every 2026 game with Pacific kickoffs, and one link that finds the Niners feed in Stremio. No token in it: it runs a search, and the installed Sports Streams add-on answers. Desktop and Android open the app, iPhone opens Stremio Web.</p>
   <div class="rule"></div>
 
   <section class="next" id="nextPanel" aria-live="polite">
@@ -241,24 +224,8 @@
       <button type="button" data-mode="web" aria-pressed="false">Web</button>
     </div>
     <span class="hint" id="modeHint">Auto: desktop and Android open the app, iPhone opens the web player.</span>
-    <button class="linkish" id="setupToggle" type="button">Addon setup</button>
   </div>
 
-  <section class="setup" id="setup" hidden>
-    <h3>Point this board at your Sports Streams addon</h3>
-    <p>Paste your personalized Sports Streams URL once. It stays in this browser's local storage on this device, never leaves it, and is never stored with the page.</p>
-    <ol>
-      <li>Open Stremio Web, go to <strong>Discover</strong>, pick <strong>Sports Streams → American Football</strong>.</li>
-      <li>Copy the whole address bar URL, or grab the addon's <code>…/manifest.json</code> URL from Addons → Sports Streams → Share.</li>
-      <li>Paste either one below.</li>
-    </ol>
-    <div class="field">
-      <input type="text" id="manifestInput" placeholder="https://premium-us1.highfly.dev/…/manifest.json" spellcheck="false" autocomplete="off">
-      <button class="btn" id="saveBtn" type="button">Save</button>
-      <button class="btn ghost" id="clearBtn" type="button">Clear</button>
-    </div>
-    <div class="saved warn" id="savedState">Not set. Buttons fall back to a Stremio search until you add it.</div>
-  </section>
 
   <div class="sec-head">
     <h2>2026 Season</h2>
@@ -268,9 +235,10 @@
 
   <section class="notes">
     <h2>How this actually works</h2>
-    <p><strong>There is no permanent link to a single game.</strong> Movies and shows have IMDb ids, so <code>stremio:///detail/movie/tt0111161</code> points at the same title forever. Live sports don't. Sports Streams builds an event item when the game shows up in its catalog, usually the day of, and that id dies with the event. So a link made in September for a December game would point at nothing.</p>
-    <p>What's stable is the <strong>catalog</strong>. Every button here opens <code>stremio:///discover/{your addon}/sport/sports_american_football</code>, which is the American Football list. On game day the Niners feed is sitting right there, a tap away. After kickoff the board flips a game to Live; a day after, the button switches to the Recaps catalog.</p>
-    <p><strong>Playback:</strong> a deep link lands on a page, never straight into a stream. Stremio's <code>?autoPlay=true</code> flag only works on detail links with a real id, which live events don't have. You still pick the feed. Whether it plays in Stremio or hands off to an external player is your player setting inside Stremio, not something a link can force.</p>
+    <p><strong>This needs Sports Streams installed in Stremio.</strong> The buttons don't carry your add-on URL, they just ask Stremio to search. If the installed add-on is missing or its host is dead, the search comes back empty.</p>
+    <p><strong>There is no permanent id for a single game.</strong> Movies and shows have IMDb ids, so <code>stremio:///detail/movie/tt0111161</code> resolves forever. Live events don't: Sports Streams mints an item like <code>streamed:san-francisco-49ers-vs-miami-dolphins-2475403</code> when the game appears, and that number dies with the event. A link built in September for a December game would point at nothing.</p>
+    <p>So every button runs a search instead: <code>stremio:///search?search=49ers</code>. The Sports Streams catalogs declare the <code>search</code> extra, so Stremio hands the query to the add-on and the Niners game comes back. That link never expires and holds nothing personalized.</p>
+    <p><strong>Playback:</strong> a deep link lands on a page, never straight into a stream. Stremio's <code>?autoPlay=true</code> only works on a detail link with a real id, which a scheduled game doesn't have yet. You still pick the feed. Whether it plays in Stremio or hands off to an external player is your player setting, not something a link can force.</p>
     <p><strong>If a button does nothing:</strong> custom <code>stremio://</code> links are blocked inside some embedded viewers. Hit Copy, paste in your browser bar, done. On the phone, add this board to your home screen so it's one icon.</p>
     <p>Week 18 is scheduled after Week 17, and late-season Sunday kickoffs can move under flexible scheduling. Times shown are the ones released in the 2026 schedule.</p>
   </section>
@@ -301,8 +269,7 @@
     {wk:18, opp:"Cardinals", home:false, net:"TBD", tbd:true}
   ];
 
-  var CATALOG = "sports_american_football";
-  var RECAPS = "sports_recaps";
+  var QUERY = "49ers";
   var LIVE_WINDOW = 3.75 * 3600 * 1000;
   var RECAP_AFTER = 24 * 3600 * 1000;
 
@@ -312,7 +279,6 @@
     del: function(k){ try { window.localStorage.removeItem(k); } catch(e){} }
   };
 
-  var transport = store.get("nlb_transport");
   var mode = store.get("nlb_mode") || "auto";
 
   function isIOS(){
@@ -326,38 +292,14 @@
   function buildLink(path){
     return effectiveMode() === "app" ? "stremio://" + path : "https://web.stremio.com/#" + path;
   }
-  function catalogPath(id){
-    if (!transport) return null;
-    return "/discover/" + encodeURIComponent(transport) + "/sport/" + id;
-  }
   function searchPath(q){
     return "/search?search=" + encodeURIComponent(q);
   }
-  function linkFor(game){
-    var state = stateOf(game);
-    var path = catalogPath(state === "recap" ? RECAPS : CATALOG);
-    if (!path) path = searchPath("49ers");
-    return buildLink(path);
+  function linkFor(){
+    return buildLink(searchPath(QUERY));
   }
   function labelFor(game){
-    var state = stateOf(game);
-    if (state === "live") return "Watch now";
-    if (state === "recap") return "Recaps";
-    return transport ? "Open catalog" : "Search Stremio";
-  }
-
-  function parseTransport(raw){
-    raw = (raw || "").trim();
-    if (!raw) return "";
-    var m = raw.match(/[#/]discover\/([^/?#]+)/);
-    if (m) {
-      try { raw = decodeURIComponent(m[1]); } catch(e){ raw = m[1]; }
-    }
-    raw = raw.replace(/^stremio:\/\//, "https://");
-    if (!/^https?:\/\//.test(raw)) return "";
-    raw = raw.split("#")[0].replace(/\/+$/, "");
-    if (!/manifest\.json$/.test(raw)) raw = raw + "/manifest.json";
-    return raw;
+    return stateOf(game) === "live" ? "Watch now" : "Find in Stremio";
   }
 
   function kickoff(game){ return game.date ? new Date(game.date) : null; }
@@ -449,10 +391,6 @@
     nextCountdown: document.getElementById("nextCountdown"),
     nextBtn: document.getElementById("nextBtn"),
     nextCopy: document.getElementById("nextCopy"),
-    setup: document.getElementById("setup"),
-    setupToggle: document.getElementById("setupToggle"),
-    input: document.getElementById("manifestInput"),
-    savedState: document.getElementById("savedState"),
     modeHint: document.getElementById("modeHint")
   };
 
@@ -463,11 +401,11 @@
     els.nextMatch.textContent = "Week " + g.wk + " · " + matchLine(g);
     els.nextWhen.textContent = dateLine(g) + (g.net ? "  ·  " + g.net : "");
     els.nextCountdown.textContent = countdownText(g);
-    var href = linkFor(g);
+    var href = linkFor();
     els.nextBtn.textContent = labelFor(g);
     els.nextBtn.href = href;
     if (effectiveMode() === "app") { els.nextBtn.removeAttribute("target"); } else { els.nextBtn.setAttribute("target","_blank"); }
-    els.nextCopy.onclick = function(){ copy(linkFor(nextGame())); };
+    els.nextCopy.onclick = function(){ copy(linkFor()); };
   }
 
   function renderGames(){
@@ -512,7 +450,7 @@
         var a = document.createElement("a");
         a.className = "btn small" + (state === "done" ? " ghost" : "");
         a.textContent = labelFor(g);
-        a.href = linkFor(g);
+        a.href = linkFor();
         a.rel = "noopener";
         if (effectiveMode() !== "app") a.target = "_blank";
         acts.appendChild(a);
@@ -520,7 +458,7 @@
         c.type = "button";
         c.className = "btn ghost small";
         c.textContent = "Copy";
-        c.onclick = function(){ copy(linkFor(g)); };
+        c.onclick = function(){ copy(linkFor()); };
         acts.appendChild(c);
         li.appendChild(acts);
       }
@@ -540,18 +478,7 @@
     return s;
   }
 
-  function renderSaved(){
-    if (transport) {
-      els.savedState.className = "saved";
-      els.savedState.textContent = "Saved · " + transport.replace(/^https?:\/\//, "").slice(0, 46) + (transport.length > 52 ? "…" : "");
-      els.input.value = transport;
-    } else {
-      els.savedState.className = "saved warn";
-      els.savedState.textContent = "Not set. Buttons fall back to a Stremio search until you add it.";
-    }
-  }
-
-  function renderAll(){ renderNext(); renderGames(); renderSaved(); }
+  function renderAll(){ renderNext(); renderGames(); }
 
   document.querySelectorAll(".seg button").forEach(function(b){
     b.addEventListener("click", function(){
@@ -572,27 +499,6 @@
     x.setAttribute("aria-pressed", x.getAttribute("data-mode") === mode ? "true" : "false");
   });
 
-  els.setupToggle.addEventListener("click", function(){
-    els.setup.hidden = !els.setup.hidden;
-    if (!els.setup.hidden) els.input.focus();
-  });
-  document.getElementById("saveBtn").addEventListener("click", function(){
-    var parsed = parseTransport(els.input.value);
-    if (!parsed) { toast("That doesn't look like an addon URL"); return; }
-    transport = parsed;
-    store.set("nlb_transport", transport);
-    renderAll();
-    toast("Addon saved on this device");
-  });
-  document.getElementById("clearBtn").addEventListener("click", function(){
-    transport = "";
-    store.del("nlb_transport");
-    els.input.value = "";
-    renderAll();
-    toast("Cleared");
-  });
-
-  if (!transport) els.setup.hidden = false;
   renderAll();
   setInterval(function(){
     els.nextCountdown.textContent = countdownText(nextGame());
