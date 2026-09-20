@@ -316,3 +316,63 @@ four profiles. AIOMetadata was restored ahead of Sports Streams in the
 installed order. Jonny and Nene both visibly rendered the new rows, and no
 playback, subscription, profile history, stream ranking, or sports setting
 changed.
+
+### AD-021 — Move Sports Streams to the `.to` host
+
+Status: implemented by the user 2026-09-20, verified read-only by this session.
+
+Sports failed in Stremio with `Env: Failed to fetch: Load failed` while every
+other add-on worked. The installed entry pointed at `premium-us1.highfly.dev`,
+which resolves but serves a certificate issued for another name, so the TLS
+handshake is rejected before any data moves. The provider moved to
+`premium.highfly.to` with the same token and configuration path.
+
+The user removed the stale entry and installed the `.to` one, then reported
+playback. Whether Nene, Moncada, and Armada were updated in the same pass is
+not confirmed; add-on management is disabled on those three, so they must be
+updated from the Admin profile with `apply to all profiles`.
+
+The old hostname must not be reinstated. Evidence:
+`evidence/verification/sports-streams-host-migration-2026-09-20.md`.
+
+### AD-022 — Link into a live game through the `search` extra
+
+Status: implemented 2026-09-20 in `tools/open.html`.
+
+A permanent per-game deep link is not possible. Live event ids carry an
+upstream event number that does not exist before the event is listed, proven
+by the slug alone returning 404 while the full id returns 200, and catalog
+lookahead was about one week when sampled.
+
+Every `sport` catalog declares the `search` extra, so a query reaches the
+add-on and returns the current event. `tools/open.html` runs that query at
+click time, takes the first match, and redirects to
+`stremio:///detail/sport/{event id}`, which is the game page with its feeds. It
+reads the catalog list from the manifest so any sport resolves, not only the
+one it was written for.
+
+The add-on URL is entered once per device and held in `localStorage`, so the
+link itself carries no token and stays safe to text or bookmark. The add-on
+returns `access-control-allow-origin: *`, which is what permits the
+browser-side lookup.
+
+Rejected alternatives: hardcoding per-game `detail` links, which cannot be
+written in advance; and putting the add-on URL in the link, which would place
+the token in message history.
+
+### UD-002 — Sports Streams add-on ID discrepancy
+
+The live manifest reports `community.sports.streamed.premium`. The July 2026
+inventory recorded `community.sports.fly`. Both were observed at version 1.2.0.
+Whether the ID changed alongside the domain move or the original inventory was
+wrong is not established, and nothing in the current setup depends on the
+answer. Recorded rather than guessed.
+
+### UD-003 — Basketball resolution unverified
+
+`tools/open.html` is expected to resolve a Warriors game from `?q=golden state`
+once the NBA season starts. On 2026-09-20 every catalog returned zero metas for
+both `warriors` and `golden state`, because the season had not begun;
+`sports_basketball` held WNBA and Australian NBL fixtures. The catalog walk is
+verified, the basketball match is not. Confirm at the first Warriors game and
+adjust the query if the add-on names the team differently.

@@ -415,3 +415,43 @@ home-layout gaps.
   changed.
 - A redacted focused record is stored in
   `evidence/verification/walking-dead-amc-discovery-2026-07-29.md`.
+
+## 2026-09-20 Sports Streams host migration and game launcher
+
+- The user reported `Env: Failed to fetch: Load failed` on the Sports board
+  while movies and series loaded. Diagnosed read-only: the installed entry
+  pointed at `premium-us1.highfly.dev`, which resolves but presents a
+  certificate issued for another name, so the TLS handshake is rejected. The
+  string `Load failed` is WebKit's wording for a fetch that dies at the network
+  layer, consistent with a rejected certificate and with the error appearing
+  instantly.
+- The provider moved to `premium.highfly.to`. The user supplied the correct
+  base, removed the stale entry, installed the new one, and reported playback.
+  Secondary profiles were not confirmed updated.
+- Current host verified read-only: manifest and every sampled catalog endpoint
+  returned HTTP 200 in under half a second, with
+  `access-control-allow-origin: *`.
+- The live manifest reports `community.sports.streamed.premium` at version
+  1.2.0; July recorded `community.sports.fly`. Logged as UD-002.
+- The configuration now restricts sports to basketball, football,
+  american-football, fight, baseball, and golf, with leagues listing nfl and
+  premier-league, PT, 12h. Nine catalogs, down from eighteen. July recorded no
+  restriction.
+- Event id lifetime established:
+  `meta/sport/streamed:san-francisco-49ers-vs-miami-dolphins` returned 404
+  while the same slug with its event number returned 200. Catalog lookahead was
+  about one week.
+- All nine catalogs declare the `search` extra. `search=49ers` returned exactly
+  one meta from `sports_american_football`, `sports_today`, and `sports_live`.
+- `search=warriors` and `search=golden state` returned zero metas everywhere
+  because the NBA season had not started. Logged as UD-003.
+- Added `tools/open.html`, `tools/niners-quick-links.html`, and
+  `.github/workflows/pages.yml`, published at
+  `https://jonnyearlmedia.github.io/streaming/`. Confirmed HTTP 200 on both
+  pages after the Pages source was set to `GitHub Actions` by the user; the
+  workflow could not enable Pages itself, failing with
+  `Resource not accessible by integration`.
+- No add-on was installed, removed, reordered, or reconfigured by this session,
+  and no playback was started for verification. No purchase or subscription
+  change was made. Personalized manifest URLs, tokens, and UUIDs stay out of
+  this repository.
