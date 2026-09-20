@@ -11,20 +11,28 @@ push to `main`, so the site root is `tools/`:
 
 ## `open.html`
 
-One https link that lands in the right place on either device, so it can be
-pasted into a text message where a custom scheme would arrive as dead text.
+One https link that lands on the actual game page, not a search result.
 
-- macOS, Windows, Android: fires `stremio:///search?search=49ers`, which the
-  installed Stremio app handles. A visible fallback appears if nothing answers.
-- iOS and iPadOS: redirects to `https://web.stremio.com/#/search?search=49ers`,
-  because the full Stremio app is not distributed through the US App Store.
+On open it calls the installed Sports Streams add-on's search endpoint, takes
+the first match, and redirects to `stremio:///detail/sport/{event id}`, which is
+the game's page with its feed list. It tries `sports_american_football`, then
+`sports_today`, then `sports_live`, and falls back to a plain Stremio search
+when nothing is listed yet.
+
+- macOS, Windows, Android: hands off to the installed Stremio app.
+- iOS and iPadOS: redirects to `web.stremio.com`, because the full Stremio app
+  is not distributed through the US App Store.
+
+The add-on URL is entered once per device and kept in that browser's
+`localStorage`. It is never part of the link and never committed here, so the
+link itself can be texted or bookmarked safely. The add-on sends
+`access-control-allow-origin: *`, so the lookup works from a browser page.
 
 Query parameters:
 
 | Param | Effect |
 | --- | --- |
-| `?q=49ers` | Search term. Defaults to `49ers`. |
-| `?id=streamed:...` | Opens that event's detail page instead of a search. |
+| `?q=49ers` | What to look for. Defaults to `49ers`. |
 | `?app=1` | Forces the app scheme, including on iOS. |
 | `?web=1` | Forces Stremio Web everywhere. |
 
