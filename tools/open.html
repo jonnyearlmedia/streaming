@@ -4,11 +4,11 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <meta name="robots" content="noindex">
-<title>Opening Stremio</title>
+<title>Open the Game</title>
 <style>
   :root{
     --ground:#100C0C; --card:#1A1413; --ink:#F4EDEA; --muted:#A4918C;
-    --line:#332726; --scarlet:#EF5A4F; --gold:#C8AE72;
+    --line:#332726; --scarlet:#EF5A4F; --gold:#C8AE72; --live:#4FBE85;
   }
   *{box-sizing:border-box;}
   html,body{height:100%;}
@@ -18,78 +18,192 @@
     display:flex;align-items:center;justify-content:center;padding:24px;
   }
   .card{
-    width:100%;max-width:380px;background:var(--card);border:1px solid var(--line);
-    border-top:3px solid var(--scarlet);border-radius:4px;padding:26px 22px;text-align:center;
+    width:100%;max-width:420px;background:var(--card);border:1px solid var(--line);
+    border-top:3px solid var(--scarlet);border-radius:4px;padding:26px 22px;
   }
-  h1{
-    margin:0 0 6px;font-size:19px;letter-spacing:.02em;text-transform:uppercase;font-weight:600;
-  }
+  h1{margin:0 0 4px;font-size:18px;letter-spacing:.02em;text-transform:uppercase;font-weight:600;}
   p{margin:0;color:var(--muted);font-size:13.5px;}
-  .q{color:var(--gold);font-weight:600;}
-  .acts{display:flex;flex-direction:column;gap:9px;margin-top:22px;}
-  a.btn{
-    display:block;padding:11px 14px;border-radius:3px;text-decoration:none;font-size:14px;font-weight:600;
-    background:var(--scarlet);color:#fff;
+  .game{color:var(--gold);font-weight:600;}
+  .status{margin-top:16px;font-size:13px;color:var(--muted);}
+  .status.ok{color:var(--live);}
+  .status.bad{color:var(--scarlet);}
+  .acts{display:flex;flex-direction:column;gap:9px;margin-top:20px;}
+  .acts[hidden]{display:none;}
+  a.btn,button.btn{
+    display:block;width:100%;padding:11px 14px;border:1px solid transparent;border-radius:3px;
+    text-decoration:none;font-size:14px;font-weight:600;text-align:center;cursor:pointer;
+    background:var(--scarlet);color:#fff;font-family:inherit;
   }
-  a.btn.ghost{background:transparent;color:var(--ink);border:1px solid var(--line);font-weight:500;}
-  .fallback{margin-top:18px;}
-  .fallback[hidden]{display:none;}
-  .dots{color:var(--muted);font-size:13px;margin-top:16px;}
+  a.btn.ghost,button.btn.ghost{background:transparent;color:var(--ink);border-color:var(--line);font-weight:500;}
+  form{margin-top:18px;}
+  form[hidden]{display:none;}
+  label{display:block;font-size:12.5px;color:var(--muted);margin-bottom:7px;}
+  input{
+    width:100%;background:var(--ground);color:var(--ink);border:1px solid var(--line);
+    border-radius:3px;padding:10px 11px;font-family:ui-monospace,SFMono-Regular,Menlo,monospace;font-size:12px;
+  }
+  .hint{font-size:12px;color:var(--muted);margin-top:10px;}
   @media (prefers-reduced-motion:reduce){*{animation:none!important;}}
 </style>
 </head>
 <body>
 <div class="card">
-  <h1>Opening Stremio</h1>
-  <p>Searching <span class="q" id="what">49ers</span></p>
-  <div class="dots" id="status">Handing off to the app…</div>
-  <div class="acts fallback" id="fallback" hidden>
-    <a class="btn" id="appLink" href="#">Open the Stremio app</a>
-    <a class="btn ghost" id="webLink" href="#" rel="noopener">Open Stremio Web instead</a>
+  <h1 id="head">Opening the game</h1>
+  <p>Looking for <span class="game" id="what">49ers</span> in Sports Streams</p>
+  <div class="status" id="status">Checking…</div>
+
+  <div class="acts" id="acts" hidden>
+    <a class="btn" id="primary" href="#">Open in Stremio</a>
+    <a class="btn ghost" id="secondary" href="#">Search Stremio instead</a>
+    <button class="btn ghost" id="reset" type="button">Change add-on URL</button>
   </div>
+
+  <form id="setup" hidden>
+    <label for="base">Paste your Sports Streams add-on URL. It stays on this device and never leaves the browser.</label>
+    <input id="base" type="text" placeholder="https://premium.highfly.to/…/manifest.json" spellcheck="false" autocomplete="off">
+    <div class="acts"><button class="btn" id="save" type="submit">Save and open</button></div>
+    <div class="hint">Stremio, Add-ons, Sports Streams, copy its URL. Needed once per device.</div>
+  </form>
 </div>
 <script>
 (function(){
+  "use strict";
+
+  var KEY = "stremio_sports_base";
+  var CATALOGS = ["sports_american_football", "sports_today", "sports_live"];
+
   var p = new URLSearchParams(location.search);
   var q = p.get("q") || "49ers";
-  var id = p.get("id");
   var forceApp = p.get("app") === "1";
   var forceWeb = p.get("web") === "1";
 
-  var path = id
-    ? "/detail/sport/" + encodeURIComponent(id)
-    : "/search?search=" + encodeURIComponent(q);
-
-  var app = "stremio://" + path;
-  var web = "https://web.stremio.com/#" + path;
-
-  document.getElementById("what").textContent = id ? id.replace(/^streamed:/, "").replace(/-\d+$/, "").replace(/-/g, " ") : q;
-  document.getElementById("appLink").href = app;
-  document.getElementById("webLink").href = web;
+  var el = {
+    head: document.getElementById("head"),
+    what: document.getElementById("what"),
+    status: document.getElementById("status"),
+    acts: document.getElementById("acts"),
+    primary: document.getElementById("primary"),
+    secondary: document.getElementById("secondary"),
+    reset: document.getElementById("reset"),
+    setup: document.getElementById("setup"),
+    base: document.getElementById("base")
+  };
+  el.what.textContent = q;
 
   var ua = navigator.userAgent || "";
   var iOS = /iPad|iPhone|iPod/.test(ua) || (/Macintosh/.test(ua) && navigator.maxTouchPoints > 1);
+  var useApp = forceApp || (!forceWeb && !iOS);
 
-  function showFallback(msg){
-    document.getElementById("status").textContent = msg;
-    document.getElementById("fallback").hidden = false;
+  function link(path){
+    return useApp ? "stremio://" + path : "https://web.stremio.com/#" + path;
+  }
+  function detailPath(id){ return "/detail/sport/" + encodeURIComponent(id); }
+  function searchPath(){ return "/search?search=" + encodeURIComponent(q); }
+
+  function store(v){
+    try { if (v === null) localStorage.removeItem(KEY); else localStorage.setItem(KEY, v); } catch(e){}
+  }
+  function read(){
+    try { return localStorage.getItem(KEY) || ""; } catch(e){ return ""; }
   }
 
-  if (forceWeb || (iOS && !forceApp)) {
-    // No full Stremio app ships for iOS, so go straight to the web player.
-    location.replace(web);
-    return;
+  // Accepts a manifest URL, a configure URL, or a bare host+config path.
+  function normalize(raw){
+    raw = (raw || "").trim();
+    if (!raw) return "";
+    var m = raw.match(/[#/]discover\/([^/?#]+)/);
+    if (m) { try { raw = decodeURIComponent(m[1]); } catch(e){ raw = m[1]; } }
+    raw = raw.replace(/^stremio:\/\//, "https://");
+    if (!/^https?:\/\//.test(raw)) return "";
+    raw = raw.split("#")[0].split("?")[0];
+    raw = raw.replace(/\/(manifest\.json|configure\/?)$/, "");
+    return raw.replace(/\/+$/, "");
   }
 
-  // Desktop and Android: hand off to the installed app, keep a visible way out.
-  try { location.href = app; } catch (e) {}
-  setTimeout(function(){
-    showFallback("Didn't open? Pick one:");
-  }, 1500);
+  function setStatus(text, cls){
+    el.status.textContent = text;
+    el.status.className = "status" + (cls ? " " + cls : "");
+  }
 
-  document.addEventListener("visibilitychange", function(){
-    if (document.hidden) document.getElementById("status").textContent = "Opened in the app.";
+  function offer(primaryHref, primaryText, secondaryHref){
+    el.primary.href = primaryHref;
+    el.primary.textContent = primaryText;
+    el.secondary.href = secondaryHref;
+    if (!useApp) { el.primary.target = "_blank"; el.secondary.target = "_blank"; }
+    el.acts.hidden = false;
+  }
+
+  function go(href){
+    if (useApp) {
+      try { location.href = href; } catch(e){}
+      setTimeout(function(){
+        setStatus("If Stremio didn't open, use the button.", "");
+      }, 1500);
+    } else {
+      location.replace(href);
+    }
+  }
+
+  function findEvent(base, i){
+    i = i || 0;
+    if (i >= CATALOGS.length) return Promise.resolve(null);
+    var url = base + "/catalog/sport/" + CATALOGS[i] + "/search=" + encodeURIComponent(q) + ".json";
+    return fetch(url, { cache: "no-store" })
+      .then(function(r){ return r.ok ? r.json() : null; })
+      .then(function(d){
+        var metas = (d && d.metas) || [];
+        if (metas.length) return metas[0];
+        return findEvent(base, i + 1);
+      })
+      .catch(function(){ return findEvent(base, i + 1); });
+  }
+
+  function run(base){
+    setStatus("Asking Sports Streams…");
+    findEvent(base).then(function(meta){
+      if (meta && meta.id) {
+        el.head.textContent = "Opening";
+        el.what.textContent = meta.name || q;
+        setStatus((meta.releaseInfo ? meta.releaseInfo + " · " : "") + "found it", "ok");
+        var href = link(detailPath(meta.id));
+        offer(href, "Open " + (meta.name || "the game"), link(searchPath()));
+        go(href);
+      } else {
+        setStatus("No " + q + " event listed yet. Opening search.", "bad");
+        var s = link(searchPath());
+        offer(s, "Search Stremio", s);
+        go(s);
+      }
+    });
+  }
+
+  el.reset.addEventListener("click", function(){
+    store(null);
+    el.acts.hidden = true;
+    el.setup.hidden = false;
+    el.base.value = "";
+    el.base.focus();
+    setStatus("Add-on URL cleared.");
   });
+
+  el.setup.addEventListener("submit", function(ev){
+    ev.preventDefault();
+    var v = normalize(el.base.value);
+    if (!v) { setStatus("That doesn't look like an add-on URL.", "bad"); return; }
+    store(v);
+    el.setup.hidden = true;
+    run(v);
+  });
+
+  var saved = read();
+  if (saved) {
+    run(saved);
+  } else {
+    setStatus("Set up once on this device.");
+    el.setup.hidden = false;
+    var s = link(searchPath());
+    offer(s, "Search Stremio for now", s);
+  }
 })();
 </script>
 </body>
