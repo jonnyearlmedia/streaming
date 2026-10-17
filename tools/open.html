@@ -70,30 +70,47 @@
   "use strict";
 
   var KEY = "stremio_sports_base";
-  // Which add-on catalogs to ask, and in what order. The sport hint goes first,
-  // then the generic live/today lists, then every other sport as a last resort.
-  // A missing or wrong hint must never be the reason a game is not found.
-  // findEvent() already falls through on any catalog the add-on does not carry,
-  // so naming extra ones costs nothing but a failed fetch.
+  // Real catalog ids, confirmed against the add-on itself in
+  // evidence/verification/sports-streams-catalog-results-2026-07-14.json.
+  // Note the two football lists: sports_american_football is the NFL one,
+  // sports_football is soccer. There is no sports_soccer, sports_mma or
+  // sports_boxing -- fights live in sports_fight.
   var SPORT_CATALOGS = {
-    football:   "sports_american_football",
     basketball: "sports_basketball",
-    baseball:   "sports_baseball",
+    football:   "sports_american_football",
+    nfl:        "sports_american_football",
+    soccer:     "sports_football",
     hockey:     "sports_hockey",
-    soccer:     "sports_soccer",
-    mma:        "sports_mma",
-    boxing:     "sports_boxing"
+    baseball:   "sports_baseball",
+    fight:      "sports_fight",
+    mma:        "sports_fight",
+    boxing:     "sports_fight",
+    motor:      "sports_motor_sports",
+    tennis:     "sports_tennis",
+    rugby:      "sports_rugby",
+    golf:       "sports_golf",
+    cricket:    "sports_cricket",
+    afl:        "sports_afl"
   };
+
+  // Everything the add-on actually carries, so a sport we have no hint for
+  // still gets looked for instead of going straight to a blank search.
+  var ALL_CATALOGS = [
+    "sports_basketball", "sports_american_football", "sports_football",
+    "sports_hockey", "sports_baseball", "sports_motor_sports", "sports_fight",
+    "sports_tennis", "sports_rugby", "sports_golf", "sports_cricket",
+    "sports_afl", "sports_other"
+  ];
 
   function catalogList(sport){
     var first = SPORT_CATALOGS[sport] || "";
     var out = [];
     if (first) out.push(first);
+    // today and live carry whatever is on now regardless of sport, so they are
+    // the best second guess before trawling every other list.
     out.push("sports_today", "sports_live");
-    for (var key in SPORT_CATALOGS) {
-      if (SPORT_CATALOGS.hasOwnProperty(key) && SPORT_CATALOGS[key] !== first) {
-        out.push(SPORT_CATALOGS[key]);
-      }
+    for (var i = 0; i < ALL_CATALOGS.length; i++) {
+      if (ALL_CATALOGS[i] !== first) out.push(ALL_CATALOGS[i]);
     }
     return out;
   }
@@ -102,6 +119,10 @@
   var q = p.get("q") || "49ers";
   var sport = (p.get("sport") || "football").toLowerCase();
   var CATALOGS = catalogList(sport);
+  // Extra names to try if the main one finds nothing, comma separated.
+  var TERMS = [q].concat(
+    (p.get("alt") || "").split(",").map(function(x){ return x.trim(); })
+  ).filter(function(x, i, a){ return x && a.indexOf(x) === i; });
   var forceApp = p.get("app") === "1";
   var forceWeb = p.get("web") === "1";
 
@@ -172,18 +193,28 @@
     }
   }
 
-  function findEvent(base, i){
-    i = i || 0;
-    if (i >= CATALOGS.length) return Promise.resolve(null);
-    var url = base + "/catalog/sport/" + CATALOGS[i] + "/search=" + encodeURIComponent(q) + ".json";
+  function askOne(base, cat, term){
+    var url = base + "/catalog/sport/" + cat +
+              "/search=" + encodeURIComponent(term) + ".json";
     return fetch(url, { cache: "no-store" })
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(d){
         var metas = (d && d.metas) || [];
-        if (metas.length) return metas[0];
-        return findEvent(base, i + 1);
+        return metas.length ? metas[0] : null;
       })
-      .catch(function(){ return findEvent(base, i + 1); });
+      .catch(function(){ return null; });
+  }
+
+  // Try every search term inside a catalog before moving to the next catalog:
+  // the hinted catalog is the most likely place, so exhaust it first.
+  function findEvent(base, ci, ti){
+    ci = ci || 0; ti = ti || 0;
+    if (ci >= CATALOGS.length) return Promise.resolve(null);
+    if (ti >= TERMS.length) return findEvent(base, ci + 1, 0);
+    return askOne(base, CATALOGS[ci], TERMS[ti]).then(function(meta){
+      if (meta && meta.id) return meta;
+      return findEvent(base, ci, ti + 1);
+    });
   }
 
   function run(base){
