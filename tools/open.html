@@ -255,10 +255,17 @@
         offer(href, "Open " + (meta.name || "the game"), link(searchPath()));
         go(href);
       } else {
-        setStatus("No " + q + " event listed yet. Opening search.", "bad");
+        // Nothing listed. Say WHY rather than silently dumping him in a search
+        // screen that reads like a failure: the add-on only carries games that
+        // are live or on today, so a game days out simply is not there yet.
+        // No auto-redirect here -- at game time the branch above fires and
+        // opens the game, so the only time we land here is when there is
+        // nothing to open and he should be told that in words.
+        setStatus("No " + q + " game on right now. The add-on only lists games "
+                  + "that are live or on today, so check back closer to "
+                  + "tip-off.", "bad");
         var s = link(searchPath());
-        offer(s, "Search Stremio", s);
-        go(s);
+        offer(s, "Search Stremio anyway", s);
       }
     });
   }
