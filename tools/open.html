@@ -70,10 +70,38 @@
   "use strict";
 
   var KEY = "stremio_sports_base";
-  var CATALOGS = ["sports_american_football", "sports_today", "sports_live"];
+  // Which add-on catalogs to ask, and in what order. The sport hint goes first,
+  // then the generic live/today lists, then every other sport as a last resort.
+  // A missing or wrong hint must never be the reason a game is not found.
+  // findEvent() already falls through on any catalog the add-on does not carry,
+  // so naming extra ones costs nothing but a failed fetch.
+  var SPORT_CATALOGS = {
+    football:   "sports_american_football",
+    basketball: "sports_basketball",
+    baseball:   "sports_baseball",
+    hockey:     "sports_hockey",
+    soccer:     "sports_soccer",
+    mma:        "sports_mma",
+    boxing:     "sports_boxing"
+  };
+
+  function catalogList(sport){
+    var first = SPORT_CATALOGS[sport] || "";
+    var out = [];
+    if (first) out.push(first);
+    out.push("sports_today", "sports_live");
+    for (var key in SPORT_CATALOGS) {
+      if (SPORT_CATALOGS.hasOwnProperty(key) && SPORT_CATALOGS[key] !== first) {
+        out.push(SPORT_CATALOGS[key]);
+      }
+    }
+    return out;
+  }
 
   var p = new URLSearchParams(location.search);
   var q = p.get("q") || "49ers";
+  var sport = (p.get("sport") || "football").toLowerCase();
+  var CATALOGS = catalogList(sport);
   var forceApp = p.get("app") === "1";
   var forceWeb = p.get("web") === "1";
 
