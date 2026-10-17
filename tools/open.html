@@ -119,10 +119,30 @@
   var q = p.get("q") || "49ers";
   var sport = (p.get("sport") || "football").toLowerCase();
   var CATALOGS = catalogList(sport);
-  // Extra names to try if the main one finds nothing, comma separated.
+
+  // Search terms to try, in order, comma separated in ?alt=.
   var TERMS = [q].concat(
     (p.get("alt") || "").split(",").map(function(x){ return x.trim(); })
   ).filter(function(x, i, a){ return x && a.indexOf(x) === i; });
+
+  // The add-on's search is a loose substring match, so "Warriors" happily
+  // returns a Hawaii Rainbow Warriors game. ?must= lists tokens the matched
+  // event name has to contain for us to accept it -- at least one of them,
+  // case insensitive. Without this the page opens whatever came back first,
+  // which is how it sent Jonny to the wrong game on 2026-10-17.
+  var MUST = (p.get("must") || "").split(",")
+    .map(function(x){ return x.trim().toLowerCase(); })
+    .filter(function(x){ return x; });
+
+  function acceptable(name){
+    if (!MUST.length) return true;
+    var n = String(name || "").toLowerCase();
+    for (var i = 0; i < MUST.length; i++) {
+      if (n.indexOf(MUST[i]) !== -1) return true;
+    }
+    return false;
+  }
+
   var forceApp = p.get("app") === "1";
   var forceWeb = p.get("web") === "1";
 
@@ -200,7 +220,14 @@
       .then(function(r){ return r.ok ? r.json() : null; })
       .then(function(d){
         var metas = (d && d.metas) || [];
-        return metas.length ? metas[0] : null;
+        // Walk the whole result list, not just the first hit, and take the
+        // first one that is actually this team.
+        for (var i = 0; i < metas.length; i++) {
+          if (metas[i] && metas[i].id && acceptable(metas[i].name)) {
+            return metas[i];
+          }
+        }
+        return null;
       })
       .catch(function(){ return null; });
   }
